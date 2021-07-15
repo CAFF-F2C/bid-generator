@@ -1,0 +1,160 @@
+inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'public/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'app/views/**/*'
+    - 'app/views_mobile/**/*'
+    - 'tmp/**/*'
+
+Rails/HttpPositionalArguments:
+  Enabled: true
+  Exclude:
+    - spec/middleware/request_inflater_spec.rb
+
+Metrics/BlockLength:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: not_to, to_not
+RSpec/NotToNot:
+  EnforcedStyle: not_to
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, never
+# No longer necessary for ruby 3?
+# Style/FrozenStringLiteralComment:
+#   EnforcedStyle: always
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: symmetrical, new_line, same_line
+Layout/MultilineHashBraceLayout:
+  EnforcedStyle: new_line
+
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAsExpressionSeparator.
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_braces
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: consistent, consistent_relative_to_receiver, special_for_inner_method_call, special_for_inner_method_call_in_parentheses
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: leading, trailing
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: with_first_argument, with_fixed_indentation
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  EnforcedStyle: brackets
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Cop supports --auto-correct.
+# Configuration parameters: .
+# SupportedStyles: use_perl_names, use_english_names
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
+
+# Cop supports --auto-correct.
+# Configuration parameters: Width, IgnoredPatterns.
+Layout/IndentationWidth:
+  Width: 2
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleInsidePipes.
+# SupportedStylesInsidePipes: space, no_space
+Layout/SpaceAroundBlockParameters:
+  EnforcedStyleInsidePipes: no_space
+
+# Cop supports --auto-correct.
+# Configuration parameters: IndentationWidth.
+Layout/AssignmentIndentation:
+  IndentationWidth: 2
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: squiggly, active_support, powerpack, unindent
+# Layout/HeredocIndentation:
+#   EnforcedStyle: squiggly
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: aligned, indented, indented_relative_to_receiver
+Layout/MultilineMethodCallIndentation:
+  IndentationWidth: 2
+  EnforcedStyle: indented
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: aligned, indented
+Layout/MultilineOperationIndentation:
+  IndentationWidth: 2
+  EnforcedStyle: indented
+
+Layout/ArrayAlignment:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBrackets: space, no_space
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: no_space
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
