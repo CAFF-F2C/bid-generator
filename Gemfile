@@ -3,43 +3,55 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.4'
-# Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
-# Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'rails', '~> 6.1.4'
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'dotenv-rails', groups: [:test, :development]
 
-# Reduces boot times through caching; required in config/boot.rb
+gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'jbuilder', '~> 2.7'
+gem 'pundit'
+gem 'redis'
+gem 'rspec'
+gem 'sass-rails', '>= 6'
+gem 'turbolinks', '~> 5'
+gem 'webpacker', '~> 5.0'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'annotate', '~> 3.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails', '~> 4.8'
+  gem 'faker'
+  gem 'jasmine'
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.1.0'
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'pivotal_git_scripts'
+  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'web-console', '>= 4.1.0'
+end
+
+group :test do
+  gem 'axe-core-capybara'
+  gem 'axe-core-rspec'
+  gem 'capybara', '~> 3.0'
+  gem 'capybara-email', '~> 3.0'
+  gem 'capybara-screenshot', '~> 1.0', require: false
+  gem 'pundit-matchers', '~> 1.6'
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-html-matchers'
+  gem 'rspec_junit_formatter'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  gem 'vcr'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
