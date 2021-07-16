@@ -46,5 +46,7 @@ jobs:
       run: |
         cp config/database.yml.github-actions config/database.yml
         bin/rails db:prepare
+    - name: Precompile Assets
+      run: bundle exec rails assets:precompile
     - name: Run tests
       run: bundle exec rspec spec
