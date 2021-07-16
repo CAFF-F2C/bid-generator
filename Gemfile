@@ -17,6 +17,7 @@ gem 'redis'
 gem 'rspec'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
+gem 'view_component', require: 'view_component/engine'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
