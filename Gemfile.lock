@@ -291,6 +291,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tailwindcss-rails (0.3.3)
+      rails (>= 6.0.0)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -373,6 +375,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (>= 6)
   shoulda-matchers
+  tailwindcss-rails (~> 0.3.3)
   timecop
   turbolinks (~> 5)
   tzinfo-data
