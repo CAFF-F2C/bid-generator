@@ -17,7 +17,7 @@ gem 'redis'
 gem 'rspec'
 gem 'sass-rails', '>= 6'
 gem 'tailwindcss-rails', '~> 0.3.3'
-gem 'turbolinks', '~> 5'
+gem 'turbo-rails'
 gem 'view_component', require: 'view_component/engine'
 gem 'webpacker', '~> 5.0'
 
