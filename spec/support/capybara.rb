@@ -1,10 +1,11 @@
 require 'capybara/rspec'
-# require 'capybara-screenshot/rspec'
-# require 'capybara/email/rspec'
+require 'capybara-screenshot/rspec'
+require 'capybara/email/rspec'
 
 Capybara.default_driver = :rack_test
 Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.server = :puma, {Silent: true}
+Capybara.always_include_port = true
 
 Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.load_selenium

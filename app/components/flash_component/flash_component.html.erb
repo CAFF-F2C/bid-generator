@@ -1,0 +1,7 @@
+<% @flash.each do |level, message| %>
+  <aside class="flash flash--<%= level%>">
+    <p class="flash__message flash__message--<%= level%>">
+      <%= message %>
+    </p>
+  </aside>
+<% end %>

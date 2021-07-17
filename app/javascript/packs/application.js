@@ -12,3 +12,4 @@ Rails.start()
 ActiveStorage.start()
 
 import "stylesheets/application"
+import "../components"
