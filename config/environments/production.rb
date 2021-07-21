@@ -63,8 +63,17 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Bid_Generator_production"
 
   config.action_mailer.perform_caching = false
-
   config.action_mailer.default_url_options = {host: ENV.fetch('ACTION_MAILER_HOST', 'www.bidgenerator.org')}
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV.fetch('SENDGRID_USERNAME'),
+    :password => ENV.fetch('SENDGRID_PASSWORD'),
+    :domain => ENV.fetch('ACTION_MAILER_HOST', 'www.bidgenerator.org'),
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
