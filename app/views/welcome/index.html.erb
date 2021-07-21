@@ -1,7 +1,7 @@
 <div class='flex h-full w-full items-center justify-center'>
-  <div class="text-center max-w-lg">
+  <div class="text-center w-80">
     <header class='mb-6 mx-auto'>
-      <%= image_tag('logo', class: 'mx-auto', alt: 'bid generator') %>
+      <%= inline_svg_tag('logo.svg', class: 'mx-auto', alt: 'bid generator') %>
     </header>
 
     <%= render(FlashComponent.new(flash: flash)) %>
