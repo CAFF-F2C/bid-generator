@@ -5,12 +5,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': ['Inter', 'sans-serif']
+    },
     colors: {
       transparent: colors.transparent,
       white: colors.white,
       caffblue: {
         light: '#207A96',
-        DEFAULT: '#295168',
+        DEFAULT: '#1D384C',
       },
       gray: {
         dark: '#1E2E3A',

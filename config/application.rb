@@ -36,6 +36,7 @@ module BidGenerator
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
+      g.helper false
       g.fixture_replacement :factory_bot
     end
 

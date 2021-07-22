@@ -1,0 +1,40 @@
+.buyers__nav
+  @apply w-full sm:w-auto
+
+.buyers__nav-sm-header
+  @apply flex w-full sm:hidden
+
+.buyers__nav-toggle-open
+  @apply block p-3
+
+.buyers__nav-toggle-close
+  @apply bg-caffblue bg-opacity-60 w-14 sm:hidden
+
+#navigation-toggle
+  @apply hidden
+
+#navigation-toggle:checked + .buyers__nav-sidebar
+  @apply block absolute top-0 left-0 sm:block sm:static w-full h-full flex
+
+.buyers__nav-sidebar
+  @apply hidden sm:block sm:static text-white h-full
+
+.buyers__nav-links
+  @apply flex-1 bg-caffblue h-full p-3 flex flex-col
+
+.buyers__nav-logo
+  @apply px-3 text-left
+
+.buyers__nav-link
+  @apply text-white text-sm flex py-4 px-3 rounded
+  &--active
+    @apply bg-caffblue-light
+  span
+    @apply ml-6 flex-1
+
+.buyers__nav-footer
+  @apply flex items-center pl-2
+
+
+
+

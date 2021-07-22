@@ -1,0 +1,42 @@
+<nav class='buyers__nav'>
+  <div class='buyers__nav-sm-header'>
+    <label for='navigation-toggle' class='buyers__nav-toggle-open'>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+    <%= inline_svg_tag('logo.svg', class: 'mx-auto w-64 mb-6', alt: 'bid generator') %>
+  </div>
+  <input name='navigation-toggle' id='navigation-toggle' type="checkbox" />
+  <div class="buyers__nav-sidebar">
+    <div class='buyers__nav-links'>
+      <div class='flex-1'>
+        <div class="buyers__nav-logo">
+          <%= inline_svg_tag('logo.svg', class: 'w-64 mb-6', alt: 'bid generator') %>
+        </div>
+        <div>
+          <%= link_to(buyers_documents_path, class: "buyers__nav-link #{current_page?(buyers_documents_path) ? 'buyers__nav-link--active' : ''}") do %>
+            <%= inline_svg_tag('icon_documents.svg', alt: 'documents') %>
+            <span>My Documents</span>
+          <% end %>
+
+          <%= link_to(buyers_district_profile_new_path, class: "buyers__nav-link #{current_page?(buyers_district_profile_new_path) ? 'buyers__nav-link--active' : ''}") do %>
+            <%= inline_svg_tag('icon_district_profile.svg', alt: 'district profile') %>
+            <span>District Profile</span>
+          <% end %>
+        </div>
+      </div>
+      <div class='buyers__nav-footer'>
+        <%= image_tag('caff_logo.png', class: 'h-16') %>
+        <span class='ml-3'>A Project of CAFF</span>
+      </div>
+    </div>
+    <div class='buyers__nav-toggle-close'>
+      <label for='navigation-toggle' class='block p-3 text-center'>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </label>
+    </div>
+  </div>
+</nav>

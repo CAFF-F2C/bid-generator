@@ -1,4 +1,8 @@
 @layer base {
+  h1, h2, h3 {
+    font-family: 'Space Grotesk', san-serif;
+    font-weight: 600;
+  }
   a {
     @apply text-caffblue-light;
   }
