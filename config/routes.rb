@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :buyers do
-    get 'district_profile/new'
-  end
+
   devise_for :buyers, :controllers => { :registrations => "buyers/registrations" }
 
   namespace :buyers do

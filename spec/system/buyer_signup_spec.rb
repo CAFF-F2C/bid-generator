@@ -27,6 +27,6 @@ RSpec.describe 'Sign up', type: :system do
 
     # click_on 'Log in'
 
-    expect(page).to have_content(/welcome/i)
+    expect(page).to have_content(/my documents/i)
   end
 end
