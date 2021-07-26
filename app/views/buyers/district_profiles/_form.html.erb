@@ -1,0 +1,47 @@
+<h2 class='buyers__section-head'>District Information</h2>
+
+<div class="field my-4">
+  <%= f.label :district_name, 'District Name', class: 'text-field-label' %>
+  <%= f.text_field :district_name, required: true, class: 'text-field' %>
+</div>
+
+<div class="field my-4">
+  <%= f.label :city, 'City', class: 'text-field-label' %>
+  <%= f.text_field :city, class: 'text-field' %>
+</div>
+
+<div class="field my-4">
+  <%= f.label :county, 'County', class: 'text-field-label' %>
+  <%= f.text_field :county, class: 'text-field' %>
+</div>
+
+<div class='form-row my-4'>
+  <div class="field">
+    <%= f.label :enrolled_students_number, 'Number of enrolled students', class: 'text-field-label' %>
+    <%= f.text_field :enrolled_students_number, class: 'text-field' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :daily_meals_number, 'Number of daily meals served', class: 'text-field-label' %>
+    <%= f.text_field :daily_meals_number, class: 'text-field' %>
+  </div>
+</div>
+
+<div class='form-row my-4'>
+  <div class="field">
+    <%= f.label :schools_number, 'Number of schools', class: 'text-field-label' %>
+    <%= f.text_field :schools_number, class: 'text-field' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :production_sites_number, 'Number of production sites', class: 'text-field-label' %>
+    <%= f.text_field :production_sites_number, class: 'text-field' %>
+  </div>
+</div>
+
+<div class='buyers__actions'>
+  <div class='buyers__action'>
+    <%= f.submit 'Save and exit', class: 'button' %>
+  </div>
+</div>
+

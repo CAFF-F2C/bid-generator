@@ -17,7 +17,13 @@
   <body class="bg-gray-10 h-screen h-full sm:flex">
     <%= render(Buyers::NavigationComponent.new(current_path: request.path, user: current_buyer)) %>
     <main class='flex-1 p-6 buyers__main buyers__main--<%= controller_path.parameterize %>-<%= action_name %>"' role='main'>
-      <%= yield %>
+      <h1 class='buyers__page-title'>
+        <%= content_for(:page_header).blank? ? 'District Profile' : content_for(:page_header) %>
+      </h1>
+      <%= render(FlashComponent.new(flash: flash)) %>
+      <div class='buyers__main-content'>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

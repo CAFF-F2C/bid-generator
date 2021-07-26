@@ -6,8 +6,6 @@ RSpec.describe "Buyers::Documents", type: :request do
       get buyers_documents_path
     end
 
-    let(:buyer) { create(:buyer) }
-
     context 'when a buyer is not signed in' do
       it 'redirects' do
         make_request
@@ -16,6 +14,8 @@ RSpec.describe "Buyers::Documents", type: :request do
     end
 
     context 'when a buyer is signed in' do
+      let(:buyer) { create(:buyer) }
+
       before do
         sign_in buyer, scope: :buyer
       end

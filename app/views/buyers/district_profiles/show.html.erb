@@ -1,0 +1,39 @@
+<div class='flex flex-row w-full'>
+  <h2 class='buyers__section-head flex-1'>District Information</h2>
+  <%= link_to('Edit', edit_buyers_district_profile_path) %>
+</div>
+<table class='buyers__display-form'>
+  <tr>
+    <td class='buyers_display-field-label'>District Name</td>
+    <td><%=@district_profile.district_name%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>City</td>
+    <td><%=@district_profile.city%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>County</td>
+    <td><%=@district_profile.county%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>City</td>
+    <td><%=@district_profile.city%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>Number of enrolled students</td>
+    <td><%=@district_profile.enrolled_students_number%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>Number of daily meals served</td>
+    <td><%=@district_profile.daily_meals_number%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>Number of schools</td>
+    <td><%=@district_profile.schools_number%></td>
+  </tr>
+  <tr>
+    <td class='buyers_display-field-label'>Number of production sites</td>
+    <td><%=@district_profile.production_sites_number%></td>
+  </tr>
+</table>
+

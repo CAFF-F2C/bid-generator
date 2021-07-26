@@ -12,11 +12,23 @@
   .text-field {
     @apply border-gray-300 rounded w-full focus:border-gray-600 focus:ring-gray-300;
   }
+  .text-field-label{
+    @apply block mb-2 text-gray-700 text-sm
+  }
   .errors {
     @apply text-red-600 text-sm font-semibold leading-tight space-y-1 mb-4
   }
   .radio, .checkbox {
     @apply rounded border-gray-300 text-caffblue-light focus:ring-caffblue-light
+  }
+  .form-row {
+    @apply flex flex-row w-full
+  }
+  .field {
+    @apply w-full
+  }
+  .form-row .field:not(:first-child) {
+    @apply ml-4
   }
 }
 

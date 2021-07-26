@@ -6,6 +6,7 @@ Capybara.default_driver = :rack_test
 Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.server = :puma, {Silent: true}
 Capybara.always_include_port = true
+Capybara.default_normalize_ws = true
 
 Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.load_selenium
@@ -23,6 +24,7 @@ Capybara.register_driver :selenium_chrome_headless do |app|
 end
 
 RSpec.configure do |config|
+  config.include Capybara::RSpecMatchers, type: :request
   config.before(:each, type: :feature) { Capybara.current_driver = :rack_test }
   config.before(:each, type: :feature, js: true) { Capybara.current_driver = :selenium_chrome_headless }
   config.before(:each, type: :system) { driven_by(:rack_test) }

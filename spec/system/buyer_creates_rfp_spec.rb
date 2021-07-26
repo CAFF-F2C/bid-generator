@@ -11,6 +11,9 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on('District Profile')
     expect(page).to have_content('District Profile')
 
-    # fill_in('School District Name').with 'The District'
+    fill_in 'District Name', with: 'The District'
+    click_on 'Save and exit'
+
+    expect(page.find('main')).to have_content(/success/i)
   end
 end

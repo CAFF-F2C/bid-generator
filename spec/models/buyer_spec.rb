@@ -26,9 +26,13 @@
 #  index_buyers_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_buyers_on_email                 (email) UNIQUE
 #  index_buyers_on_reset_password_token  (reset_password_token) UNIQUE
-#
-class Buyer < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
-  has_one :district_profile
+require 'rails_helper'
+
+RSpec.describe Buyer, type: :model do
+  subject(:buyer) { FactoryBot.create(:buyer) }
+
+  describe 'validations' do
+    it { should validate_presence_of(:email) }
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_200613) do
+ActiveRecord::Schema.define(version: 2021_07_27_205359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,4 +38,19 @@ ActiveRecord::Schema.define(version: 2021_07_16_200613) do
     t.index ["reset_password_token"], name: "index_buyers_on_reset_password_token", unique: true
   end
 
+  create_table "district_profiles", force: :cascade do |t|
+    t.string "district_name", null: false
+    t.string "city"
+    t.string "county"
+    t.integer "enrolled_students_number"
+    t.integer "daily_meals_number"
+    t.integer "schools_number"
+    t.integer "production_sites_number"
+    t.bigint "buyer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_district_profiles_on_buyer_id"
+  end
+
+  add_foreign_key "district_profiles", "buyers"
 end

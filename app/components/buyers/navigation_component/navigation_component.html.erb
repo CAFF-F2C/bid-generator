@@ -20,7 +20,7 @@
             <span>My Documents</span>
           <% end %>
 
-          <%= link_to(new_buyers_district_profile_path, class: "buyers__nav-link #{current_page?(new_buyers_district_profile_path) ? 'buyers__nav-link--active' : ''}") do %>
+          <%= link_to(buyers_district_profile_path, class: "buyers__nav-link #{current_page?(new_buyers_district_profile_path) ? 'buyers__nav-link--active' : ''}") do %>
             <%= inline_svg_tag('icon_district_profile.svg', alt: 'district profile') %>
             <span>District Profile</span>
           <% end %>

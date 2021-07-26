@@ -1,1 +1,3 @@
-<h1 class='buyers__page-title'>District Profile</h1>
+<%= form_with model: [:buyers, @district_profile], url: buyers_district_profile_url, method: :post, local: true do |f| %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>
