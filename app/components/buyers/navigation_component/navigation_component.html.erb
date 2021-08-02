@@ -24,6 +24,12 @@
             <%= inline_svg_tag('icon_district_profile.svg', alt: 'district profile') %>
             <span>District Profile</span>
           <% end %>
+
+          <%= link_to(destroy_buyer_session_path, method: :delete, class:'buyers__nav-link') do %>
+            <%= inline_svg_tag('icon_signout.svg', alt: 'sign out') %>
+            <span>Sign out</span>
+          <% end %>
+
         </div>
       </div>
       <div class='buyers__nav-footer'>

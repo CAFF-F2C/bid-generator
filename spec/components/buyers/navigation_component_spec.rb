@@ -8,4 +8,5 @@ RSpec.describe Buyers::NavigationComponent, type: :component do
 
   it { expect(page.find('.buyers__nav-link--active')).to have_content(/my documents/i) }
   it { expect(page).to have_content(/district profile/i) }
+  it { expect(page).to have_content(/sign out/i) }
 end
