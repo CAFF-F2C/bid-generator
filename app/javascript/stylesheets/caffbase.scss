@@ -22,13 +22,14 @@
     @apply rounded border-gray-300 text-caffblue-light focus:ring-caffblue-light
   }
   .form-row {
-    @apply flex flex-row w-full
+    @apply w-full md:flex md:flex-row md:my-4
   }
   .field {
-    @apply w-full
+    @apply w-full my-4
   }
+  .form-row .field { @apply md:my-auto }
   .form-row .field:not(:first-child) {
-    @apply ml-4
+    @apply md:ml-4
   }
 }
 
