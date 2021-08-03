@@ -4,7 +4,7 @@ RSpec.describe 'Sign up', type: :system do
   it 'allows a buyer to sign up', :js do
     visit root_path
 
-    click_on 'create an account'
+    click_on 'Sign up'
     # expect(page).to be_axe_clean
 
     fill_in 'Full name', with: 'Buyer Name'
