@@ -1,0 +1,103 @@
+---
+- - :permit
+  - MIT
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:41:24.433375000 Z
+- - :permit
+  - ISC
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:41:28.603546000 Z
+- - :permit
+  - Simplified BSD
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:41:46.299526000 Z
+- - :permit
+  - New BSD
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:42:12.481969000 Z
+- - :permit
+  - Apache 2.0
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:42:28.016211000 Z
+- - :permit
+  - CC0-1.0
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:43:40.400247000 Z
+- - :permit
+  - ruby
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:44:11.474339000 Z
+- - :permit
+  - Mozilla Public License 2.0
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:44:17.126353000 Z
+- - :permit
+  - CC-BY-4.0
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:44:24.255330000 Z
+- - :permit
+  - WTFPL
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:44:30.695979000 Z
+- - :license
+  - atob
+  - MIT
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:45:15.500417000 Z
+- - :license
+  - pako
+  - MIT
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:45:24.617259000 Z
+- - :license
+  - path-is-inside
+  - MIT
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:45:36.721788000 Z
+- - :license
+  - sha.js
+  - MIT
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:45:54.029695000 Z
+- - :license
+  - node-forge
+  - BSD-3-Clause
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:46:54.135865000 Z
+- - :license
+  - fsevents
+  - MIT
+  - :who:
+    :why:
+    :versions: []
+    :when: 2021-08-03 17:54:22.379751000 Z

@@ -42,6 +42,8 @@ jobs:
       uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: License Finder
+      run: bin/license_finder
     - name: Create DB
       run: |
         cp config/database.yml.github-actions config/database.yml
@@ -49,4 +51,4 @@ jobs:
     - name: Precompile Assets
       run: bundle exec rails assets:precompile
     - name: Run tests
-      run: bundle exec rspec spec
+      run: bundle exec rspec

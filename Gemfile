@@ -29,6 +29,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'jasmine'
+  gem 'license_finder', '~> 6.0'
 end
 
 group :development do
