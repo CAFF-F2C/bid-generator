@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   draw(:active_storage)
+  mount ActionCable.server => '/cable'
+
   devise_for :buyers, controllers: {registrations: 'buyers/registrations'}
 
   namespace :buyers do

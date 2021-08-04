@@ -13,7 +13,9 @@ gem 'aws-sdk-rails', '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'connection_pool'
 gem 'devise'
+gem 'hiredis'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
 gem 'pundit'
