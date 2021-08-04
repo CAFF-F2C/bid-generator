@@ -56,8 +56,8 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  # Use Redis as the cache store in production.
+  config.cache_store = :redis_cache_store, {driver: :hiredis} if ENV.key?('REDIS_URL')
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter     = :amazon_sqs
