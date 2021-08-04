@@ -66,6 +66,22 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
+    aws-eventstream (1.1.1)
+    aws-partitions (1.482.0)
+    aws-sdk-core (3.119.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.46.0)
+      aws-sdk-core (~> 3, >= 3.119.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.98.0)
+      aws-sdk-core (~> 3, >= 3.119.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.2.4)
+      aws-eventstream (~> 1, >= 1.0.2)
     axe-core-api (4.2.1)
       capybara
       dumb_delegator
@@ -148,6 +164,7 @@ GEM
     jasmine-core (3.8.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    jmespath (1.4.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     license_finder (6.0.0)
@@ -370,6 +387,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 3.0)
+  aws-sdk-s3
   axe-core-capybara
   axe-core-rspec
   bcrypt (~> 3.1.7)

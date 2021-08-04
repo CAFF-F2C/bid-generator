@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  draw(:active_storage)
   devise_for :buyers, controllers: {registrations: 'buyers/registrations'}
 
   namespace :buyers do

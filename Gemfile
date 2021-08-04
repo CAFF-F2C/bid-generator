@@ -9,6 +9,7 @@ gem 'rails', '~> 6.1.4'
 
 gem 'dotenv-rails', groups: [:test, :development]
 
+gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
