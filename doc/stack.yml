@@ -1,0 +1,155 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Bid Generator CloudFormation Stack
+
+Resources:
+  CloudFrontIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Ref 'AWS::StackName'
+
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      CorsConfiguration:
+        CorsRules:
+          - AllowedOrigins:
+              - '*'
+            AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - HEAD
+            MaxAge: '3000'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref Bucket
+      PolicyDocument:
+        Statement:
+          - Action: 's3:GetObject'
+            Effect: Allow
+            Resource: !Sub 'arn:aws:s3:::${Bucket}/*'
+            Principal:
+              CanonicalUser: !GetAtt
+                - CloudFrontIdentity
+                - S3CanonicalUserId
+
+  CDN:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: 'true'
+        PriceClass: PriceClass_100
+        DefaultRootObject: index.html
+        HttpVersion: http2
+        Origins:
+          - DomainName: !Sub '${Bucket}.s3.amazonaws.com'
+            Id: BucketOrigin
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub 'origin-access-identity/cloudfront/${CloudFrontIdentity}'
+        DefaultCacheBehavior:
+          TargetOriginId: BucketOrigin
+          Compress: true
+          CachedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          ViewerProtocolPolicy: redirect-to-https
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+            Headers:
+              - Origin
+              - Access-Control-Request-Headers
+              - Access-Control-Request-Method
+
+  Queue:
+    Type: AWS::SQS::Queue
+    Properties:
+      KmsMasterKeyId: 'alias/aws/sqs'
+
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: S3Upload
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Action:
+                  - 's3:PutObject'
+                  - 's3:PutObjectAcl'
+                  - 's3:GetObject'
+                  - 's3:DeleteObject'
+                Effect: Allow
+                Resource: !Sub 'arn:aws:s3:::${Bucket}/*'
+              - Action: ['s3:ListBucket']
+                Effect: Allow
+                Resource: !Sub 'arn:aws:s3:::${Bucket}'
+        - PolicyName: SESSendEmail
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Action: ['ses:SendRawEmail']
+                Effect: Allow
+                Resource: '*'
+        - PolicyName: DefaultQueueAccess
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Action:
+                  - 'sqs:ChangeMessageVisibility'
+                  - 'sqs:DeleteMessage'
+                  - 'sqs:GetQueueAttributes'
+                  - 'sqs:GetQueueUrl'
+                  - 'sqs:ReceiveMessage'
+                  - 'sqs:SendMessage'
+                Effect: Allow
+                Resource: !GetAtt Queue.Arn
+
+  AccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref User
+
+Outputs:
+  BucketRegion:
+    Description: AWS_REGION
+    Value: !Ref 'AWS::Region'
+  BucketName:
+    Description: BUCKET_NAME
+    Value: !Ref Bucket
+  Key:
+    Description: AWS_ACCESS_KEY_ID
+    Value: !Ref AccessKey
+  Secret:
+    Description: AWS_SECRET_ACCESS_KEY
+    Value: !GetAtt
+      - AccessKey
+      - SecretAccessKey
+  CDNHost:
+    Description: CDN_HOST
+    Value: !GetAtt
+      - CDN
+      - DomainName
+  QueueUrl:
+    Description: DEFAULT_QUEUE_URL
+    Value: !Ref Queue
