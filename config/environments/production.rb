@@ -60,21 +60,13 @@ Rails.application.configure do
   config.cache_store = :redis_cache_store, {driver: :hiredis} if ENV.key?('REDIS_URL')
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter     = :amazon_sqs
+  config.active_job.queue_adapter = :amazon_sqs
   # config.active_job.queue_name_prefix = "bid_generator_production"
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = {host: ENV.fetch('ACTION_MAILER_HOST', 'www.bidgenerator.org')}
-  ActionMailer::Base.smtp_settings = {
-    :user_name => ENV.fetch('SENDGRID_USERNAME'),
-    :password => ENV.fetch('SENDGRID_PASSWORD'),
-    :domain => ENV.fetch('ACTION_MAILER_HOST', 'www.bidgenerator.org'),
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
-  }
+  config.action_mailer.delivery_method = :ses
 
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = {host: ENV.fetch('HOST')}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

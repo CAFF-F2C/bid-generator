@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'Bid Generator Support <noreply@bidgenerator.org>'
   layout 'mailer'
 end
