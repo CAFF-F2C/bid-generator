@@ -14,14 +14,6 @@
 #  updated_at               :datetime         not null
 #  buyer_id                 :bigint           not null
 #
-# Indexes
-#
-#  index_district_profiles_on_buyer_id  (buyer_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (buyer_id => buyers.id)
-#
 class DistrictProfile < ApplicationRecord
   validates :district_name, presence: true
 
