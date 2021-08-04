@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe Buyer, type: :model do
   subject(:buyer) { FactoryBot.create(:buyer) }
 
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:email) }
-  end
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to have_many(:rfps).inverse_of(:buyer) }
+  it { is_expected.to have_one(:district_profile).inverse_of(:buyer) }
 
   describe '#send_devise_notification' do
     it 'sends the notification later' do

@@ -1,0 +1,4 @@
+<% content_for(:page_header) { 'New RFP' } %>
+<%= form_with model: [:buyers, @rfp], url: buyers_rfps_path, method: :post, local: true do |f| %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>

@@ -8,6 +8,7 @@ Capybara.server = :puma, {Silent: true}
 Capybara.always_include_port = true
 Capybara.default_normalize_ws = true
 Capybara.default_max_wait_time = 10
+Capybara.enable_aria_label = true
 
 Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.load_selenium

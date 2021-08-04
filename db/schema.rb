@@ -47,5 +47,15 @@ ActiveRecord::Schema.define(version: 2021_08_06_230233) do
     t.index ["buyer_id"], name: "index_district_profiles_on_buyer_id"
   end
 
+  create_table "rfps", force: :cascade do |t|
+    t.bigint "buyer_id", null: false
+    t.integer "start_year", null: false
+    t.integer "bid_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_rfps_on_buyer_id"
+  end
+
   add_foreign_key "district_profiles", "buyers"
+  add_foreign_key "rfps", "buyers"
 end

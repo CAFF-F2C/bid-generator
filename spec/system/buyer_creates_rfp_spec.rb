@@ -15,5 +15,19 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'Save and exit'
 
     expect(page.find('main')).to have_content(/success/i)
+
+    click_on('Documents')
+
+    click_on('New RFP')
+
+    select '2021 - 2022', from: 'rfp_start_year'
+    select 'Produce', from: 'rfp_bid_type'
+
+    click_on 'Save and exit'
+    expect(page.find('main')).to have_content('Produce (2021 - 2022)')
+    click_on 'edit'
+    select '2022 - 2023', from: 'rfp_start_year'
+    click_on 'Save and exit'
+    expect(page.find('main')).to have_content('Produce (2022 - 2023)')
   end
 end

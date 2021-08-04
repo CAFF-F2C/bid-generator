@@ -26,22 +26,25 @@
     @apply border-gray-300 rounded w-full focus:border-gray-600 focus:ring-gray-300;
   }
   .text-field-label{
-    @apply block mb-2 text-gray-700 text-sm
+    @apply block mb-2 text-gray-700 text-sm;
   }
   .errors {
-    @apply text-red-600 text-sm font-semibold leading-tight space-y-1 mb-4
+    @apply text-red-600 text-sm font-semibold leading-tight space-y-1 mb-4;
   }
   .radio, .checkbox {
-    @apply rounded border-gray-300 text-blue-500 focus:ring-blue-500
+    @apply rounded border-gray-300 text-blue-500 focus:ring-blue-500;
+  }
+  .select {
+    @apply rounded border-gray-300 focus:ring-blue-500;
   }
   .form-row {
-    @apply w-full md:flex md:flex-row md:my-4
+    @apply w-full md:flex md:flex-row md:my-4;
   }
   .field {
-    @apply w-full my-4
+    @apply w-full my-4;
   }
-  .form-row .field { @apply md:my-auto }
+  .form-row .field { @apply md:my-auto; }
   .form-row .field:not(:first-child) {
-    @apply md:ml-4
+    @apply md:ml-4;
   }
 }

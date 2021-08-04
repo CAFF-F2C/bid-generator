@@ -1,0 +1,15 @@
+<div class="field">
+  <%= f.label :bid_type, 'Type', class: 'text-field-label' %>
+  <%= f.select :bid_type, Rfp.bid_types.keys.map { |w| [w.humanize, w] }, {}, class: 'select' %>
+</div>
+
+<div class="field">
+  <%= f.label :start_year, 'Year', class: 'text-field-label' %>
+  <%= f.select :start_year, (Date.today.year..Date.today.year+5).map { |year| ["#{year} - #{year+1}", year] }, {}, class: 'select' %>
+</div>
+
+<div class='buyers__actions'>
+  <div class='buyers__action'>
+    <%= f.submit 'Save and exit', class: 'button' %>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+<% content_for(:page_header) { 'District Profile' } %>
 <%= form_with model: [:buyers, @district_profile], url: buyers_district_profile_url, method: :patch, local: true do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>

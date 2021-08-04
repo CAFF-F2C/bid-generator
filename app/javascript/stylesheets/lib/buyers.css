@@ -25,9 +25,45 @@
     td:first-child {
       @apply pl-0 w-auto;
     }
+  }
 
-    &__display-field-label {
-      @apply text-gray-700;
+  &__display-field-label {
+    @apply text-gray-700;
+  }
+
+  &__documents-table {
+    @apply w-full mb-4;
+
+    th {
+      @apply bg-gray-50 text-blue-600 w-full text-left whitespace-nowrap py-3 px-5 uppercase text-sm;
+    }
+
+    td:last-child {
+      @apply w-auto;
+    }
+
+    tr {
+      @apply border-t border-gray-200;
+    }
+
+    tr:last-child {
+      @apply border-b;
+    }
+
+    td {
+      @apply text-left whitespace-nowrap py-3 px-5 text-gray-600;
+    }
+  }
+
+  &__documents-table-actions {
+    @apply flex;
+
+    a {
+      @apply p-2;
+    }
+
+    a:first-child {
+      @apply pl-0;
     }
   }
 }

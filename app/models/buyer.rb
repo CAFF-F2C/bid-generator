@@ -19,7 +19,8 @@
 class Buyer < ApplicationRecord
   devise :database_authenticatable, :confirmable, :registerable, :recoverable, :rememberable, :validatable
 
-  has_one :district_profile
+  has_one :district_profile, inverse_of: :buyer, dependent: :destroy
+  has_many :rfps, inverse_of: :buyer, dependent: :destroy
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later

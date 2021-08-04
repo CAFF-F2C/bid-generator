@@ -17,5 +17,5 @@
 class DistrictProfile < ApplicationRecord
   validates :district_name, presence: true
 
-  belongs_to :buyer
+  belongs_to :buyer, inverse_of: :district_profile
 end

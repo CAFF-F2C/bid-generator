@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
@@ -32,6 +32,10 @@ class ApplicationPolicy
 
   def destroy?
     false
+  end
+
+  def scope
+    @scope ||= Pundit.policy_scope(user, record.class)
   end
 
   class Scope
