@@ -1,0 +1,6 @@
+{
+  "name": "Bid Generator",
+  "description": "A copy of the Bid Generator service",
+  "repository": "https://github.com/CAFF-F2C/bid-generator",
+  "keywords": ["rails", "postgres", "amazon"]
+}
