@@ -44,6 +44,10 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: License Finder
       run: bin/license_finder
+    - name: Install libvips
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: sudo apt-get install --fix-missing -qq -o Acquire::Retries=3 libvips
     - name: Create DB
       run: |
         cp config/database.yml.github-actions config/database.yml

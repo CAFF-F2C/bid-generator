@@ -41,5 +41,6 @@ module BidGenerator
     end
 
     config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
+    config.active_storage.variant_processor = :vips
   end
 end
