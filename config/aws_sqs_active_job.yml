@@ -1,0 +1,2 @@
+queues:
+  default: <%= ENV['DEFAULT_QUEUE_URL'] %>
