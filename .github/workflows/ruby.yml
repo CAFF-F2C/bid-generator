@@ -10,9 +10,26 @@ name: Ruby
 on: [push]
 
 jobs:
-  test:
-
+  license_finder:
     runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby 3
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          bundler-cache: true
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: yarn
+      - name: License Finder
+        run: bin/license_finder
+
+  test:
+    runs-on: ubuntu-latest
+
     strategy:
       fail-fast: false
 
@@ -35,15 +52,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby
-      # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-      # change this to (see https://github.com/ruby/setup-ruby#versioning):
-      # uses: ruby/setup-ruby@v1
-        uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      - name: Set up Ruby 3.0
+        uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: License Finder
-        run: bin/license_finder
+          ruby-version: 3.0.0
+          bundler-cache: true
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: yarn
       - name: Install libvips
         env:
           DEBIAN_FRONTEND: noninteractive
