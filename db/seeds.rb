@@ -15,3 +15,9 @@ Buyer.create_with(
 ).update!(
   confirmed_at: 1.second.ago
 )
+
+AdminUser.create_with(
+  full_name: 'Admin User',
+  password: 'password',
+  password_confirmation: 'password'
+).find_or_create_by!(email: 'adminUser@example.com')

@@ -23,6 +23,9 @@ Lint/MissingSuper:
   Exclude:
     - 'app/components/**/*'
 
+Metrics/MethodLength:
+  Enabled: false
+
 Metrics/BlockLength:
   IgnoredMethods: [describe, context, it, before, configure, task]
 
@@ -47,19 +50,16 @@ Style/RedundantFetchBlock:
     - 'config/puma.rb'
 
 Style/SymbolArray:
-  EnforcedStyle: brackets
+  Enabled: false
 
 Style/WordArray:
-  EnforcedStyle: brackets
+  Enabled: false
 
 Layout/LineLength:
-  Max: 110
-  Exclude:
-    - 'spec/**/*'
-    - 'config/**/*'
-    - 'db/**/*'
+  Enabled: false
 
 RSpec/ExampleLength:
+  Max: 10
   CountAsOne: [array, hash, heredoc]
   Exclude:
     - 'spec/system/**'

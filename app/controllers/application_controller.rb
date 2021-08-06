@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   def pundit_user() = current_buyer
 
   def after_sign_in_path_for(resource)
+    return admin_root_path if resource.instance_of?(AdminUser)
+
     buyers_documents_path if resource.instance_of?(Buyer)
   end
 

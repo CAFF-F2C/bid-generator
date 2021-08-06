@@ -9,6 +9,7 @@ gem 'rails', '~> 6.1.4'
 
 gem 'dotenv-rails', groups: [:test, :development]
 
+gem 'administrate'
 gem 'aws-sdk-rails', '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'

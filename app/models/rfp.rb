@@ -19,6 +19,10 @@ class Rfp < ApplicationRecord
   validates :bid_type, inclusion: BID_TYPES
 
   def name
-    "#{bid_type} (#{start_year} - #{start_year + 1})"
+    "#{bid_type} (#{school_year})"
+  end
+
+  def school_year
+    "#{start_year} - #{start_year + 1}"
   end
 end
