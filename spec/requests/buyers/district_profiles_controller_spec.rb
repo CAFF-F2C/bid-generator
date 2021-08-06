@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Buyers::DistrictProfilesController", type: :request do
+RSpec.describe Buyers::DistrictProfilesController, type: :request do
   let(:page) { Capybara.string(response.body) }
 
-  describe "GET /show" do
+  describe 'GET /show' do
     let(:buyer) { create(:buyer) }
 
     def make_request
@@ -23,7 +23,7 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
       end
 
       context 'when a buyer has no district profile' do
-        it "redirects to new district profile path" do
+        it 'redirects to new district profile path' do
           make_request
           expect(response).to redirect_to(new_buyers_district_profile_path)
         end
@@ -32,16 +32,20 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
       context 'when buyer has a district profile' do
         before { FactoryBot.create(:district_profile, buyer: buyer, district_name: 'My District') }
 
-        it "renders the district profile show page" do
+        it 'is successful' do
           make_request
           expect(response).to be_successful
+        end
+
+        it 'renders the district profile show page' do
+          make_request
           expect(page).to have_content('My District')
         end
       end
     end
   end
 
-  describe "GET /new" do
+  describe 'GET /new' do
     let(:buyer) { create(:buyer) }
 
     def make_request
@@ -78,7 +82,7 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
     end
   end
 
-  describe "GET /edit" do
+  describe 'GET /edit' do
     let(:buyer) { create(:buyer) }
 
     def make_request
@@ -115,7 +119,7 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
     end
   end
 
-  describe "POST /create" do
+  describe 'POST /create' do
     let(:buyer) { create(:buyer) }
 
     def make_request(params = {})
@@ -139,10 +143,14 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
           expect { make_request(district_name: 'District name') }.to change(DistrictProfile, :count).by(1)
         end
 
+        it 'shows successful flash message' do
+          make_request(district_name: 'District name')
+          expect(flash[:success]).to have_content(/success/i)
+        end
+
         it 'shows the profile' do
           make_request(district_name: 'District name')
           expect(response).to redirect_to buyers_district_profile_path
-          expect(flash[:success]).to have_content(/success/i)
         end
 
         it 'sets the attributes' do
@@ -160,7 +168,7 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe 'PATCH /update' do
     def make_request(params = {})
       patch buyers_district_profile_path(district_profile: params)
     end
@@ -186,10 +194,14 @@ RSpec.describe "Buyers::DistrictProfilesController", type: :request do
           expect { make_request(district_name: 'District name') }.to change { district_profile.reload.district_name }
         end
 
+        it 'shows a successful flash message' do
+          make_request(district_name: 'District name')
+          expect(flash[:success]).to have_content(/updated/i)
+        end
+
         it 'shows the profile' do
           make_request(district_name: 'District name')
           expect(response).to redirect_to buyers_district_profile_path
-          expect(flash[:success]).to have_content(/updated/i)
         end
       end
 

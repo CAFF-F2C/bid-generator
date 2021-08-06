@@ -8,7 +8,7 @@ direct :rails_public_blob do |blob|
       if blob.is_a?(ActiveStorage::Variant) || blob.is_a?(ActiveStorage::VariantWithRecord)
         :rails_representation
       else
-       :rails_blob
+        :rails_blob
       end
     route_for(route, blob)
   end

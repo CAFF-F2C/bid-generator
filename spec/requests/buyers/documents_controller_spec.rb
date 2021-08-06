@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Buyers::Documents", type: :request do
-  describe "GET /index" do
+RSpec.describe Buyers::DocumentsController, type: :request do
+  describe 'GET /index' do
     def make_request
       get buyers_documents_path
     end

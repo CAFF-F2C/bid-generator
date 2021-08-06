@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# Display a navigation sidebar for Buyers
 class Buyers::NavigationComponent < ViewComponent::Base
   def initialize(current_path:, user:)
     @current_path = current_path

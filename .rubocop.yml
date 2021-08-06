@@ -1,160 +1,73 @@
-inherit_from: .rubocop_todo.yml
 require:
   - rubocop-rspec
-  - rubocop-rails
+  - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 3.0
   NewCops: enable
   Exclude:
-    - 'bin/**/*'
-    - 'config/**/*'
-    - 'db/**/*'
+    - 'bin/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
     - 'public/**/*'
-    - 'script/**/*'
-    - 'vendor/**/*'
-    - 'app/views/**/*'
-    - 'app/views_mobile/**/*'
     - 'tmp/**/*'
 
-Rails/HttpPositionalArguments:
-  Enabled: true
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Lint/AmbiguousBlockAssociation:
+  IgnoredMethods: [change]
+
+Lint/MissingSuper:
   Exclude:
-    - spec/middleware/request_inflater_spec.rb
+    - 'app/components/**/*'
 
 Metrics/BlockLength:
-  Enabled: false
+  IgnoredMethods: [describe, context, it, before, configure, task]
 
-Layout/LineLength:
-  Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'config/application.rb'
 
-Metrics/CyclomaticComplexity:
-  Enabled: false
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'app/controllers/application_controller.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'app/models/application_record.rb'
+    - 'app/policies/application_policy.rb'
+    - 'config/application.rb'
 
-Metrics/PerceivedComplexity:
-  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: never
 
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: not_to, to_not
-RSpec/NotToNot:
-  EnforcedStyle: not_to
+Style/GlobalStdStream:
+  Exclude:
+    - 'config/environments/*'
 
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, never
-# No longer necessary for ruby 3?
-# Style/FrozenStringLiteralComment:
-#   EnforcedStyle: always
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/puma.rb'
 
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineHashBraceLayout:
-  EnforcedStyle: new_line
-
-# Cop supports --auto-correct.
-# Configuration parameters: AllowAsExpressionSeparator.
-Style/Semicolon:
-  AllowAsExpressionSeparator: true
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/FirstHashElementIndentation:
-  EnforcedStyle: consistent
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: consistent, consistent_relative_to_receiver, special_for_inner_method_call, special_for_inner_method_call_in_parentheses
-Layout/FirstArgumentIndentation:
-  EnforcedStyle: consistent
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Layout/FirstArrayElementIndentation:
-  EnforcedStyle: consistent
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: leading, trailing
-Layout/DotPosition:
-  EnforcedStyle: trailing
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/ArgumentAlignment:
-  EnforcedStyle: with_fixed_indentation
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: brackets
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinSize.
-# SupportedStyles: percent, brackets
 Style/SymbolArray:
   EnforcedStyle: brackets
 
-# Cop supports --auto-correct.
-# Configuration parameters: .
-# SupportedStyles: use_perl_names, use_english_names
-Style/SpecialGlobalVars:
-  EnforcedStyle: use_perl_names
+Layout/LineLength:
+  Max: 110
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
 
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Width: 2
+RSpec/ExampleLength:
+  CountAsOne: [array, hash, heredoc]
 
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleInsidePipes.
-# SupportedStylesInsidePipes: space, no_space
-Layout/SpaceAroundBlockParameters:
-  EnforcedStyleInsidePipes: no_space
+RSpec/NestedGroups:
+  Max: 4
 
-# Cop supports --auto-correct.
-# Configuration parameters: IndentationWidth.
-Layout/AssignmentIndentation:
-  IndentationWidth: 2
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: squiggly, active_support, powerpack, unindent
-# Layout/HeredocIndentation:
-#   EnforcedStyle: squiggly
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented, indented_relative_to_receiver
-Layout/MultilineMethodCallIndentation:
-  IndentationWidth: 2
-  EnforcedStyle: indented
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented
-Layout/MultilineOperationIndentation:
-  IndentationWidth: 2
-  EnforcedStyle: indented
-
-Layout/ArrayAlignment:
-  Enabled: false
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBrackets: space, no_space
-Layout/SpaceInsideArrayLiteralBrackets:
-  EnforcedStyle: no_space
-
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/system/**/*'

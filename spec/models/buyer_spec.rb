@@ -9,13 +9,11 @@ RSpec.describe Buyer, type: :model do
 
   describe '#send_devise_notification' do
     it 'sends the notification later' do
-      expect {
-        buyer.send_devise_notification(:reset_password_instructions, 'very_secret_token')
-      }.to have_enqueued_job.with(
+      expect { buyer.send_devise_notification(:reset_password_instructions, 'z') }.to have_enqueued_job.with(
         'Devise::Mailer',
         'reset_password_instructions',
         'deliver_now',
-        args: [buyer, 'very_secret_token']
+        args: [buyer, 'z']
       )
     end
   end

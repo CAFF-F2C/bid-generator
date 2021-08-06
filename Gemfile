@@ -42,6 +42,7 @@ group :development do
   gem 'pivotal_git_scripts'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'web-console', '>= 4.1.0'
@@ -61,8 +62,8 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'timecop'
-  gem 'webdrivers'
   gem 'vcr'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Buyers::NavigationComponent, type: :component do
   before { render_inline(component) }

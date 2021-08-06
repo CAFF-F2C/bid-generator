@@ -1,3 +1,4 @@
+# Edits a Buyer's District Profile
 class Buyers::DistrictProfilesController < ApplicationController
   layout 'buyers'
 
@@ -41,6 +42,9 @@ class Buyers::DistrictProfilesController < ApplicationController
   end
 
   def district_profile_params
-    params.require(:district_profile).permit(:district_name, :city, :county, :enrolled_students_number, :daily_meals_number, :schools_number, :production_sites_number)
+    params.require(:district_profile).permit(
+      :district_name, :city, :county, :enrolled_students_number,
+      :daily_meals_number, :schools_number, :production_sites_number
+    )
   end
 end
