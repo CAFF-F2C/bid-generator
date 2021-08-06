@@ -10,6 +10,19 @@ name: Ruby
 on: [push]
 
 jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby 3
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          bundler-cache: true
+      - name: Run RuboCop
+        run: bin/rubocop --parallel
+
   license_finder:
     runs-on: ubuntu-latest
 
