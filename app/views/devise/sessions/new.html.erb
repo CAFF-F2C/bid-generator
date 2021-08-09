@@ -1,32 +1,42 @@
-<%= render layout: 'devise/shared/devise_layout', locals: {title: "Log in"} do %>
-  <div class="bg-white mb-4 px-8 pt-6 pb-8 rounded shadow-lg">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {data: {turbo: false}}) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+<%= render(FlashComponent.new(flash: flash)) %>
 
-      <div class="field mb-4">
-        <%= f.label :email, class: "block mb-2 text-gray-700 text-sm" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-field" %>
-      </div>
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <%= inline_svg_tag('logo.svg', class: 'mx-auto h-12 w-auto', alt: t('.logo')) %>
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <%= t('.title') %>
+    </h2>
+    <p class="mt-2 text-center text-sm text-gray-600">
+      <%= t('.or_html', link: link_to(t('.create_account'), new_registration_path(resource_name), class: "font-medium text-blue-600 hover:text-blue-500")) %>
+    </p>
+  </div>
 
-      <div class="field mb-4">
-        <%= f.label :password, class: "block mb-2 text-gray-700 text-sm" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "text-field" %>
-      </div>
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {data: {turbo: false}}) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-      <% if devise_mapping.rememberable? %>
         <div class="field mb-4">
-          <%= f.check_box :remember_me, class: "checkbox" %>
-          <%= f.label :remember_me, class: "text-gray-700 text-sm ml-1" %>
+          <%= f.label :email, class: "block mb-2 text-gray-700 text-sm" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-field" %>
+        </div>
+
+        <div class="field mb-4">
+          <%= f.label :password, class: "block mb-2 text-gray-700 text-sm" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "text-field" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field mb-4">
+            <%= f.check_box :remember_me, class: "checkbox" %>
+            <%= f.label :remember_me, class: "text-gray-700 text-sm ml-1" %>
+          </div>
+        <% end %>
+
+        <div class="actions mb-4 mt-8">
+          <%= f.submit "Log in", class: "button" %>
         </div>
       <% end %>
-
-      <div class="actions mb-4 mt-8">
-        <%= f.submit "Log in", class: "button" %>
-      </div>
-    <% end %>
+    </div>
   </div>
-
-  <div class="text-center">
-    <%= render "devise/shared/links" %>
-  </div>
-<% end %>
+</div>

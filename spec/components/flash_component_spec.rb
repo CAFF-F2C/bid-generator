@@ -14,4 +14,10 @@ RSpec.describe FlashComponent, type: :component do
 
     it { expect(page).to have_content('notice message') }
   end
+
+  context 'when there is a non-standard flash message' do
+    let(:component) { described_class.new(flash: {bad_notice: 'non valid message'}) }
+
+    it { expect(page).to have_content('non valid message') }
+  end
 end

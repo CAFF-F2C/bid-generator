@@ -1,13 +1,16 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @layer base {
   h1, h2, h3 {
-    font-family: 'Space Grotesk', san-serif;
-    font-weight: 600;
+    @apply font-display font-semibold;
   }
   a {
-    @apply text-caffblue-light;
+    @apply text-blue-500;
   }
   .button {
-    @apply bg-caffblue-light text-white py-2 px-4 rounded w-full;
+    @apply bg-blue-500 text-white py-2 px-4 rounded w-full;
   }
   .text-field {
     @apply border-gray-300 rounded w-full focus:border-gray-600 focus:ring-gray-300;
@@ -19,7 +22,7 @@
     @apply text-red-600 text-sm font-semibold leading-tight space-y-1 mb-4
   }
   .radio, .checkbox {
-    @apply rounded border-gray-300 text-caffblue-light focus:ring-caffblue-light
+    @apply rounded border-gray-300 text-blue-500 focus:ring-blue-500
   }
   .form-row {
     @apply w-full md:flex md:flex-row md:my-4
@@ -32,7 +35,3 @@
     @apply md:ml-4
   }
 }
-
-
-
-

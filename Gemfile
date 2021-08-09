@@ -23,6 +23,7 @@ gem 'redis'
 gem 'rspec'
 gem 'ruby-vips'
 gem 'sass-rails', '>= 6'
+gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 0.3.3'
 gem 'turbo-rails'
 gem 'view_component', require: 'view_component/engine'
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'faker'
   gem 'jasmine'
   gem 'license_finder', '~> 6.0'
+  gem 'teaspoon-jasmine'
 end
 
 group :development do

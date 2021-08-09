@@ -17,7 +17,7 @@
 #  updated_at             :datetime         not null
 #
 class Buyer < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :confirmable, :registerable, :recoverable, :rememberable, :validatable
 
   has_one :district_profile
 

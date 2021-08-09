@@ -30,4 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  devise:
+    sessions:
+      new:
+        logo: Bid Generator
+        title: Sign into your account
+        or_html: Or %{link}
+        create_account: create an account

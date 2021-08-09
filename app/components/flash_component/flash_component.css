@@ -1,0 +1,44 @@
+.flash {
+  @apply fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start;
+
+  &__container {
+    @apply w-full flex flex-col items-center space-y-2 sm:space-y-4 sm:items-end;
+  }
+
+  &__message {
+    @apply max-w-sm w-full bg-white shadow-md rounded-lg pointer-events-auto ring-1 ring-gray-900 ring-opacity-5 overflow-hidden;
+  }
+
+  &__message-box {
+    @apply p-4 flex items-start;
+  }
+
+  &__button {
+    @apply bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  }
+
+  &__text {
+    @apply ml-3 w-0 flex-1 pt-0.5 text-sm font-medium text-gray-900;
+  }
+
+  &__actions {
+    @apply ml-4 flex-shrink-0 flex;
+  }
+
+  &__image {
+    @apply w-5 h-5 text-blue-500;
+
+    &--close {
+      @apply text-gray-400;
+    }
+
+    &--notice {
+      @apply text-green-500;
+    }
+
+    &--alert {
+      @apply text-red-500;
+    }
+  }
+}
+
