@@ -1,6 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
 require:
+  - ./lib/custom_cops/describe_context.rb
   - rubocop-rspec
   - rubocop-performance
 
@@ -14,6 +15,7 @@ AllCops:
     - 'public/**/*'
     - 'tmp/**/*'
     - 'vendor/bundle/**/*'
+    - 'lib/custom_cops/*'
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
@@ -79,4 +81,5 @@ RSpec/NestedGroups:
 RSpec/MultipleExpectations:
   Exclude:
     - 'spec/system/**/*'
+
 
