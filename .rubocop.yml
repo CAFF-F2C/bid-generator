@@ -56,6 +56,9 @@ Style/RedundantFetchBlock:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
+Style/WordArray:
+  EnforcedStyle: brackets
+
 Layout/LineLength:
   Max: 110
   Exclude:
@@ -65,6 +68,8 @@ Layout/LineLength:
 
 RSpec/ExampleLength:
   CountAsOne: [array, hash, heredoc]
+  Exclude:
+    - 'spec/system/**'
 
 RSpec/NestedGroups:
   Max: 4
