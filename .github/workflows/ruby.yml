@@ -92,7 +92,13 @@ jobs:
           key: ${{ runner.os }}-assets
       - name: Precompile Assets
         run: bundle exec rails assets:precompile
-      - name: Run tests
+      - name: Ruby tests
         run: bin/rspec
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots
+          path: tmp/screenshots/
       - name: Javascript tests
         run: bin/teaspoon

@@ -14,7 +14,7 @@ RSpec.describe Buyers::DocumentsController, type: :request do
     end
 
     context 'when a buyer is signed in' do
-      let(:buyer) { create(:buyer) }
+      let(:buyer) { create(:buyer, :confirmed) }
 
       before do
         sign_in buyer, scope: :buyer

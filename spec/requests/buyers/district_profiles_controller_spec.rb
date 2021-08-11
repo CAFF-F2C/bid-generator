@@ -4,7 +4,7 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
   let(:page) { Capybara.string(response.body) }
 
   describe 'GET /show' do
-    let(:buyer) { create(:buyer) }
+    let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request
       get buyers_district_profile_path
@@ -46,7 +46,7 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
   end
 
   describe 'GET /new' do
-    let(:buyer) { create(:buyer) }
+    let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request
       get new_buyers_district_profile_path
@@ -83,7 +83,7 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
   end
 
   describe 'GET /edit' do
-    let(:buyer) { create(:buyer) }
+    let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request
       get edit_buyers_district_profile_path
@@ -120,7 +120,7 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
   end
 
   describe 'POST /create' do
-    let(:buyer) { create(:buyer) }
+    let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request(params = {})
       post buyers_district_profile_path(district_profile: params)
@@ -181,7 +181,7 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
     end
 
     context 'when a buyer is signed in' do
-      let(:buyer) { create(:buyer) }
+      let(:buyer) { create(:buyer, :confirmed) }
 
       before do
         sign_in buyer, scope: :buyer

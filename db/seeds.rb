@@ -10,4 +10,8 @@ Buyer.create_with(
   full_name: 'District Buyer',
   password: 'password',
   password_confirmation: 'password'
-).find_or_create_by!(email: 'user@example.com')
+).find_or_create_by!(
+  email: 'user@example.com'
+).update!(
+  confirmed_at: 1.second.ago
+)

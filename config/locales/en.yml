@@ -30,4 +30,49 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  devise:
+    shared:
+      links:
+        create_account: create an account
+        confirmation: Didn't receive confirmation instructions?
+        logo: Bid Generator
+        login: log in
+        or_html: Or %{link}
+    passwords:
+      create:
+        submit: Send reset instructions
+        title: Forgot your password?
+      edit:
+        new_password: New password
+        submit: Change my password
+        title: Change your password
+      new:
+        submit: Send reset instructions
+        title: Forgot your password?
+      update:
+        new_password: New password
+        submit: Change my password
+        title: Change your password
+    confirmations:
+      create:
+        submit: Resend instructions
+        title: Resend confirmation instructions
+      new:
+        submit: Resend instructions
+        title: Resend confirmation instructions
+    registrations:
+      create:
+        submit: Sign up
+        title: Create your account
+      new:
+        submit: Sign up
+        title: Create your account
+    sessions:
+      create:
+        forgot_password: Forgot your password?
+        submit: Log in
+        title: Sign into your account
+      new:
+        forgot_password: Forgot your password?
+        submit: Log in
+        title: Sign into your account

@@ -12,4 +12,12 @@ class Buyers::RegistrationsController < Devise::RegistrationsController
       u.permit(:full_name, :email, :password, :current_password)
     end
   end
+
+  def after_sign_up_path_for(_resource)
+    new_buyer_session_path if is_navigational_format?
+  end
+
+  def after_inactive_sign_up_path_for(_resource)
+    new_buyer_session_path
+  end
 end

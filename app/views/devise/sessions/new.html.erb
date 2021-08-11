@@ -1,32 +1,36 @@
-<%= render layout: 'devise/shared/devise_layout', locals: {title: "Log in"} do %>
-  <div class="bg-white mb-4 px-8 pt-6 pb-8 rounded shadow-lg">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {data: {turbo: false}}) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field mb-4">
-        <%= f.label :email, class: "block mb-2 text-gray-700 text-sm" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-field" %>
-      </div>
-
-      <div class="field mb-4">
-        <%= f.label :password, class: "block mb-2 text-gray-700 text-sm" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "text-field" %>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class="field mb-4">
-          <%= f.check_box :remember_me, class: "checkbox" %>
-          <%= f.label :remember_me, class: "text-gray-700 text-sm ml-1" %>
-        </div>
-      <% end %>
-
-      <div class="actions mb-4 mt-8">
-        <%= f.submit "Log in", class: "button" %>
-      </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {data: {turbo: false}}) do |f| %>
+  <div class="mb-6">
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
+    <% if f.object.errors.full_messages_for(:email).present? %>
+      <p class="text-sm text-red-800"><%= f.object.errors.full_messages_for(:email).first %></p>
     <% end %>
   </div>
 
-  <div class="text-center">
-    <%= render "devise/shared/links" %>
+  <div class="mb-6">
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true, autocomplete: "current-password" %>
+    <% if f.object.errors.full_messages_for(:password).present? %>
+      <p class="text-sm text-red-800"><%= f.object.errors.full_messages_for(:password).first %></p>
+    <% end %>
+  </div>
+
+  <div class="mb-6 flex items-center justify-between">
+    <div class="flex items-center">
+    <% if devise_mapping.rememberable? %>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-900" %>
+    <% end %>
+    </div>
+
+    <div class="text-sm">
+    <% if devise_mapping.recoverable? %>
+      <%= link_to t(".forgot_password"), new_password_path(resource_name) %>
+    <% end %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit t(".submit") %>
   </div>
 <% end %>

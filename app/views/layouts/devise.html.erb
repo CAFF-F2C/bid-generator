@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <title>BidGenerator</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_pack_tag 'application', data: { turbo_track: :reload } %>
+    <%= stylesheet_pack_tag 'application', media: :all, data: { turbo_track: :reload } %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap', media: :all, data: { turbo_track: :reload } %>
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap', media: :all, data: { turbo_track: :reload } %>
+  </head>
+
+  <body class="devise">
+    <%= render(FlashComponent.new(flash: flash)) %>
+    <main role="main" class="devise__main">
+      <%= render partial: 'devise/shared/links', locals: {title: t(:title, scope: [:devise, controller_name, action_name])} %>
+      <div class="devise__container devise__container--card">
+        <div class="devise__card">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
