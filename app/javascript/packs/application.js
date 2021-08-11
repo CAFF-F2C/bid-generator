@@ -13,11 +13,11 @@ ActiveStorage.start()
 
 import "stylesheets/application"
 
-
 function importAll(r) {
   r.keys().forEach(r)
 }
 
 importAll(require.context("../../components", true, /[_\/]component\.js$/))
-importAll(require.context("../../components", true, /[_\/]component\.scss$/))
-importAll(require.context("../../components/buyers", true, /[_\/]component\.scss$/))
+importAll(require.context("../../components", true, /[_\/]component\.css$/))
+
+import "controllers"

@@ -94,3 +94,5 @@ jobs:
         run: bundle exec rails assets:precompile
       - name: Run tests
         run: bin/rspec
+      - name: Javascript tests
+        run: bin/teaspoon

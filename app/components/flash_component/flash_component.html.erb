@@ -1,7 +1,20 @@
-<% @flash.each do |level, message| %>
-  <aside class="flash flash--<%= level%>">
-    <p class="flash__message flash__message--<%= level%>">
-      <%= message %>
-    </p>
-  </aside>
-<% end %>
+<section aria-live="assertive" class="flash">
+  <section class="flash__container">
+    <% @flash.each do |level, message| %>
+      <article data-controller="flash" class="flash__message">
+        <div class="flash__message-box">
+          <div class="flex-shrink-0">
+            <%= inline_svg_tag("flash/#{level}.svg", fallback: 'flash/message.svg', class: "flash__image flash__image--#{level}") %>
+          </div>
+          <p class="flash__text"><%= message %></p>
+          <div class="flash__actions">
+            <button data-action="click->flash#close" class="flash__button">
+              <span class="sr-only">Close</span>
+              <%= inline_svg_tag('flash/close.svg', class: 'flash__image flash__image--close') %>
+            </button>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </section>
+</section>

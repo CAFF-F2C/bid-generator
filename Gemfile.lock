@@ -357,8 +357,14 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stimulus-rails (0.2.4)
+      rails (>= 6.0.0)
     tailwindcss-rails (0.3.3)
       rails (>= 6.0.0)
+    teaspoon (1.2.2)
+      railties (>= 3.2.5)
+    teaspoon-jasmine (2.9.1)
+      teaspoon (>= 1.0.0)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -455,7 +461,9 @@ DEPENDENCIES
   ruby-vips
   sass-rails (>= 6)
   shoulda-matchers
+  stimulus-rails
   tailwindcss-rails (~> 0.3.3)
+  teaspoon-jasmine
   timecop
   turbo-rails
   tzinfo-data
