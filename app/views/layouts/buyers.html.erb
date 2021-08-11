@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   </head>
 
-  <body class="bg-gray-10 h-screen h-full md:flex">
+  <body class="bg-gray-50 h-screen h-full md:flex">
     <%= render(Buyers::NavigationComponent.new(current_path: request.path, user: current_buyer)) %>
     <main class='flex-1 p-6 buyers__main buyers__main--<%= controller_path.parameterize %>-<%= action_name %>"' role='main'>
       <h1 class='buyers__page-title'>

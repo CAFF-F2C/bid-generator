@@ -1,0 +1,53 @@
+.buyers {
+  &__nav {
+    @apply w-full md:w-auto;
+  }
+
+  &__nav-sm-header{
+    @apply flex w-full md:hidden;
+  }
+
+  &__nav-toggle-open {
+    @apply block p-3;
+  }
+
+  &__nav-toggle-close{
+    @apply bg-blue-600 bg-opacity-60 w-14 md:hidden;
+  }
+
+  &__nav-sidebar {
+    @apply hidden md:block md:static text-white h-full;
+  }
+
+  &__nav-links {
+    @apply flex-1 bg-blue-600 h-full p-3 flex flex-col;
+  }
+
+  &__nav-logo {
+    @apply px-3 text-left;
+  }
+
+  &__nav-link {
+    @apply text-white text-sm flex py-4 px-3 rounded items-center hover:text-blue-50;
+
+    &--active {
+      @apply bg-blue-500;
+    }
+
+    span {
+      @apply ml-6 flex-1;
+    }
+  }
+
+  &__nav-footer {
+    @apply flex items-center pl-2;
+  }
+}
+
+#navigation-toggle {
+  @apply hidden;
+}
+
+#navigation-toggle:checked + .buyers__nav-sidebar {
+  @apply block absolute top-0 left-0 md:block md:static w-full h-full flex;
+}

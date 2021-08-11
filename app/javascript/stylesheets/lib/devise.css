@@ -1,0 +1,31 @@
+.devise {
+  @apply bg-gray-50;
+
+  &__main {
+    @apply min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8;
+  }
+
+  &__container {
+    @apply sm:mx-auto sm:w-full sm:max-w-md;
+
+    &--card {
+      @apply mt-8;
+    }
+  }
+
+  &__card {
+    @apply bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10;
+  }
+
+  &__logo {
+    @apply mx-auto h-12 w-auto;
+  }
+
+  &__title {
+    @apply mt-6 text-center text-3xl font-extrabold text-gray-900;
+  }
+
+  &__links {
+     @apply mt-2 text-center text-sm text-gray-600;
+  }
+}

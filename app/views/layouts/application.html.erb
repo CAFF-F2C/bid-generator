@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="<%= I18n.locale %>">
   <head>
     <title>BidGenerator</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,8 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   </head>
 
-  <body class="bg-gray-10 h-screen">
-    <main class='h-full' role='main'>
+  <body class="bg-gray-50">
+    <main role="main">
       <%= yield %>
     </main>
   </body>

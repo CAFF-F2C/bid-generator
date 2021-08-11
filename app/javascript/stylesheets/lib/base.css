@@ -1,0 +1,47 @@
+@layer base {
+  h1, h2, h3 {
+    @apply font-display font-semibold;
+  }
+  a {
+    @apply font-medium text-blue-700 hover:text-blue-500;
+  }
+  label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  input[type=email],
+  input[type=password],
+  input[type=text] {
+    @apply appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+  }
+  input[type=checkbox] {
+    @apply h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded;
+  }
+  input[type=submit] {
+    @apply w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700;
+  }
+  .button {
+    @apply bg-blue-500 text-white py-2 px-4 rounded w-full;
+  }
+  .text-field {
+    @apply border-gray-300 rounded w-full focus:border-gray-600 focus:ring-gray-300;
+  }
+  .text-field-label{
+    @apply block mb-2 text-gray-700 text-sm
+  }
+  .errors {
+    @apply text-red-600 text-sm font-semibold leading-tight space-y-1 mb-4
+  }
+  .radio, .checkbox {
+    @apply rounded border-gray-300 text-blue-500 focus:ring-blue-500
+  }
+  .form-row {
+    @apply w-full md:flex md:flex-row md:my-4
+  }
+  .field {
+    @apply w-full my-4
+  }
+  .form-row .field { @apply md:my-auto }
+  .form-row .field:not(:first-child) {
+    @apply md:ml-4
+  }
+}
