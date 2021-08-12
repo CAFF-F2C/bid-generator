@@ -16,4 +16,15 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     expect(page.find('main')).to have_content(/success/i)
   end
+
+  #code below only for custom cop manual testing
+  context "test 1" do
+    describe "test too" do
+    end
+  end
+
+  describe "test 2" do
+    context "test too too" do
+    end
+  end
 end
