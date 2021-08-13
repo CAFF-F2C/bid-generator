@@ -1,7 +1,9 @@
 <% content_for(:page_header) { 'My Documents' } %>
 <div class='flex flex-row w-full'>
   <h2 class='buyers__section-head flex-1'>RFPs</h2>
-  <%= link_to('New RFP', new_buyers_rfp_path) %>
+  <div class='buyers__section-head-actions'>
+    <%= link_to('+ New RFP', new_buyers_rfp_path, class: 'buyers__button-new') %>
+  </div>
 </div>
 
 <table class='buyers__documents-table'>

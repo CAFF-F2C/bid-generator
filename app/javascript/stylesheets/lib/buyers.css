@@ -8,7 +8,11 @@
   }
 
   &__section-head {
-    @apply mb-5;
+    @apply mb-5 text-xl;
+  }
+
+  &__button-new {
+    @apply button w-auto text-white bg-orange-400 hover:bg-orange-500 focus:ring-orange-500 hover:text-white text-sm;
   }
 
   &__actions {
@@ -35,7 +39,7 @@
     @apply w-full mb-4;
 
     th {
-      @apply bg-gray-50 text-blue-600 w-full text-left whitespace-nowrap py-3 px-5 uppercase text-sm;
+      @apply bg-gray-50 text-blue-900 w-full text-left whitespace-nowrap py-3 px-5 uppercase text-sm;
     }
 
     td:last-child {
