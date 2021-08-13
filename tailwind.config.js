@@ -6,8 +6,8 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      display: ['"Space Grotesk" var', ...defaultTheme.fontFamily.sans],
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      display: ['"Space Grotesk"', ...defaultTheme.fontFamily.sans],
     },
     colors: {
       transparent: colors.transparent,
