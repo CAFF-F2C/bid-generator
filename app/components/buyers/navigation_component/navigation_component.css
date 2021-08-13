@@ -12,7 +12,7 @@
   }
 
   &__nav-toggle-close{
-    @apply bg-blue-600 bg-opacity-60 w-14 md:hidden;
+    @apply bg-blue-900 bg-opacity-60 w-14 md:hidden text-white;
   }
 
   &__nav-sidebar {
@@ -20,7 +20,7 @@
   }
 
   &__nav-links {
-    @apply flex-1 bg-blue-600 h-full p-3 flex flex-col;
+    @apply flex-1 bg-blue-900 h-full p-3 flex flex-col;
   }
 
   &__nav-logo {
