@@ -19,4 +19,12 @@
     rect { stroke: gray; }
     circle { fill: transparent; }
   }
+
+  &__base-line {
+    @apply bg-gray-100 w-full absolute h-0.5 mt-2;
+  }
+
+  &__progress-line {
+    @apply bg-orange-400 absolute h-0.5 mt-2;
+  }
 }
