@@ -23,6 +23,9 @@ Lint/MissingSuper:
   Exclude:
     - 'app/components/**/*'
 
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/MethodLength:
   Enabled: false
 
@@ -65,7 +68,7 @@ RSpec/ExampleLength:
     - 'spec/system/**'
 
 RSpec/NestedGroups:
-  Max: 4
+  Enabled: false
 
 RSpec/MultipleExpectations:
   Exclude:
