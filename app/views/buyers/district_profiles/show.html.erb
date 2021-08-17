@@ -1,9 +1,15 @@
 <% content_for(:page_header) { 'District Profile' } %>
-<div class='buyers__section-head flex flex-row w-full'>
-  <h2 class='flex-1'>District Information</h2>
-  <%= link_to('Edit', edit_buyers_district_profile_path) %>
-</div>
 <table class='buyers__display-form'>
+  <thead class='buyers__table-head'>
+    <tr>
+      <th>
+        <h2>District Information</h2>
+      </th>
+      <th>
+        <%= link_to('Edit', edit_buyers_district_profile_path) %>
+      </th>
+    </tr>
+  </thead>
   <tr>
     <td class='buyers__display-field-label'>District name</td>
     <td><%=@district_profile.district_name%></td>
@@ -36,12 +42,16 @@
     <td class='buyers__display-field-label'>Number of production sites</td>
     <td><%=@district_profile.production_sites_number%></td>
   </tr>
-</table>
-<div class='buyers__section-head flex flex-row w-full'>
-  <h2 class='flex-1'>Contact Information</h2>
-  <%= link_to('Edit', edit_buyers_district_profile_contact_path) %>
-</div>
-<table class='buyers__display-form'>
+  <thead class='buyers__table-head'>
+    <tr>
+      <th>
+        <h2>Contact Information</h2>
+      </th>
+      <th>
+        <%= link_to('Edit', edit_buyers_district_profile_contact_path) %>
+      </th>
+    </tr>
+  </thead>
   <tr>
     <td class='buyers__display-field-label'>Full name</td>
     <td><%=@district_profile.contact_full_name%></td>
@@ -73,6 +83,40 @@
   <tr>
     <td class='buyers__display-field-label'>ZIP code</td>
     <td><%=@district_profile.contact_mailing_address_zip%></td>
+  </tr>
+  <thead class='buyers__table-head'>
+    <tr>
+      <th>
+        <h2>Procurement Terms</h2>
+      </th>
+      <th>
+        <%= link_to('Edit', edit_buyers_district_profile_procurement_path) %>
+      </th>
+    </tr>
+  </thead>
+  <tr>
+    <td class='buyers__display-field-label'>Local percentage</td>
+    <td><%=number_to_percentage(@district_profile.local_percentage, precision: 0)%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Verify pricing</td>
+    <td><%=@district_profile.price_verified%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Add a piggyback clause</td>
+    <td><%=@district_profile.allow_piggyback%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Per-incident liability limit</td>
+    <td><%=number_to_currency(@district_profile.required_insurance_per_incident, precision: 0)%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Aggregate liability limit</td>
+    <td><%=number_to_currency(@district_profile.required_insurance_aggregate, precision: 0)%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Automobile liability limit</td>
+    <td><%=number_to_currency(@district_profile.required_insurance_automobile, precision: 0)%></td>
   </tr>
 </table>
 

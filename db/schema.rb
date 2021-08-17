@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_175903) do
+ActiveRecord::Schema.define(version: 2021_08_17_211709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 2021_08_16_175903) do
     t.string "contact_mailing_address_city"
     t.string "contact_mailing_address_state"
     t.string "contact_mailing_address_zip"
+    t.integer "local_percentage"
+    t.boolean "price_verified"
+    t.boolean "allow_piggyback"
+    t.integer "required_insurance_per_incident"
+    t.integer "required_insurance_aggregate"
+    t.integer "required_insurance_automobile"
     t.index ["buyer_id"], name: "index_district_profiles_on_buyer_id"
   end
 

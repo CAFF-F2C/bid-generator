@@ -1,4 +1,4 @@
-class Buyers::ContactsController < ApplicationController
+class Buyers::ProcurementsController < ApplicationController
   layout 'buyers'
   def edit
     @district_profile = current_buyer.district_profile
@@ -11,8 +11,7 @@ class Buyers::ContactsController < ApplicationController
 
     if @district_profile.update(district_profile_params)
       flash[:success] = 'District Profile was successfully updated.'
-      redirect_to buyers_district_profile_path if params[:commit] == 'Save and exit'
-      redirect_to edit_buyers_district_profile_procurement_path if params[:commit] == 'Next'
+      redirect_to buyers_district_profile_path
     else
       flash[:alert] = 'District Profile could not be saved.'
       render :edit
@@ -22,6 +21,6 @@ class Buyers::ContactsController < ApplicationController
   private
 
   def district_profile_params
-    params.require(:district_profile).permit(:contact_full_name, :contact_mailing_address_city, :contact_department_name, :contact_full_name, :contact_mailing_address_state, :contact_mailing_address_street, :contact_mailing_address_zip, :contact_phone_number, :contact_title)
+    params.require(:district_profile).permit(:local_percentage, :price_verified, :allow_piggyback, :required_insurance_aggregate, :required_insurance_automobile, :required_insurance_per_incident)
   end
 end

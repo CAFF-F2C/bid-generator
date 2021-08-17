@@ -23,6 +23,15 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'City', with: 'Cityname'
     fill_in 'State', with: 'Thestate'
     fill_in 'ZIP code', with: '123456'
+    click_on 'Next'
+
+    select '35%', from: 'district_profile_local_percentage'
+    choose 'Do not verify pricing'
+    choose 'Do not add a piggyback clause'
+    fill_in 'Per-incident liability limit', with: '1_000_000'
+    fill_in 'Aggregate liability limit', with: '2_000_000'
+    fill_in 'Automobile liability limit', with: '500_000'
+
     click_on 'Save and exit'
 
     expect(page.find('main')).to have_content(/success/i)
@@ -36,6 +45,11 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content(/cityname/i)
     expect(page).to have_content(/thestate/i)
     expect(page).to have_content(/123456/i)
+
+    expect(page).to have_content(/35%/i)
+    expect(page).to have_content('$1,000,000')
+    expect(page).to have_content('$2,000,000')
+    expect(page).to have_content('$500,000')
 
     click_on('Documents')
 

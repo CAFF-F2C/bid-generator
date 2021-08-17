@@ -31,8 +31,11 @@
   .text-field {
     @apply border-gray-300 rounded w-full focus:border-gray-600 focus:ring-gray-300;
   }
-  .text-field-label{
+  .text-field-label {
     @apply block mb-2 text-gray-700 text-sm;
+  }
+  .radio-label {
+    @apply inline ml-2;
   }
   .errors {
     @apply text-red-600 text-sm font-semibold leading-tight space-y-1 mb-4;

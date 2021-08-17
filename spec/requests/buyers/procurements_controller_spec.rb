@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Buyers::ContactsController, type: :request do
+RSpec.describe Buyers::ProcurementsController, type: :request do
   describe 'GET /edit' do
     let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request
-      get edit_buyers_district_profile_contact_path
+      get edit_buyers_district_profile_procurement_path
     end
 
     context 'when no user is signed in' do
@@ -42,7 +42,7 @@ RSpec.describe Buyers::ContactsController, type: :request do
     let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request(params = {})
-      patch buyers_district_profile_contact_path(district_profile: params)
+      patch buyers_district_profile_procurement_path(district_profile: params)
     end
 
     context 'when no user is signed in' do
@@ -60,24 +60,20 @@ RSpec.describe Buyers::ContactsController, type: :request do
 
       it 'updates the district profile contact information' do
         make_request(
-          contact_full_name: 'FS Director',
-          contact_mailing_address_city: 'city',
-          contact_department_name: 'department',
-          contact_mailing_address_state: 'state',
-          contact_mailing_address_street: 'street',
-          contact_mailing_address_zip: 'zip',
-          contact_phone_number: '5551234567',
-          contact_title: 'title'
+          local_percentage: '25',
+          price_verified: 'false',
+          allow_piggyback: 'true',
+          required_insurance_aggregate: '1_000_000',
+          required_insurance_automobile: '2_000_000',
+          required_insurance_per_incident: '500_000'
         )
         expect(buyer.district_profile).to have_attributes(
-          contact_full_name: 'FS Director',
-          contact_mailing_address_city: 'city',
-          contact_department_name: 'department',
-          contact_mailing_address_state: 'state',
-          contact_mailing_address_street: 'street',
-          contact_mailing_address_zip: 'zip',
-          contact_phone_number: '5551234567',
-          contact_title: 'title'
+          local_percentage: 25,
+          price_verified: false,
+          allow_piggyback: true,
+          required_insurance_aggregate: 1_000_000,
+          required_insurance_automobile: 2_000_000,
+          required_insurance_per_incident: 500_000
         )
       end
 
@@ -88,15 +84,15 @@ RSpec.describe Buyers::ContactsController, type: :request do
 
       context 'when the buyer clicks save and exit' do
         it 'shows the profile' do
-          patch buyers_district_profile_contact_path(district_profile: {contact_full_name: 'FS Director'}, commit: 'Save and exit')
+          patch buyers_district_profile_procurement_path(district_profile: {contact_full_name: 'FS Director'}, commit: 'Save and exit')
           expect(response).to redirect_to buyers_district_profile_path
         end
       end
 
       context 'when the buyer clicks next' do
-        it 'shows the profile' do
-          patch buyers_district_profile_contact_path(district_profile: {contact_full_name: 'FS Director'}, commit: 'Next')
-          expect(response).to redirect_to edit_buyers_district_profile_procurement_path
+        xit 'shows the profile' do
+          patch buyers_district_profile_procurement_path(district_profile: {contact_full_name: 'FS Director'}, commit: 'Next')
+          expect(response).to redirect_to edit_buyers_district_profile_locations_path
         end
       end
     end
