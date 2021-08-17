@@ -1,11 +1,11 @@
 <% content_for(:page_header) { 'District Profile' } %>
-<div class='flex flex-row w-full'>
-  <h2 class='buyers__section-head flex-1'>District Information</h2>
+<div class='buyers__section-head flex flex-row w-full'>
+  <h2 class='flex-1'>District Information</h2>
   <%= link_to('Edit', edit_buyers_district_profile_path) %>
 </div>
 <table class='buyers__display-form'>
   <tr>
-    <td class='buyers__display-field-label'>District Name</td>
+    <td class='buyers__display-field-label'>District name</td>
     <td><%=@district_profile.district_name%></td>
   </tr>
   <tr>
@@ -35,6 +35,44 @@
   <tr>
     <td class='buyers__display-field-label'>Number of production sites</td>
     <td><%=@district_profile.production_sites_number%></td>
+  </tr>
+</table>
+<div class='buyers__section-head flex flex-row w-full'>
+  <h2 class='flex-1'>Contact Information</h2>
+  <%= link_to('Edit', edit_buyers_district_profile_contact_path) %>
+</div>
+<table class='buyers__display-form'>
+  <tr>
+    <td class='buyers__display-field-label'>Full name</td>
+    <td><%=@district_profile.contact_full_name%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Department name</td>
+    <td><%=@district_profile.contact_department_name%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Title</td>
+    <td><%=@district_profile.contact_title%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Phone number</td>
+    <td><%=@district_profile.contact_phone_number%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>Mailing address</td>
+    <td><%=@district_profile.contact_mailing_address_street%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>City</td>
+    <td><%=@district_profile.contact_mailing_address_city%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>State</td>
+    <td><%=@district_profile.contact_mailing_address_state%></td>
+  </tr>
+  <tr>
+    <td class='buyers__display-field-label'>ZIP code</td>
+    <td><%=@district_profile.contact_mailing_address_zip%></td>
   </tr>
 </table>
 

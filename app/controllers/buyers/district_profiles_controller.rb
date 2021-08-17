@@ -18,7 +18,8 @@ class Buyers::DistrictProfilesController < ApplicationController
     @district_profile = current_buyer.build_district_profile(district_profile_params)
     if @district_profile.save
       flash[:success] = 'District Profile was successfully created.'
-      redirect_to buyers_district_profile_path
+      redirect_to buyers_district_profile_path if params[:commit] == 'Save and exit'
+      redirect_to edit_buyers_district_profile_contact_path if params[:commit] == 'Next'
     else
       flash[:alert] = 'District Profile could not be saved.'
       render :new
@@ -28,7 +29,8 @@ class Buyers::DistrictProfilesController < ApplicationController
   def update
     if district_profile.update(district_profile_params)
       flash[:success] = 'District Profile was successfully updated.'
-      redirect_to buyers_district_profile_path
+      redirect_to buyers_district_profile_path if params[:commit] == 'Save and exit'
+      redirect_to edit_buyers_district_profile_contact_path if params[:commit] == 'Next'
     else
       flash[:alert] = 'District Profile could not be saved.'
       render :edit

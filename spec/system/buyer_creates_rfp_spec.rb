@@ -12,9 +12,30 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('District Profile')
 
     fill_in 'District Name', with: 'The District'
+    click_on 'Next'
+
+    expect(page).to have_content('Contact Information')
+    fill_in 'Full name', with: 'FS Director'
+    fill_in 'Department name', with: 'School Meals R Us'
+    fill_in 'Title', with: 'FS Director'
+    fill_in 'Phone number', with: '5551234567'
+    fill_in 'Mailing address', with: '123 Edu Lane'
+    fill_in 'City', with: 'Cityname'
+    fill_in 'State', with: 'Thestate'
+    fill_in 'ZIP code', with: '123456'
     click_on 'Save and exit'
 
     expect(page.find('main')).to have_content(/success/i)
+
+    expect(page).to have_content(/the district/i)
+    expect(page).to have_content(/fs director/i)
+    expect(page).to have_content(/school meals r us/i)
+    expect(page).to have_content(/fs director/i)
+    expect(page).to have_content(/5551234567/i)
+    expect(page).to have_content(/123 edu lane/i)
+    expect(page).to have_content(/cityname/i)
+    expect(page).to have_content(/thestate/i)
+    expect(page).to have_content(/123456/i)
 
     click_on('Documents')
 

@@ -148,14 +148,23 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
           expect(flash[:success]).to have_content(/success/i)
         end
 
-        it 'shows the profile' do
-          make_request(district_name: 'District name')
-          expect(response).to redirect_to buyers_district_profile_path
-        end
-
         it 'sets the attributes' do
           make_request(district_name: 'My District', city: 'My City', county: 'My County', enrolled_students_number: 100, daily_meals_number: 100, schools_number: 3, production_sites_number: 3)
           expect(DistrictProfile.last).to have_attributes(district_name: 'My District', city: 'My City', county: 'My County', enrolled_students_number: 100, daily_meals_number: 100, schools_number: 3, production_sites_number: 3)
+        end
+
+        context 'when the buyer clicks save and exit' do
+          it 'shows the profile' do
+            post buyers_district_profile_path(district_profile: {district_name: 'District name'}, commit: 'Save and exit')
+            expect(response).to redirect_to buyers_district_profile_path
+          end
+        end
+
+        context 'when the buyer clicks next' do
+          it 'shows the contact form' do
+            post buyers_district_profile_path(district_profile: {district_name: 'District name'}, commit: 'Next')
+            expect(response).to redirect_to edit_buyers_district_profile_contact_path
+          end
         end
       end
 
@@ -199,9 +208,18 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
           expect(flash[:success]).to have_content(/updated/i)
         end
 
-        it 'shows the profile' do
-          make_request(district_name: 'District name')
-          expect(response).to redirect_to buyers_district_profile_path
+        context 'when the buyer clicks save and exit' do
+          it 'shows the profile' do
+            patch buyers_district_profile_path(district_profile: {district_name: 'District name'}, commit: 'Save and exit')
+            expect(response).to redirect_to buyers_district_profile_path
+          end
+        end
+
+        context 'when the buyer clicks next' do
+          it 'shows the contact form' do
+            patch buyers_district_profile_path(district_profile: {district_name: 'District name'}, commit: 'Next')
+            expect(response).to redirect_to edit_buyers_district_profile_contact_path
+          end
         end
       end
 

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   namespace :buyers do
     resources :documents, only: [:index]
     resources :rfps, except: [:index]
-    resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy]
+    resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
+      resource :contact, only: [:edit, :update]
+    end
     root to: 'documents#index'
   end
 

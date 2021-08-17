@@ -1,0 +1,22 @@
+.district-profile-nav {
+  @apply flex w-full justify-between relative my-5 select-none;
+  a {
+    @apply text-center text-xs z-10 block flex-1;
+  }
+
+  svg {
+    @apply mx-auto mb-2 text-orange-400;
+    rect {
+      @apply stroke-current;
+      fill:  white;
+    }
+    circle {
+      @apply fill-current;
+    }
+  }
+
+  .current ~ a svg {
+    rect { stroke: gray; }
+    circle { fill: transparent; }
+  }
+}

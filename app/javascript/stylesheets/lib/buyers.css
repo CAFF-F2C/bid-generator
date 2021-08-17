@@ -8,7 +8,10 @@
   }
 
   &__section-head {
-    @apply mb-5 text-xl;
+    @apply mt-6 mb-4;
+    h2 {
+      @apply text-xl;
+    }
   }
 
   &__button-new {
@@ -16,7 +19,11 @@
   }
 
   &__actions {
-    @apply justify-items-end my-5 flex flex-row-reverse;
+    @apply justify-end my-5 flex flex-row w-full text-right m-auto;
+  }
+
+  &__action:not(:first-child) {
+    @apply ml-3;
   }
 
   &__display-form {

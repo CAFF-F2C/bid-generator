@@ -1,0 +1,50 @@
+<h2 class='buyers__section-head'>Contact Information</h2>
+
+<div class="field">
+  <%= f.label :contact_full_name, 'Full name', class: 'text-field-label' %>
+  <%= f.text_field :contact_full_name, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :contact_department_name, 'Department name', class: 'text-field-label' %>
+  <%= f.text_field :contact_department_name, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :contact_title, 'Title', class: 'text-field-label' %>
+  <%= f.text_field :contact_title, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :contact_phone_number, 'Phone number', class: 'text-field-label' %>
+  <%= f.telephone_field :contact_phone_number, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :contact_mailing_address_street, 'Mailing address', class: 'text-field-label' %>
+  <%= f.text_field :contact_mailing_address_street, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :contact_mailing_address_city, 'City', class: 'text-field-label' %>
+  <%= f.text_field :contact_mailing_address_city, class: 'text-field' %>
+</div>
+
+<div class='form-row'>
+  <div class="field">
+    <%= f.label :contact_mailing_address_state, 'State', class: 'text-field-label' %>
+    <%= f.text_field :contact_mailing_address_state, class: 'text-field' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_mailing_address_zip, 'ZIP code', class: 'text-field-label' %>
+    <%= f.text_field :contact_mailing_address_zip, class: 'text-field' %>
+  </div>
+</div>
+
+<div class='buyers__actions'>
+  <div class='buyers__action'>
+    <%= f.submit 'Save and exit', class: 'button-secondary' %>
+  </div>
+</div>
+

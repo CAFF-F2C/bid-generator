@@ -10,7 +10,7 @@ module.exports = {
       display: ['"Space Grotesk"', ...defaultTheme.fontFamily.sans],
     },
     colors: {
-      transparent: colors.transparent,
+      transparent: 'transparent',
       white: colors.white,
       green: colors.green,
       blue: {
