@@ -21,6 +21,7 @@ class Buyer < ApplicationRecord
 
   has_one :district_profile, inverse_of: :buyer, dependent: :destroy
   has_many :rfps, inverse_of: :buyer, dependent: :destroy
+  has_many :locations, inverse_of: :buyer, dependent: :destroy
 
   delegate :district_name, to: :district_profile, allow_nil: true
 

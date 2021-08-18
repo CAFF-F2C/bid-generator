@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
       resource :contact, only: [:edit, :update]
       resource :procurement, only: [:edit, :update]
+      resources :locations, only: [:index, :show, :create, :new, :edit, :update, :destroy]
     end
     root to: 'documents#index'
   end

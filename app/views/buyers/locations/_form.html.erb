@@ -1,0 +1,37 @@
+<h2 class='buyers__section-head'>Delivery Locations</h2>
+
+<div class="field">
+  <%= f.label :name, 'Location name', class: 'text-field-label' %>
+  <%= f.text_field :name, required: true, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :street_address, 'Street address', class: 'text-field-label' %>
+  <%= f.text_field :street_address, required: true, class: 'text-field' %>
+</div>
+
+<div class="field">
+  <%= f.label :city, 'City', class: 'text-field-label' %>
+  <%= f.text_field :city, required: true, class: 'text-field' %>
+</div>
+
+<div class='form-row'>
+  <div class="field">
+    <%= f.label :state, 'State', class: 'text-field-label' %>
+    <%= f.select :state, US_STATES.keys, {}, class: 'select' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip_code, 'ZIP code', class: 'text-field-label' %>
+    <%= f.text_field :zip_code, required: true, class: 'text-field' %>
+  </div>
+</div>
+
+<div class='buyers__actions'>
+  <div class='buyers__action'>
+    <%= f.submit 'Save', class: 'button-primary' %>
+  </div>
+  <div class='buyers__action'>
+    <%= link_to 'Cancel', buyers_district_profile_locations_path, class: 'button-secondary' %>
+  </div>
+</div>

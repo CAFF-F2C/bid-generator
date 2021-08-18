@@ -21,8 +21,9 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'Phone number', with: '5551234567'
     fill_in 'Mailing address', with: '123 Edu Lane'
     fill_in 'City', with: 'Cityname'
-    fill_in 'State', with: 'Thestate'
+    select 'CA', from: 'district_profile_contact_mailing_address_state'
     fill_in 'ZIP code', with: '123456'
+
     click_on 'Next'
 
     select '35%', from: 'district_profile_local_percentage'
@@ -31,8 +32,20 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'Per-incident liability limit', with: '1_000_000'
     fill_in 'Aggregate liability limit', with: '2_000_000'
     fill_in 'Automobile liability limit', with: '500_000'
+    click_on 'Next'
 
-    click_on 'Save and exit'
+    click_on '+ New Location'
+    fill_in 'Location name', with: 'Deliver here'
+    fill_in 'Street address', with: '123 Main'
+    fill_in 'City', with: 'OKGO'
+    select 'CA', from: 'location_state'
+    fill_in 'ZIP code', with: '12345'
+
+    click_on 'Save'
+    expect(page).to have_content(/Deliver here/i)
+    expect(page).to have_content(/123 main, okgo, ca 12345/i)
+
+    click_on 'Finish'
 
     expect(page.find('main')).to have_content(/success/i)
 
@@ -43,7 +56,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content(/5551234567/i)
     expect(page).to have_content(/123 edu lane/i)
     expect(page).to have_content(/cityname/i)
-    expect(page).to have_content(/thestate/i)
+    expect(page).to have_content(/ca/i)
     expect(page).to have_content(/123456/i)
 
     expect(page).to have_content(/35%/i)

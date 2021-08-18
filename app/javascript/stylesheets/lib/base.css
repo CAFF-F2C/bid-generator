@@ -28,6 +28,9 @@
   .button-secondary {
     @apply button bg-transparent bg-opacity-0 text-blue-700 hover:bg-blue-800 border-blue-700;
   }
+  a.button {
+    @apply w-full flex justify-center py-2 px-4 border rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
   .text-field {
     @apply border-gray-300 rounded w-full focus:border-gray-600 focus:ring-gray-300;
   }
@@ -44,7 +47,7 @@
     @apply rounded border-gray-300 text-blue-500 focus:ring-blue-500;
   }
   .select {
-    @apply rounded border-gray-300 focus:ring-blue-500;
+    @apply w-full rounded border-gray-300 focus:ring-blue-500;
   }
   .form-row {
     @apply w-full md:flex md:flex-row md:my-4;

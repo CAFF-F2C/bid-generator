@@ -29,6 +29,14 @@ RSpec.describe Buyers::DistrictProfileNavComponent, type: :component do
         expect(component.progress_percent).to eq('37.5%')
       end
     end
+
+    context 'with locations' do
+      let(:current_path) { Rails.application.routes.url_helpers.buyers_district_profile_locations_path }
+
+      it 'returns current' do
+        expect(component.progress_percent).to eq('87.5%')
+      end
+    end
   end
 
   describe 'classes' do

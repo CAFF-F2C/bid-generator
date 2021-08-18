@@ -33,7 +33,7 @@
 <div class='form-row'>
   <div class="field">
     <%= f.label :contact_mailing_address_state, 'State', class: 'text-field-label' %>
-    <%= f.text_field :contact_mailing_address_state, class: 'text-field' %>
+    <%= f.select :contact_mailing_address_state, US_STATES.keys, {}, class: 'select' %>
   </div>
 
   <div class="field">

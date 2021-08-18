@@ -1,0 +1,43 @@
+<% content_for(:page_header) { 'District Profile' } %>
+<%= render(Buyers::DistrictProfileNavComponent.new(current_path: request.path)) %>
+<h2 class='buyers__section-head'>Delivery Locations</h2>
+<p>
+  Please specify the locations where your district's purchases will be delivered. When you make an RFP, you'll pick locations from this list.
+</p>
+<div class='buyers__section-head-actions flex justify-end'>
+  <div class='pr-2'>
+    <%= link_to('Finish', buyers_district_profile_path, class: 'button-primary') %>
+  </div>
+  <div>
+    <%= link_to('+ New Location', new_buyers_district_profile_location_path, class: 'buyers__button-new') %>
+  </div>
+</div>
+
+<div class='buyers__locations'>
+  <% @locations.each do |location| %>
+    <div class='buyers__location'>
+      <div class='buyers__location-display'>
+        <div class='buyers__location-name'><%= location.name %></div>
+        <div class='buyers__location-address'><%= location.full_address %></div>
+      </div>
+      <div class='buyers__location-actions flex'>
+        <div class='buyers__action'>
+          <%= link_to edit_buyers_district_profile_location_path(location), aria: {label: 'edit'}  do %>
+            <% inline_svg('icon_edit.svg') %>
+          <% end %>
+        </div>
+        <div class='buyers__action'>
+          <%= button_to buyers_district_profile_location_path(location), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
+            <% inline_svg('icon_delete.svg') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+

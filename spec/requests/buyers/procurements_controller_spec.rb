@@ -90,9 +90,9 @@ RSpec.describe Buyers::ProcurementsController, type: :request do
       end
 
       context 'when the buyer clicks next' do
-        xit 'shows the profile' do
+        it 'shows the profile' do
           patch buyers_district_profile_procurement_path(district_profile: {contact_full_name: 'FS Director'}, commit: 'Next')
-          expect(response).to redirect_to edit_buyers_district_profile_locations_path
+          expect(response).to redirect_to buyers_district_profile_locations_path
         end
       end
     end

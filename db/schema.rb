@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_211709) do
+ActiveRecord::Schema.define(version: 2021_08_17_235221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,18 @@ ActiveRecord::Schema.define(version: 2021_08_17_211709) do
     t.index ["buyer_id"], name: "index_district_profiles_on_buyer_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.bigint "buyer_id", null: false
+    t.string "name", null: false
+    t.string "street_address", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_locations_on_buyer_id"
+  end
+
   create_table "rfps", force: :cascade do |t|
     t.bigint "buyer_id", null: false
     t.integer "start_year", null: false
@@ -94,5 +106,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_211709) do
   end
 
   add_foreign_key "district_profiles", "buyers"
+  add_foreign_key "locations", "buyers"
   add_foreign_key "rfps", "buyers"
 end

@@ -11,7 +11,7 @@ class Buyers::DistrictProfileNavComponent < ViewComponent::Base
       '37.5%'
     when edit_buyers_district_profile_procurement_path
       '62.5%'
-    when 'locations_path'
+    when buyers_district_profile_locations_path
       '87.5%'
     end
   end

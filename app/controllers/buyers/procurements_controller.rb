@@ -11,7 +11,8 @@ class Buyers::ProcurementsController < ApplicationController
 
     if @district_profile.update(district_profile_params)
       flash[:success] = 'District Profile was successfully updated.'
-      redirect_to buyers_district_profile_path
+      redirect_to buyers_district_profile_path if params[:commit] == 'Save and exit'
+      redirect_to buyers_district_profile_locations_path if params[:commit] == 'Next'
     else
       flash[:alert] = 'District Profile could not be saved.'
       render :edit

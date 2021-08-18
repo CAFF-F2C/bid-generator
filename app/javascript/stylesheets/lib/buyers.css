@@ -99,4 +99,24 @@
       @apply pl-0;
     }
   }
+
+  &__locations {
+    @apply my-4;
+  }
+
+  &__location {
+    @apply flex p-5 border-b border-gray-200;
+
+    &-display {
+      @apply flex-1 whitespace-nowrap;
+    }
+
+    &-name {
+      @apply font-semibold;
+    }
+
+    &-address {
+      @apply text-gray-600;
+    }
+  }
 }
