@@ -1,0 +1,21 @@
+- name: Price
+  description: Proposer's ability to provide the District with products at a competitive price.
+- name: Meets district delivery specifications
+  description: Proposer's ability to meet the delivery needs of the District.
+- name: Traceable food origins
+  description: "Proposer's ability to provide information regarding the farm of origin of locally and non-locally grown products (whole and processed produce) including: a list of farms and products sourced from each farm, unique product identification numbers for locally grown products from aggregated products, and farm of origin information clearly marked on each case delivered to cafeterias. A sample of a traceability report will be requested with any produce samples provided."
+- name: Reporting and ordering systems
+  description: Proposer's ability to provide ordering systems and reports online and via email.
+- name: Local sourcing
+  description: Proposer's ability to provide produce grown within a certain distance of the District.
+- name: Service reliability and past performance
+  description: Proposer's experience within the industry, as well as the capacity and capabilities for provision and distribution of the products listed in the RFP. A minimum of two references is required which demonstrates the Proposer has provided similar services.
+- name: Safety recrords and controls
+  description: Proposer's ability to meet Food Safety requirements.
+- name: Food and nutrition education
+  description: Proposer's ability to provide farm or faciltity tours, classroom or school visits, promotional materials, and/or training and technical assistance.
+- name: Cross-docking and farm-direct
+  description: Proposer's ability to receive and ship whole produce and process produce purchased by District directly from local growers.
+- name: Vendor consultation
+  description: Proposer's ability to consult district food service staff on sourcing strategies, menu planning, and other needs.
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_235221) do
+ActiveRecord::Schema.define(version: 2021_08_19_182052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,17 @@ ActiveRecord::Schema.define(version: 2021_08_17_235221) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["buyer_id"], name: "index_rfps_on_buyer_id"
+  end
+
+  create_table "score_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "position", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_score_categories_on_deleted_at"
+    t.index ["position"], name: "index_score_categories_on_position"
   end
 
   add_foreign_key "district_profiles", "buyers"

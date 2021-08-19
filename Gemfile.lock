@@ -249,6 +249,8 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
+    paranoia (2.4.3)
+      activerecord (>= 4.0, < 6.2)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     parslet (1.8.2)
@@ -472,6 +474,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   license_finder (~> 6.0)
   listen (~> 3.3)
+  paranoia
   pg (~> 1.1)
   pivotal_git_scripts
   puma (~> 5.0)

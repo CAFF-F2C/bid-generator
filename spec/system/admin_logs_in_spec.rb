@@ -58,5 +58,15 @@ RSpec.describe 'Log in', type: :system do
     click_on 'New District'
 
     expect(page).to have_content('New District')
+
+    click_on 'Score Categories'
+    click_on 'New Score Category'
+
+    fill_in 'Name', with: 'My Category'
+    fill_in 'Description', with: 'This is the category description'
+    fill_in 'Order', with: '1'
+
+    click_on 'Save'
+    expect(page).to have_content('My Category')
   end
 end

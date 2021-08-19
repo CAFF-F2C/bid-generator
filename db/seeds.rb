@@ -21,3 +21,6 @@ AdminUser.create_with(
   password: 'password',
   password_confirmation: 'password'
 ).find_or_create_by!(email: 'adminUser@example.com')
+
+score_categories_seeds = YAML.load_file(Rails.root.join('db', 'seeds', 'score_categories.yml'))
+score_categories_seeds.each_with_index { |values, index| ScoreCategory.create_with(position: index).find_or_create_by(values) }
