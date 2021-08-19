@@ -1,0 +1,8 @@
+<div id="score_category_<%= score.score_category_id %>">
+  <%= score.name %>
+  <%= score.description %>
+  <%= form_for [:buyers, @current_rfp, score] do |f| %>
+    <%= f.hidden_field :score_category_id %>
+    <%= f.number_field :value %>
+  <% end %>
+</div>

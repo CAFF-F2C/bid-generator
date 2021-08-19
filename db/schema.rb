@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_182052) do
+ActiveRecord::Schema.define(version: 2021_08_19_222946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,7 +116,19 @@ ActiveRecord::Schema.define(version: 2021_08_19_182052) do
     t.index ["position"], name: "index_score_categories_on_position"
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.bigint "rfp_id", null: false
+    t.bigint "score_category_id", null: false
+    t.integer "value", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rfp_id"], name: "index_scores_on_rfp_id"
+    t.index ["score_category_id"], name: "index_scores_on_score_category_id"
+  end
+
   add_foreign_key "district_profiles", "buyers"
   add_foreign_key "locations", "buyers"
   add_foreign_key "rfps", "buyers"
+  add_foreign_key "scores", "rfps"
+  add_foreign_key "scores", "score_categories"
 end

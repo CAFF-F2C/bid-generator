@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Creates an RFP', type: :system do
   let!(:buyer) { create(:buyer, :confirmed) }
 
+  before do
+    create(:score_category, name: 'Price', description: 'price description', position: 1)
+    create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
+    create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
+    create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
+  end
+
   it 'allows the buyer to create their district profile', :js do
     login_as buyer, scope: :buyer
 
@@ -70,6 +77,21 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     select '2021 - 2022', from: 'rfp_start_year'
     select 'Produce', from: 'rfp_bid_type'
+
+    click_on 'Next'
+    expect(page).to have_content(/score/i)
+
+    fill_in 'Price', with: '40'
+    fill_in 'Cat 2', with: '20'
+    fill_in 'Cat 3', with: '20'
+    fill_in 'Cat 4', with: '30'
+    expect(page.find('#total_points')).to have_content('110')
+
+    # expect some kind of error state
+
+    fill_in 'Cat 4', with: '20'
+    # expect not to have error state
+    expect(page.find('#total_points')).to have_content('100')
 
     click_on 'Save and exit'
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')

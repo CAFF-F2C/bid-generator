@@ -33,7 +33,7 @@ RSpec.describe Buyers::RfpsController, type: :request do
     let(:buyer) { create(:buyer, :confirmed) }
 
     def make_request(params = {})
-      post buyers_rfps_path(rfp: params)
+      post buyers_rfps_path(rfp: params, commit: 'Save and exit')
     end
 
     context 'when no user is signed in' do
@@ -61,6 +61,13 @@ RSpec.describe Buyers::RfpsController, type: :request do
         it 'redirects to documents index page' do
           make_request(start_year: 2021, bid_type: 'Produce')
           expect(response).to redirect_to(buyers_documents_path)
+        end
+      end
+
+      context 'when the buyer clicks next' do
+        it 'shows the scores form' do
+          post buyers_rfps_path(rfp: {start_year: 2021, bid_type: 'Produce'}, commit: 'Next')
+          expect(response).to redirect_to buyers_rfp_scores_path(Rfp.last)
         end
       end
     end
@@ -143,7 +150,7 @@ RSpec.describe Buyers::RfpsController, type: :request do
     let(:rfp) { create(:rfp, buyer: buyer, start_year: 2021, bid_type: 'Produce') }
 
     def make_request(params = {})
-      patch buyers_rfp_path(rfp, rfp: params)
+      patch buyers_rfp_path(rfp, rfp: params, commit: 'Save and exit')
     end
 
     context 'when no user is signed in' do
@@ -174,6 +181,13 @@ RSpec.describe Buyers::RfpsController, type: :request do
         it 'sets a flash' do
           make_request(start_year: 2021, bid_type: '')
           expect(flash[:alert]).to include("Bid type can't be blank")
+        end
+      end
+
+      context 'when the buyer clicks next' do
+        it 'shows the scores form' do
+          patch buyers_rfp_path(rfp, rfp: {start_year: 2021, bid_type: 'Produce'}, commit: 'Next')
+          expect(response).to redirect_to buyers_rfp_scores_path(Rfp.last)
         end
       end
     end

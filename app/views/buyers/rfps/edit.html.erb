@@ -1,4 +1,4 @@
-<% content_for(:page_header) { 'RFP' } %>
+<% content_for(:page_header) { 'Request for proposal' } %>
 <%= form_with model: [:buyers, @rfp], url: buyers_rfp_path(@rfp), method: :patch, local: true, data: {turbo: false} do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>

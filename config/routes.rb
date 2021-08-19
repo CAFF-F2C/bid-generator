@@ -17,7 +17,10 @@ Rails.application.routes.draw do
 
   namespace :buyers do
     resources :documents, only: [:index]
-    resources :rfps, except: [:index]
+    resources :rfps, except: [:index] do
+      resources :scores, except: [:new, :edit, :destroy]
+      resources :rfp_scores, except: [:new, :edit, :destroy]
+    end
     resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
       resource :contact, only: [:edit, :update]
       resource :procurement, only: [:edit, :update]

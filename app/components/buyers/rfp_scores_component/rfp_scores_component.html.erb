@@ -1,0 +1,15 @@
+<div id='rfp_scores'>
+  <% scores.each do |score|%>
+    <div id="score_category_<%= score.score_category_id %>" class="<%= (errors[score.score_category_id].present?) ? 'errors' : ''%>">
+      <%= score.name %>
+      <%= score.description %>
+      <%= form_for [:buyers, @current_rfp, score] do |f| %>
+        <%= f.hidden_field :score_category_id %>
+        <%= f.number_field :value, min: 0, max: 100 %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div id='rfp_total_score'><%= total_score %></div>
+  <div id='rfp_total_score_error_message'><%= total_score.eql?(100) ? '' : 'Total must equal 100' %></div>
+</div>
