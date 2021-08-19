@@ -9,4 +9,12 @@ RSpec.describe Buyers::NavigationComponent, type: :component do
   it { expect(page.find('.buyers__nav-link--active')).to have_content(/my documents/i) }
   it { expect(page).to have_content(/district profile/i) }
   it { expect(page).to have_content(/sign out/i) }
+
+  describe '#external_resources_link' do
+    before { allow(Rails.application.config).to receive(:external_resources_link).and_return('http://example.com') }
+
+    it 'returns the config variable' do
+      expect(component.external_resources_link).to eq('http://example.com')
+    end
+  end
 end

@@ -5,6 +5,10 @@ class Buyers::NavigationComponent < ViewComponent::Base
     @user = user
   end
 
+  def external_resources_link
+    Rails.application.config.external_resources_link
+  end
+
   def current_page?(path)
     path == @current_path
   end

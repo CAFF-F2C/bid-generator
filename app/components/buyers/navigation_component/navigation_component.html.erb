@@ -25,6 +25,13 @@
             <span>District Profile</span>
           <% end %>
 
+          <% unless external_resources_link.blank? %>
+            <%= link_to(external_resources_link, class: "buyers__nav-link", target: :_blank) do %>
+              <%= inline_svg_tag('icon_folder.svg', alt: 'Resources') %>
+              <span>Resources</span>
+            <% end %>
+          <% end %>
+
           <%= button_to(destroy_buyer_session_path, method: :delete, class: 'buyers__nav-link', data: {turbo: false}) do %>
             <%= inline_svg_tag('icon_signout.svg', alt: 'sign out') %>
             <span>Sign out</span>
