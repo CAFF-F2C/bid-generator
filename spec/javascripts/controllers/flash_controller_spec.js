@@ -1,5 +1,5 @@
 import { Application } from "stimulus"
-import FlashController from "../../../app/javascript/controllers/flash_controller.js"
+import FlashController from "../../../app/components/flash_component/flash_controller.js"
 
 describe('FlashController', () => {
   let application, controller, root

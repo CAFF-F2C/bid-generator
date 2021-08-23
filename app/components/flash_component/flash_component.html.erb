@@ -1,14 +1,14 @@
 <section aria-live="assertive" class="flash">
   <section class="flash__container">
     <% @flash.each do |level, message| %>
-      <article data-controller="flash" class="flash__message">
+      <article data-controller="flash-component--flash" class="flash__message">
         <div class="flash__message-box">
           <div class="flex-shrink-0">
             <%= inline_svg_tag("flash/#{level}.svg", fallback: 'flash/message.svg', class: "flash__image flash__image--#{level}") %>
           </div>
           <p class="flash__text"><%= message %></p>
           <div class="flash__actions">
-            <button data-action="click->flash#close" class="flash__button">
+            <button data-action="click->flash-component--flash#close" class="flash__button">
               <span class="sr-only">Close</span>
               <%= inline_svg_tag('flash/close.svg', class: 'flash__image flash__image--close') %>
             </button>
