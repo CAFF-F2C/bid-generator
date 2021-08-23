@@ -10,7 +10,7 @@ RSpec.describe 'Log in', type: :system do
     create(:district_profile, buyer: buyer, district_name: 'New District')
   end
 
-  it 'allows admin to log in', :js do
+  it 'allows admin to view documents and configure scores', :js do
     visit admin_root_path
     fill_in 'Email', with: 'admin@example.com'
     fill_in 'Password', with: 'password'
@@ -60,13 +60,13 @@ RSpec.describe 'Log in', type: :system do
     expect(page).to have_content('New District')
 
     click_on 'Score Categories'
-    click_on 'New Score Category'
+    click_on 'New score category'
 
     fill_in 'Name', with: 'My Category'
     fill_in 'Description', with: 'This is the category description'
-    fill_in 'Order', with: '1'
+    fill_in 'Position', with: '1'
 
-    click_on 'Save'
+    click_on 'Create Score category'
     expect(page).to have_content('My Category')
   end
 end

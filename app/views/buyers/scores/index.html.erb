@@ -6,3 +6,9 @@
 
 <%= render(Buyers::RfpScoresComponent.new(current_rfp: @current_rfp)) %>
 
+<div class='buyers__actions'>
+  <div class='buyers__action'>
+    <%= link_to("Save and exit", buyers_documents_path, class: 'button-secondary') %>
+  </div>
+</div>
+

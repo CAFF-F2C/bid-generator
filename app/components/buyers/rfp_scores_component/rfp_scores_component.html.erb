@@ -1,11 +1,11 @@
 <div id='rfp_scores'>
   <% scores.each do |score|%>
     <div id="score_category_<%= score.score_category_id %>" class="<%= (errors[score.score_category_id].present?) ? 'errors' : ''%>">
-      <%= score.name %>
-      <%= score.description %>
-      <%= form_for [:buyers, @current_rfp, score] do |f| %>
+      <%= form_for [:buyers, @current_rfp, score], data: { controller: 'autosave', autosave_delay_value: '1000' } do |f| %>
+        <%= f.label "value_#{score.score_category_id}", score.name %>
+        <%= score.description %>
         <%= f.hidden_field :score_category_id %>
-        <%= f.number_field :value, min: 0, max: 100 %>
+        <%= f.number_field :value, min: 0, max: 100, id: "score_value_#{score.score_category_id}", data: { action: 'autosave#save' }, :autofocus => current_score?(score.id) %>
       <% end %>
     </div>
   <% end %>

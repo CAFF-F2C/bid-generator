@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Buyers::RfpScoresComponent < ViewComponent::Base
-  def initialize(current_rfp:)
+  def initialize(current_rfp:, current_score: nil)
     @current_rfp = current_rfp
+    @current_score = current_score
   end
 
   def scores
@@ -13,6 +14,12 @@ class Buyers::RfpScoresComponent < ViewComponent::Base
       rfp_scores.first.assign_attributes(value: 100) unless rfp_scores.first.persisted?
       rfp_scores
     end
+  end
+
+  def current_score?(score_id)
+    return false if @current_score.blank?
+
+    score_id == @current_score.id
   end
 
   def errors

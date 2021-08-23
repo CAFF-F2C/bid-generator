@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Score, type: :model do
-  subject(:rfp_score) { create(:rfp_score) }
+  subject(:rfp_score) { create(:score) }
 
   it { is_expected.to belong_to(:rfp) }
   it { is_expected.to belong_to(:score_category) }
