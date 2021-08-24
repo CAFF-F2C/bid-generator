@@ -1,0 +1,45 @@
+.rfp-scores {
+  @apply mt-5 border-gray-200 border-t pt-4;
+
+  &__score {
+    @apply flex p-3 pl-0;
+
+    &--errors {
+      @apply text-red-600;
+
+      label {
+        @apply text-red-600;
+      }
+
+      .text-field {
+        @apply border-red-600;
+      }
+    }
+  }
+
+  &__category {
+    @apply flex-1;
+  }
+
+  &__name, &__error {
+    @apply font-semibold text-base;
+  }
+
+  &__description {
+    @apply mt-2 text-sm text-gray-600 pr-6;
+  }
+
+  &__score--errors {
+    .rfp-scores__description {
+      @apply text-red-600;
+    }
+  }
+
+  &__total-score {
+    @apply border-gray-200 border-t pt-4 mt-4;
+  }
+
+  &__total {
+    @apply font-bold;
+  }
+}

@@ -38,14 +38,12 @@ RSpec.describe Buyers::ScoresController, type: :request do
       context 'when the rfp has no scores' do
         it 'defaults the first score to 100' do
           make_request
-          assert_select "#score_category_#{score_category1.id}" do
-            assert_select "input[name='score[value]']:match('value', ?)", '100'
-          end
+          expect(page.find("#score_category_#{score_category1.id}")).to have_selector("input[name='score[value]'][value='100']")
         end
 
         it 'defaults the remaining scores to 0' do
           make_request
-          assert_select "input[name='score[value]']:match('value', ?)", '0', 3
+          expect(page).to have_selector("input[name='score[value]'][value='0']", count: 3)
         end
       end
 

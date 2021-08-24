@@ -1,10 +1,11 @@
 <% content_for(:page_header) { 'Request for proposal' } %>
 <h2 class='buyers__section-head'>Score</h2>
-<p>
+<p class='buyers__section-caption'>
   Please determine how to evaluate vendors who respond to this RFP. Assign a total of 100 points to the following categories. Zero point categories will be excluded. Price must have the highest number of points, but can be tied with other categories.
 </p>
-
-<%= render(Buyers::RfpScoresComponent.new(current_rfp: @current_rfp)) %>
+<div data-controller='buyers--rfp-scores-component--rfp-scores'>
+  <%= render(Buyers::RfpScoresComponent.new(current_rfp: @current_rfp)) %>
+</div>
 
 <div class='buyers__actions'>
   <div class='buyers__action'>

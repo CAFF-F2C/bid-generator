@@ -24,7 +24,7 @@ RSpec.describe Buyers::RfpScoresComponent, type: :component do
 
     it 'sets the total score to 100' do
       render_inline(component)
-      expect(page.find('#rfp_total_score').text).to eq('100')
+      expect(page.find('#rfp_total_score').text).to eq('Total: 100')
     end
   end
 
@@ -45,8 +45,7 @@ RSpec.describe Buyers::RfpScoresComponent, type: :component do
 
     it 'marks the total as having errors' do
       render_inline(component)
-      expect(page.find('#rfp_total_score').text).to eq('110')
-      expect(page.find('#rfp_total_score_error_message').text).to eq('Total must equal 100')
+      expect(page.find('#rfp_error_message').text).to eq('Total must equal 100')
     end
 
     it 'mark scores as having errors' do
@@ -71,10 +70,15 @@ RSpec.describe Buyers::RfpScoresComponent, type: :component do
       render_inline(component)
       expect(page.find("#score_category_#{score_category3.id}")[:class]).to include('error')
     end
+  end
 
-    it 'does not mark the other scores as having errors' do
+  context 'when you save a score' do
+    let(:score) { create(:score, rfp: rfp, score_category: score_category1, value: 50) }
+    let(:component) { described_class.new(current_rfp: rfp, current_score: score) }
+
+    it 'sets the focus on the saved score' do
       render_inline(component)
-      expect(page.find("#score_category_#{score_category2.id}")[:class]).not_to include('error')
+      expect(page.find("#score_value_#{score.score_category_id}")[:autofocus]).to be_present
     end
   end
 end

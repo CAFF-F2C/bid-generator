@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Buyers::RfpScoresComponent < ViewComponent::Base
   def initialize(current_rfp:, current_score: nil)
     @current_rfp = current_rfp
@@ -27,8 +25,10 @@ class Buyers::RfpScoresComponent < ViewComponent::Base
       if score.value > scores.first.value
         errors[score.score_category_id] = "#{scores.first.name} must be the highest score"
         errors[scores.first.score_category_id] = "#{scores.first.name} must be the highest score"
-      elsif total_score != 100 && score.value != 0
+        errors[:base] = "#{scores.first.name} must be the highest score"
+      elsif score.value != 0 && total_score != 100
         errors[score.score_category_id] = 'Total must equal 100'
+        errors[:base] = 'Total must equal 100'
       end
     end
   end

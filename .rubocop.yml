@@ -31,6 +31,8 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   IgnoredMethods: [describe, context, it, before, configure, task]
+  Exclude:
+    - 'config/routes.rb'
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
@@ -73,3 +75,6 @@ RSpec/NestedGroups:
 RSpec/MultipleExpectations:
   Exclude:
     - 'spec/system/**/*'
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false

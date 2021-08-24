@@ -81,16 +81,18 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'Next'
     expect(page).to have_content(/score/i)
 
-    fill_in 'Price', with: '40\n'
-    fill_in 'Cat 2', with: '20\n'
-    fill_in 'Cat 3', with: '20\n'
-    fill_in 'Cat 4', with: '30\n'
-
+    fill_in 'Price', with: '40'
+    expect(page.find('#rfp_total_score')).to have_content('40')
+    fill_in 'Cat 2', with: '20'
+    expect(page.find('#rfp_total_score')).to have_content('60')
+    fill_in 'Cat 3', with: '20'
+    expect(page.find('#rfp_total_score')).to have_content('80')
+    fill_in 'Cat 4', with: '30'
     expect(page.find('#rfp_total_score')).to have_content('110')
-    expect(page.find('#rfp_total_score_error_message')).to have_content('Total must equal 100')
+    expect(page.find('#rfp_error_message')).to have_content('Total must equal 100')
 
     fill_in 'Cat 4', with: '20'
-    expect(page.find('#rfp_total_score_error_message')).to have_content('')
+    expect(page.find('#rfp_error_message')).to have_content('')
     expect(page.find('#rfp_total_score')).to have_content('100')
 
     click_on 'Save and exit'

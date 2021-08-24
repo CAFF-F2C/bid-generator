@@ -1,15 +1,28 @@
-<div id='rfp_scores'>
+<div class= 'rfp-scores' id='rfp_scores'>
   <% scores.each do |score|%>
-    <div id="score_category_<%= score.score_category_id %>" class="<%= (errors[score.score_category_id].present?) ? 'errors' : ''%>">
-      <%= form_for [:buyers, @current_rfp, score], data: { controller: 'autosave', autosave_delay_value: '1000' } do |f| %>
-        <%= f.label "value_#{score.score_category_id}", score.name %>
-        <%= score.description %>
-        <%= f.hidden_field :score_category_id %>
-        <%= f.number_field :value, min: 0, max: 100, id: "score_value_#{score.score_category_id}", data: { action: 'autosave#save' }, :autofocus => current_score?(score.id) %>
-      <% end %>
-    </div>
+    <%= form_for [:buyers, @current_rfp, score], data: { controller: 'autosave', autosave_delay_value: '1000' } do |f| %>
+      <div
+        id="score_category_<%= score.score_category_id %>"
+        class="rfp-scores__score <%= (errors[score.score_category_id].present?) ? 'rfp-scores__score--errors' : ''%>"
+      >
+        <div class='rfp-scores__category' data-action='click->buyers--rfp-scores-component--rfp-scores#click' data-category-id="<%=score.score_category_id%>">
+          <%= f.label "value_#{score.score_category_id}", score.name, class: 'rfp-scores__name' %>
+          <p class='rfp-scores__description hidden'><%= score.description %></p>
+        </div>
+        <div class='rfp-scores__value'>
+          <%= f.hidden_field :score_category_id %>
+          <%= f.number_field :value, min: 0, max: 100, id: "score_value_#{score.score_category_id}", data: { action: 'autosave#save' }, :autofocus => current_score?(score.id), class: 'text-field' %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
-  <div id='rfp_total_score'><%= total_score %></div>
-  <div id='rfp_total_score_error_message'><%= total_score.eql?(100) ? '' : 'Total must equal 100' %></div>
+  <div class="rfp-scores__total-score rfp-scores__score <%= (errors[:base].present?) ? 'rfp-scores__score--errors' : ''%>">
+    <div class='rfp-scores__category'>
+      <div id='rfp_error_message' class='rfp-scores__error'><%= errors[:base] %></div>
+    </div>
+    <div class='rfp-scores__value'>
+      <div id='rfp_total_score' class='rfp-scores__total'>Total: <%= total_score %></div>
+    </div>
+  </div>
 </div>
