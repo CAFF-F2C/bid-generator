@@ -15,7 +15,7 @@
   </head>
 
   <body class="bg-gray-50 h-screen md:flex overflow-hidden">
-    <%= render(Buyers::NavigationComponent.new(current_path: request.path, user: current_buyer)) %>
+    <%= render(Buyers::NavigationComponent.new(current_path: request.path)) %>
     <main class='flex-1 h-full overflow-y-scroll p-6 buyers__main buyers__main--<%= controller_path.parameterize %>-<%= action_name %>"' role='main'>
       <h1 class='buyers__page-title'>
         <%= content_for(:page_header) unless content_for(:page_header).blank?  %>

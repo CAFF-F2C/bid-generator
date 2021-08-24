@@ -21,10 +21,10 @@
         <td><%= l(document.created_at.to_date, format: :long) %></td>
         <td class='buyers__documents-table-actions'>
           <%= link_to edit_buyers_rfp_path(document), aria: {label: 'edit'}  do %>
-            <% inline_svg('icon_edit.svg') %>
+            <% inline_svg_tag('icon_edit.svg') %>
           <% end %>
           <%= link_to buyers_rfp_path(document) do %>
-            <% inline_svg('icon_show.svg') %>
+            <% inline_svg_tag('icon_show.svg') %>
           <% end %>
         </td>
       </tr>

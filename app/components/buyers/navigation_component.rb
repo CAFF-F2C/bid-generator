@@ -1,8 +1,7 @@
 # Display a navigation sidebar for Buyers
 class Buyers::NavigationComponent < ViewComponent::Base
-  def initialize(current_path:, user:)
+  def initialize(current_path:)
     @current_path = current_path
-    @user = user
   end
 
   def external_resources_link
@@ -10,6 +9,21 @@ class Buyers::NavigationComponent < ViewComponent::Base
   end
 
   def current_page?(path)
-    path == @current_path
+    return true if path == @current_path
+
+    district_profile_paths.any?(path) && district_profile_paths.any?(@current_path)
+  end
+
+  private
+
+  def district_profile_paths
+    [
+      new_buyers_district_profile_path,
+      edit_buyers_district_profile_path,
+      buyers_district_profile_path,
+      edit_buyers_district_profile_contact_path,
+      edit_buyers_district_profile_procurement_path,
+      buyers_district_profile_locations_path
+    ].freeze
   end
 end
