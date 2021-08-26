@@ -9,7 +9,7 @@ class Buyers::RfpScoresComponent < ViewComponent::Base
       rfp_scores = ScoreCategory.order(position: :asc).map do |score_category|
         @current_rfp.scores.find_or_initialize_by(score_category_id: score_category.id)
       end
-      rfp_scores.first.assign_attributes(value: 100) unless rfp_scores.first.persisted?
+      rfp_scores.first.assign_attributes(value: 100) unless rfp_scores.blank? || rfp_scores.first.persisted?
       rfp_scores
     end
   end
