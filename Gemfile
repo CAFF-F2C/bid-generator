@@ -58,6 +58,7 @@ group :test do
   gem 'capybara', '~> 3.0'
   gem 'capybara-email', '~> 3.0'
   gem 'capybara-screenshot', '~> 1.0', require: false
+  gem 'database_cleaner-active_record'
   gem 'pundit-matchers', '~> 1.6'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-collection_matchers'

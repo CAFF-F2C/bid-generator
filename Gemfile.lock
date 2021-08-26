@@ -156,6 +156,10 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     descendants_tracker (0.0.4)
@@ -464,6 +468,7 @@ DEPENDENCIES
   capybara-email (~> 3.0)
   capybara-screenshot (~> 1.0)
   connection_pool
+  database_cleaner-active_record
   devise
   dotenv-rails
   factory_bot_rails
