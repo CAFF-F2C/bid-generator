@@ -24,6 +24,7 @@ RSpec.describe Rfp, type: :model do
 
   it { is_expected.to belong_to(:buyer).inverse_of(:rfps) }
   it { is_expected.to have_many(:scores).inverse_of(:rfp) }
+  it { is_expected.to have_many(:deliveries).inverse_of(:rfp) }
   it { is_expected.to validate_presence_of(:bid_type) }
   it { is_expected.to validate_presence_of(:start_year) }
   it { is_expected.to validate_presence_of(:buyer) }

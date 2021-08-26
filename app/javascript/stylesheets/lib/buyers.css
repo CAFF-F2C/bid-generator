@@ -23,8 +23,13 @@
   }
 
   &__legend {
+    @apply font-display;
+  }
+
+  &__procurement-legend {
     @apply font-display font-semibold text-xl;
   }
+
 
   &__table-head {
     @apply border-b border-gray-200;
@@ -120,7 +125,11 @@
     }
 
     &-address {
-      @apply text-gray-600;
+      @apply text-gray-600 mb-2;
     }
+  }
+
+  &__schedule-delivery {
+    @apply text-gray-600 text-sm;
   }
 }

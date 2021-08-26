@@ -95,6 +95,21 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page.find('#rfp_error_message')).to have_content('')
     expect(page.find('#rfp_total_score')).to have_content('100')
 
+    click_on 'Next'
+    expect(page).to have_content(/delivery schedule/i)
+    click_on '+ New delivery'
+    select 'Deliver here', from: 'Location'
+    check 'Monday'
+    check 'Wednesday'
+    select '2', from: 'Deliveries per week'
+    select 'Lunch (12pm - 2pm)', from: 'Delivery time'
+    click_on 'Save'
+
+    expect(page).to have_content('Deliver here')
+    expect(page).to have_content('2x per week')
+    expect(page).to have_content('Monday, Wednesday')
+    expect(page).to have_content('12pm - 2pm')
+
     click_on 'Save and exit'
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')
     click_on 'edit'

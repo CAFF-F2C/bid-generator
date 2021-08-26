@@ -14,8 +14,13 @@
 #
 class Location < ApplicationRecord
   belongs_to :buyer, inverse_of: :locations
+  has_many :deliveries, inverse_of: :location, dependent: :restrict_with_error
 
   validates :name, :street_address, :city, :state, :zip_code, presence: true
+
+  def name_with_address
+    "#{name} (#{full_address})"
+  end
 
   def full_address
     "#{street_address}, #{city}, #{state} #{zip_code}"

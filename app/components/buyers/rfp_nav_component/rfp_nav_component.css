@@ -1,4 +1,4 @@
-.district-profile-nav {
+.document-nav {
   @apply flex w-full justify-between relative my-5 select-none;
   a {
     @apply text-center text-xs z-10 block flex-1;

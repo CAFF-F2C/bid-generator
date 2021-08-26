@@ -212,7 +212,7 @@ RSpec.describe Buyers::LocationsController, type: :request do
         sign_in buyer, scope: :buyer
       end
 
-      it 'creates a new location' do
+      it 'deletes the location' do
         expect { make_request }.to change(Location, :count).by(-1)
       end
 

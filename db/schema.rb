@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_222946) do
+ActiveRecord::Schema.define(version: 2021_08_26_214011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 2021_08_19_222946) do
     t.index ["confirmation_token"], name: "index_buyers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_buyers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_buyers_on_reset_password_token", unique: true
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.bigint "rfp_id", null: false
+    t.bigint "location_id", null: false
+    t.integer "delivery_days", default: [], array: true
+    t.integer "deliveries_per_week"
+    t.integer "delivery_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_deliveries_on_location_id"
+    t.index ["rfp_id"], name: "index_deliveries_on_rfp_id"
   end
 
   create_table "district_profiles", force: :cascade do |t|
@@ -126,6 +138,8 @@ ActiveRecord::Schema.define(version: 2021_08_19_222946) do
     t.index ["score_category_id"], name: "index_scores_on_score_category_id"
   end
 
+  add_foreign_key "deliveries", "locations"
+  add_foreign_key "deliveries", "rfps"
   add_foreign_key "district_profiles", "buyers"
   add_foreign_key "locations", "buyers"
   add_foreign_key "rfps", "buyers"

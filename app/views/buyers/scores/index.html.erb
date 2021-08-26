@@ -1,4 +1,5 @@
-<% content_for(:page_header) { 'Request for proposal' } %>
+<% content_for(:page_header) { "Request for proposal - #{@current_rfp.name}" } %>
+<%= render(Buyers::RfpNavComponent.new(current_path: request.path, current_rfp: @current_rfp)) %>
 <h2 class='buyers__section-head'>Score</h2>
 <p class='buyers__section-caption'>
   Please determine how to evaluate vendors who respond to this RFP. Assign a total of 100 points to the following categories. Zero point categories will be excluded. Price must have the highest number of points, but can be tied with other categories.
@@ -8,6 +9,9 @@
 </div>
 
 <div class='buyers__actions'>
+  <div class='buyers__action'>
+    <%= link_to("Next", buyers_rfp_deliveries_path(@current_rfp), class: 'button-primary') %>
+  </div>
   <div class='buyers__action'>
     <%= link_to("Save and exit", buyers_documents_path, class: 'button-secondary') %>
   </div>

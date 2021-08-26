@@ -1,0 +1,54 @@
+<%= form_for [:buyers, current_rfp, delivery] do |f| %>
+  <div class='field'>
+    <%= f.label :location_id, 'Location', class: 'text-field-label' %>
+    <%= f.select :location_id, options_from_collection_for_select(@current_buyer.locations, :id, :name_with_address), {}, class: 'select' %>
+    <div>
+      or
+      <%= link_to 'Add a new location', new_buyers_district_profile_location_path %>
+  </div>
+
+  <fieldset class='buyers__fieldset' role='checkbox'>
+    <legend class='buyers__legend'>Preferred delivery days</legend>
+    <div class='field'>
+      <%= f.check_box :delivery_days, {multiple: true}, '1', nil %>
+      <%= f.label :delivery_days, 'Monday', value: 1, class: 'radio-label' %>
+    </div>
+    <div class='field'>
+      <%= f.check_box :delivery_days, {multiple: true}, '2', nil %>
+      <%= f.label :delivery_days, 'Tuesday', value: 2, class: 'radio-label' %>
+    </div>
+    <div class='field'>
+      <%= f.check_box :delivery_days, {multiple: true}, '3', nil %>
+      <%= f.label :delivery_days, 'Wednesday', value: 3, class: 'radio-label' %>
+    </div>
+    <div class='field'>
+      <%= f.check_box :delivery_days, {multiple: true}, '4', nil %>
+      <%= f.label :delivery_days, 'Thursday', value: 4, class: 'radio-label' %>
+    </div>
+    <div class='field'>
+      <%= f.check_box :delivery_days, {multiple: true}, '5', nil %>
+      <%= f.label :delivery_days, 'Friday', value: 5, class: 'radio-label' %>
+    </div>
+  </fieldset>
+
+  <div class='field'>
+    <%= f.label :deliveries_per_week, 'Deliveries per week', class: 'text-field-label' %>
+    <%= f.select :deliveries_per_week, 1..5, {}, class: 'select' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :delivery_time, 'Delivery time', class: 'text-field-label' %>
+    <%= f.select :delivery_time, Delivery.delivery_times.keys.map { |w| [w.humanize, w] }, {}, class: 'select' %>
+  </div>
+
+  <div class='buyers__actions'>
+    <div class='buyers__action'>
+      <%= f.submit 'Save', class: 'button-primary' %>
+    </div>
+    <div class='buyers__action'>
+      <%= link_to 'Cancel', buyers_rfp_deliveries_path(current_rfp), class: 'button-secondary' %>
+    </div>
+  </div>
+</div>
+
+<% end %>

@@ -37,7 +37,7 @@
   .text-field-label {
     @apply block mb-2 text-gray-700 text-sm;
   }
-  .radio-label {
+  .radio-label, .checkbox-label {
     @apply inline ml-2;
   }
   .errors {

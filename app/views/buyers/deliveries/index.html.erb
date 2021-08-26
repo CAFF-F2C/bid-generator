@@ -1,0 +1,47 @@
+<% content_for(:page_header) { "Request for proposal - #{@current_rfp.name}" } %>
+<%= render(Buyers::RfpNavComponent.new(current_path: request.path, current_rfp: @current_rfp)) %>
+<h2 class='buyers__section-head'>Delivery Schedule</h2>
+<p>
+  When would you like your items delivered? This schedule pulls from your district's delivery locations.
+</p>
+
+<hr class='my-6' />
+
+<div class='buyers__section-head-actions flex justify-end'>
+  <div class='pr-2'>
+    <%= link_to('Save and exit', buyers_documents_path, class: 'button-primary') %>
+  </div>
+  <div class='pr-2'>
+    <%= link_to("+ New delivery", new_buyers_rfp_delivery_path(@current_rfp), class: 'buyers__button-new') %>
+  </div>
+  <div>
+    <%= link_to '+ New location', new_buyers_district_profile_location_path, class: 'buyers__button-new' %>
+  </div>
+</div>
+
+<div class='buyers__locations'>
+  <% @deliveries.each do |delivery| %>
+
+    <div class='buyers__location'>
+      <div class='buyers__location-display'>
+        <div class='buyers__location-name'><%= delivery.location_name %></div>
+        <div class='buyers__location-address'><%= delivery.location.full_address %></div>
+        <div class='buyers__schedule-delivery'><%= delivery.deliveries_per_week %>x per week</div>
+        <div class='buyers__schedule-delivery'><%= delivery.display_delivery_days %></div>
+        <div class='buyers__schedule-delivery'><%= delivery.delivery_time %></div>
+      </div>
+      <div class='buyers__location-actions flex'>
+        <div class='buyers__action'>
+          <%= link_to edit_buyers_rfp_delivery_path(delivery, rfp_id: @current_rfp.id), aria: {label: 'edit'}  do %>
+            <% inline_svg_tag('icon_edit.svg') %>
+          <% end %>
+        </div>
+        <div class='buyers__action'>
+          <%= button_to buyers_rfp_delivery_path(delivery, rfp_id: @current_rfp.id), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
+            <% inline_svg_tag('icon_delete.svg') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
