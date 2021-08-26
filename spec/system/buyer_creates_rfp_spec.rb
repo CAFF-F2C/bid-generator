@@ -4,7 +4,7 @@ RSpec.describe 'Creates an RFP', type: :system do
   let!(:buyer) { create(:buyer, :confirmed) }
 
   before do
-    create(:score_category, name: 'Price', description: 'price description', position: 1)
+    create(:score_category, name: 'Item Prices', description: 'price description', position: 1)
     create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
     create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
     create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
@@ -81,7 +81,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'Next'
     expect(page).to have_content(/score/i)
 
-    fill_in 'Price', with: '40'
+    fill_in 'Item Prices', with: '40'
     expect(page.find('#rfp_total_score')).to have_content('40')
     fill_in 'Cat 2', with: '20'
     expect(page.find('#rfp_total_score')).to have_content('60')
