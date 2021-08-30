@@ -24,9 +24,9 @@ RSpec.describe Buyers::RfpNavComponent, type: :component do
     end
 
     context 'with item list' do
-      let(:current_path) { '' }
+      let(:current_path) { Rails.application.routes.url_helpers.edit_buyers_rfp_item_list_path(rfp) }
 
-      xit 'returns current' do
+      it 'returns current' do
         render_inline(component)
         expect(page.find('.document-nav__progress-line')[:style]).to eq('width: 87.5%')
       end

@@ -132,4 +132,11 @@
   &__schedule-delivery {
     @apply text-gray-600 text-sm;
   }
+
+  &__rfp-upload-item-list {
+    @apply mt-10 text-center;
+    form {
+      @apply inline-block;
+    }
+  }
 }

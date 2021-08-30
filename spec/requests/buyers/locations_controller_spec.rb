@@ -158,7 +158,7 @@ RSpec.describe Buyers::LocationsController, type: :request do
     let(:location) { create(:location, buyer: buyer) }
 
     def make_request(params = {})
-      patch buyers_district_profile_location_path(location, location: params)
+      patch buyers_district_profile_location_path(location), params: {location: params}
     end
 
     context 'when a buyer is not signed in' do

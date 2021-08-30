@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :rfps, except: [:index] do
       resources :scores, except: [:new, :edit, :destroy]
       resources :deliveries
+      resource :item_list, only: [:edit, :update]
     end
     resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
       resource :contact, only: [:edit, :update]

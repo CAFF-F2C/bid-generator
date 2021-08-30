@@ -1,0 +1,37 @@
+<% content_for(:page_header) { "Request for proposal - #{@current_rfp.name}" } %>
+<%= render(Buyers::RfpNavComponent.new(current_path: request.path, current_rfp: @current_rfp)) %>
+<h2 class='buyers__section-head'>Item List</h2>
+<p>
+  In order to tell vendors about the things you'd lke to procure, download this item list template, complete it, and upload it here.
+</p>
+<p>
+  Download <%= link_to 'blank item list template.',  '' %>
+</p>
+
+<hr class='my-6' />
+
+<div class='buyers__section-head-actions flex justify-end'>
+  <div >
+    <%= link_to('Save and exit', buyers_documents_path, class: 'button-primary') %>
+  </div>
+</div>
+
+<% if @current_rfp.item_list.attached? %>
+  <div class='buyers__rfp-item-list'>
+    <div>
+      <%= link_to @current_rfp.item_list.filename, rails_blob_path(@current_rfp.item_list, disposition: "attachment") %>
+    </div>
+    <div>
+      Uploaded at: <%= l(@current_rfp.item_list.created_at, format: :long) %>
+    </div>
+  </div>
+<% end %>
+
+<div class='buyers__rfp-upload-item-list'>
+  <%= form_with model: [:buyers, @current_rfp], url: buyers_rfp_item_list_path(rfp_id: @current_rfp.id), method: :patch, local: true, data: {turbo: false} do |f| %>
+    <div class='field'>
+      <%= f.file_field :item_list, class: 'text-field' %>
+    </div>
+    <%= f.submit 'Upload Item List', class: 'button-primary' %>
+  <% end %>
+</div>

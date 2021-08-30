@@ -16,6 +16,7 @@ class Rfp < ApplicationRecord
   belongs_to :buyer, inverse_of: :rfps
   has_many :scores, inverse_of: :rfp
   has_many :deliveries, inverse_of: :rfp
+  has_one_attached :item_list
 
   validates :bid_type, :start_year, :buyer, presence: true
   validates :bid_type, inclusion: BID_TYPES

@@ -9,7 +9,10 @@
 
 <div class='buyers__section-head-actions flex justify-end'>
   <div class='pr-2'>
-    <%= link_to('Save and exit', buyers_documents_path, class: 'button-primary') %>
+    <%= link_to('Next', edit_buyers_rfp_item_list_path(@current_rfp), class: 'button-primary') %>
+  </div>
+  <div class='pr-2'>
+    <%= link_to('Save and exit', buyers_documents_path, class: 'button-secondary') %>
   </div>
   <div class='pr-2'>
     <%= link_to("+ New delivery", new_buyers_rfp_delivery_path(@current_rfp), class: 'buyers__button-new') %>

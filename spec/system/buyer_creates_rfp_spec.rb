@@ -110,8 +110,15 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('Monday, Wednesday')
     expect(page).to have_content('12pm - 2pm')
 
+    click_on 'Next'
+    page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt', make_visible: true)
+
+    click_on 'Upload Item List'
+    expect(page).to have_content('item_list.txt')
     click_on 'Save and exit'
+
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')
+
     click_on 'edit'
     select '2022 - 2023', from: 'rfp_start_year'
     click_on 'Save and exit'

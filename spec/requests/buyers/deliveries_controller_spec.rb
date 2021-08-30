@@ -176,7 +176,7 @@ RSpec.describe Buyers::DeliveriesController, type: :request do
     let(:delivery) { create(:delivery, rfp: rfp, location: location) }
 
     def make_request(params = {})
-      patch buyers_rfp_delivery_path(delivery, rfp_id: rfp.id, delivery: params)
+      patch buyers_rfp_delivery_path(delivery, rfp_id: rfp.id), params: {delivery: params}
     end
 
     context 'when a buyer is not signed in' do
