@@ -28,7 +28,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'Phone number', with: '5551234567'
     fill_in 'Mailing address', with: '123 Edu Lane'
     fill_in 'City', with: 'Cityname'
-    select 'CA', from: 'district_profile_contact_mailing_address_state'
+    fill_in 'State', with: 'California'
     fill_in 'ZIP code', with: '123456'
 
     click_on 'Next'
@@ -45,12 +45,12 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'Location name', with: 'Deliver here'
     fill_in 'Street address', with: '123 Main'
     fill_in 'City', with: 'OKGO'
-    select 'CA', from: 'location_state'
+    fill_in 'State', with: 'California'
     fill_in 'ZIP code', with: '12345'
 
     click_on 'Save'
     expect(page).to have_content(/Deliver here/i)
-    expect(page).to have_content(/123 main, okgo, ca 12345/i)
+    expect(page).to have_content(/123 main, okgo, california 12345/i)
 
     click_on 'Finish'
 
