@@ -24,12 +24,12 @@
       <div class='buyers__location-actions flex'>
         <div class='buyers__action'>
           <%= link_to edit_buyers_district_profile_location_path(location), aria: {label: 'edit'}  do %>
-            <% inline_svg_tag('icon_edit.svg') %>
+            <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
           <% end %>
         </div>
         <div class='buyers__action'>
           <%= button_to buyers_district_profile_location_path(location), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
-            <% inline_svg_tag('icon_delete.svg') %>
+            <% inline_svg_tag('icon_trash.svg', class: 'buyers__action-icon') %>
           <% end %>
         </div>
       </div>

@@ -192,4 +192,48 @@ RSpec.describe Buyers::RfpsController, type: :request do
       end
     end
   end
+
+  describe 'DELETE /delete' do
+    let(:buyer) { create(:buyer, :confirmed) }
+    let!(:rfp) { create(:rfp, buyer: buyer, start_year: 2021, bid_type: 'Produce') }
+
+    def make_request
+      delete buyers_rfp_path(rfp)
+    end
+
+    context 'when no user is signed in' do
+      it 'redirects to the sign in path' do
+        make_request
+        expect(response).to redirect_to(buyer_session_path)
+      end
+    end
+
+    context 'when a buyer is signed in' do
+      before do
+        sign_in buyer, scope: :buyer
+      end
+
+      it 'is renders the index' do
+        make_request
+        expect(response).to redirect_to buyers_documents_path
+      end
+
+      it 'deletes the rfp' do
+        expect { make_request }.to change(Rfp, :count).by(-1)
+      end
+    end
+
+    context 'when the rfp does not belong to the buyer' do
+      let(:rfp) { create(:rfp) }
+
+      before do
+        sign_in buyer, scope: :buyer
+      end
+
+      it 'redirects' do
+        make_request
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
 end

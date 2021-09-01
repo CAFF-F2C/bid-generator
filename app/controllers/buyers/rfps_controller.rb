@@ -45,6 +45,17 @@ class Buyers::RfpsController < ApplicationController
     end
   end
 
+  def destroy
+    @rfp = Rfp.find(params[:id])
+    authorize @rfp
+    if @rfp.destroy
+      flash[:notice] = 'RFP was deleted.'
+    else
+      flash[:alert] = 'RFP could not be deleted.'
+    end
+    redirect_to buyers_documents_path
+  end
+
   private
 
   def rfp_params

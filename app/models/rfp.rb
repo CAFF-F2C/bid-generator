@@ -14,9 +14,9 @@ class Rfp < ApplicationRecord
   enum bid_type: BID_TYPES
 
   belongs_to :buyer, inverse_of: :rfps
-  has_many :scores, inverse_of: :rfp
-  has_many :deliveries, inverse_of: :rfp
-  has_one_attached :item_list
+  has_many :scores, inverse_of: :rfp, dependent: :destroy
+  has_many :deliveries, inverse_of: :rfp, dependent: :destroy
+  has_one_attached :item_list, dependent: :destroy
 
   validates :bid_type, :start_year, :buyer, presence: true
   validates :bid_type, inclusion: BID_TYPES

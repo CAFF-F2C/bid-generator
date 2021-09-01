@@ -100,13 +100,17 @@
   &__documents-table-actions {
     @apply flex;
 
-    a {
+    a, button {
       @apply p-2;
     }
 
-    a:first-child {
+    a:first-child, button:first-child {
       @apply pl-0;
     }
+  }
+
+  &__action-icon {
+    @apply h-5 w-5 text-orange-400;
   }
 
   &__locations {
