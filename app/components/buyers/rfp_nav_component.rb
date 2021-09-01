@@ -10,7 +10,7 @@ class Buyers::RfpNavComponent < ViewComponent::Base
       '12.5%'
     when buyers_rfp_scores_path(@current_rfp)
       '37.5%'
-    when buyers_rfp_deliveries_path(@current_rfp)
+    when /deliveries/
       '62.5%'
     when edit_buyers_rfp_item_list_path(@current_rfp)
       '87.5%'
