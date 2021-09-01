@@ -102,13 +102,14 @@ RSpec.describe 'Creates an RFP', type: :system do
     check 'Monday'
     check 'Wednesday'
     select '2', from: 'Deliveries per week'
-    select 'Lunch (12pm - 2pm)', from: 'Delivery time'
+    select '6:00 am', from: 'Start time'
+    select '8:00 am', from: 'End time'
     click_on 'Save'
 
     expect(page).to have_content('Deliver here')
     expect(page).to have_content('2x per week')
     expect(page).to have_content('Monday, Wednesday')
-    expect(page).to have_content('12pm - 2pm')
+    expect(page).to have_content('6:00 am - 8:00 am')
 
     click_on 'Next'
     page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt', make_visible: true)

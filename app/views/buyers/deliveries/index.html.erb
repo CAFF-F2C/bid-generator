@@ -31,17 +31,17 @@
         <div class='buyers__location-address'><%= delivery.location.full_address %></div>
         <div class='buyers__schedule-delivery'><%= delivery.deliveries_per_week %>x per week</div>
         <div class='buyers__schedule-delivery'><%= delivery.display_delivery_days %></div>
-        <div class='buyers__schedule-delivery'><%= delivery.delivery_time %></div>
+        <div class='buyers__schedule-delivery'><%= t(delivery.window_start_time, scope: [:buyers, :delivery, :time]) %> - <%= t(delivery.window_end_time, scope: [:buyers, :delivery, :time]) %></div>
       </div>
       <div class='buyers__location-actions flex'>
         <div class='buyers__action'>
           <%= link_to edit_buyers_rfp_delivery_path(delivery, rfp_id: @current_rfp.id), aria: {label: 'edit'}  do %>
-            <% inline_svg_tag('icon_edit.svg') %>
+            <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
           <% end %>
         </div>
         <div class='buyers__action'>
           <%= button_to buyers_rfp_delivery_path(delivery, rfp_id: @current_rfp.id), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
-            <% inline_svg_tag('icon_delete.svg') %>
+            <% inline_svg_tag('icon_trash.svg', class: 'buyers__action-icon') %>
           <% end %>
         </div>
       </div>

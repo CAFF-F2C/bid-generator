@@ -51,7 +51,7 @@ class Buyers::DeliveriesController < ApplicationController
   private
 
   def delivery_params
-    params.require(:delivery).permit(:location_id, :deliveries_per_week, :delivery_time, delivery_days: [])
+    params.require(:delivery).permit(:location_id, :deliveries_per_week, :window_start_time, :window_end_time, delivery_days: [])
   end
 
   def current_rfp

@@ -36,10 +36,20 @@
     <%= f.select :deliveries_per_week, 1..5, {}, class: 'select' %>
   </div>
 
-  <div class='field'>
-    <%= f.label :delivery_time, 'Delivery time', class: 'text-field-label' %>
-    <%= f.select :delivery_time, Delivery.delivery_times.keys.map { |w| [w.humanize, w] }, {}, class: 'select' %>
-  </div>
+  <fieldset class='buyers__fieldset'>
+    <legend class='text-field-label'>Delivery window</legend>
+    <div class='buyers__delivery-window'>
+      <div class='field'>
+        <%= f.select :window_start_time, [*4..15].map { |time| [t(time, scope: [:buyers, :delivery, :time]), time] }, {}, class: 'select', aria: {label: 'Start time'} %>
+      </div>
+      <div class='buyers__delivery-window-separator'>
+        to
+      </div>
+      <div class='field'>
+        <%= f.select :window_end_time, [*4..15].map { |time| [t(time, scope: [:buyers, :delivery, :time]), time] }, {}, class: 'select', aria: {label: 'End time'} %>
+      </div>
+    </div>
+  </fieldset>
 
   <div class='buyers__actions'>
     <div class='buyers__action'>

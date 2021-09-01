@@ -143,4 +143,11 @@
       @apply inline-block;
     }
   }
+  &__delivery-window {
+    @apply form-row mt-0;
+  }
+
+  &__delivery-window-separator {
+    @apply text-gray-700 pl-5 pr-3 font-semibold self-center;
+  }
 }

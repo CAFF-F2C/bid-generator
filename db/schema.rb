@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_212655) do
+ActiveRecord::Schema.define(version: 2021_09_01_213816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,9 +89,10 @@ ActiveRecord::Schema.define(version: 2021_09_01_212655) do
     t.bigint "location_id", null: false
     t.integer "delivery_days", default: [], array: true
     t.integer "deliveries_per_week"
-    t.integer "delivery_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "window_start_time"
+    t.integer "window_end_time"
     t.index ["location_id"], name: "index_deliveries_on_location_id"
     t.index ["rfp_id"], name: "index_deliveries_on_rfp_id"
   end

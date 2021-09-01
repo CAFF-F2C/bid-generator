@@ -108,22 +108,22 @@ RSpec.describe Buyers::DeliveriesController, type: :request do
       end
 
       it 'creates a new delivery' do
-        expect { make_request(location_id: location.id) }.to change(Delivery, :count).by(1)
+        expect { make_request(location_id: location.id, window_start_time: 5, window_end_time: 6) }.to change(Delivery, :count).by(1)
       end
 
       it 'set the attributes on the new delivery' do
-        make_request(location_id: location.id, deliveries_per_week: 2, delivery_days: ['1', '3'], delivery_time: 'Lunch (12pm - 2pm)')
-        expect(Delivery.last).to have_attributes(rfp: rfp, location: location, deliveries_per_week: 2, delivery_days: [1, 3], delivery_time: 'Lunch (12pm - 2pm)')
+        make_request(location_id: location.id, deliveries_per_week: 2, delivery_days: ['1', '3'], window_start_time: 5, window_end_time: 6)
+        expect(Delivery.last).to have_attributes(rfp: rfp, location: location, deliveries_per_week: 2, delivery_days: [1, 3], window_start_time: 5, window_end_time: 6)
       end
 
       it 'redirect to the index' do
-        make_request(location_id: location.id)
+        make_request(location_id: location.id, window_start_time: 5, window_end_time: 6)
         expect(response).to redirect_to(buyers_rfp_deliveries_path(rfp))
       end
 
       context 'with an incomplete delivery' do
         it 'renders new' do
-          make_request(deliveries_per_week: 2)
+          make_request(deliveries_per_week: 2, window_start_time: 5, window_end_time: 6)
           expect(flash[:alert]).to have_content(/could not be saved/i)
         end
       end
@@ -192,8 +192,8 @@ RSpec.describe Buyers::DeliveriesController, type: :request do
       end
 
       it 'set the attributes on the delivery' do
-        make_request(location_id: location.id, deliveries_per_week: 2, delivery_days: ['1', '3'], delivery_time: 'Lunch (12pm - 2pm)')
-        expect(Delivery.last).to have_attributes(rfp: rfp, location: location, deliveries_per_week: 2, delivery_days: [1, 3], delivery_time: 'Lunch (12pm - 2pm)')
+        make_request(location_id: location.id, deliveries_per_week: 2, delivery_days: ['1', '3'], window_start_time: 5, window_end_time: 6)
+        expect(Delivery.last).to have_attributes(rfp: rfp, location: location, deliveries_per_week: 2, delivery_days: [1, 3], window_start_time: 5, window_end_time: 6)
       end
 
       it 'redirect to the index' do
