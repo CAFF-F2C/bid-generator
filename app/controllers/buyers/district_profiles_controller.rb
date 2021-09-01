@@ -46,7 +46,7 @@ class Buyers::DistrictProfilesController < ApplicationController
   def district_profile_params
     params.require(:district_profile).permit(
       :district_name, :city, :county, :enrolled_students_number,
-      :daily_meals_number, :schools_number, :production_sites_number
+      :daily_meals_number
     )
   end
 end

@@ -15,8 +15,6 @@ class DistrictProfileDashboard < Administrate::BaseDashboard
     county: Field::String,
     enrolled_students_number: Field::Number,
     daily_meals_number: Field::Number,
-    schools_number: Field::Number,
-    production_sites_number: Field::Number,
     created_at: Field::DateTime.with_options(format: :long),
     updated_at: Field::DateTime.with_options(format: :long)
   }.freeze
@@ -43,8 +41,6 @@ class DistrictProfileDashboard < Administrate::BaseDashboard
     county
     enrolled_students_number
     daily_meals_number
-    schools_number
-    production_sites_number
     created_at
     updated_at
   ].freeze

@@ -19,11 +19,9 @@
 #  enrolled_students_number        :integer
 #  local_percentage                :integer
 #  price_verified                  :boolean
-#  production_sites_number         :integer
 #  required_insurance_aggregate    :integer
 #  required_insurance_automobile   :integer
 #  required_insurance_per_incident :integer
-#  schools_number                  :integer
 #  created_at                      :datetime         not null
 #  updated_at                      :datetime         not null
 #  buyer_id                        :bigint           not null
