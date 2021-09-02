@@ -74,9 +74,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on('Documents')
 
     click_on('New RFP')
-
     select '2021 - 2022', from: 'rfp_start_year'
-    select 'Produce', from: 'rfp_bid_type'
 
     click_on 'Next'
     expect(page).to have_content(/score/i)

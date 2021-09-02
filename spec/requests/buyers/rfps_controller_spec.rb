@@ -32,8 +32,8 @@ RSpec.describe Buyers::RfpsController, type: :request do
   describe 'POST /create' do
     let(:buyer) { create(:buyer, :confirmed) }
 
-    def make_request(params = {})
-      post buyers_rfps_path(rfp: params, commit: 'Save and exit')
+    def make_request
+      post buyers_rfps_path
     end
 
     context 'when no user is signed in' do
@@ -50,24 +50,17 @@ RSpec.describe Buyers::RfpsController, type: :request do
 
       context 'with a complete profile' do
         it 'creates a new rfp' do
-          expect { make_request(start_year: 2021, bid_type: 'Produce') }.to change(Rfp, :count).by(1)
+          expect { make_request }.to change(Rfp, :count).by(1)
         end
 
         it 'sets the attributes' do
-          make_request(start_year: 2021, bid_type: 'Produce')
-          expect(Rfp.last).to have_attributes(start_year: 2021, bid_type: 'Produce')
+          make_request
+          expect(Rfp.last).to have_attributes(start_year: Time.current.year, bid_type: 'Produce')
         end
 
-        it 'redirects to documents index page' do
-          make_request(start_year: 2021, bid_type: 'Produce')
-          expect(response).to redirect_to(buyers_documents_path)
-        end
-      end
-
-      context 'when the buyer clicks next' do
-        it 'shows the scores form' do
-          post buyers_rfps_path(rfp: {start_year: 2021, bid_type: 'Produce'}, commit: 'Next')
-          expect(response).to redirect_to buyers_rfp_scores_path(Rfp.last)
+        it 'redirects the edit page' do
+          make_request
+          expect(response).to redirect_to edit_buyers_rfp_path(Rfp.last)
         end
       end
     end

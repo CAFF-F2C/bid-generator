@@ -8,15 +8,14 @@ class Buyers::RfpsController < ApplicationController
   end
 
   def create
-    @rfp = current_buyer.rfps.build(rfp_params)
+    @rfp = current_buyer.rfps.build(bid_type: 'Produce', start_year: Time.current.year)
 
     if @rfp.save
-      flash[:success] = 'RFP was successfully created.'
-      redirect_to buyers_documents_path if params[:commit] == 'Save and exit'
-      redirect_to buyers_rfp_scores_path(@rfp) if params[:commit] == 'Next'
+      flash[:success] = 'New RFP was created.'
+      redirect_to edit_buyers_rfp_path(@rfp)
     else
-      flash[:alert] = @rfp.errors.full_messages
-      render :new
+      flash[:alert] = 'There was a problem creating a new RFP.'
+      redirect_to buyers_documents_path
     end
   end
 

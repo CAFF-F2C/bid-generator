@@ -2,7 +2,7 @@
 <div class='flex flex-row w-full'>
   <h2 class='buyers__section-head flex-1'>RFPs</h2>
   <div class='buyers__section-head-actions'>
-    <%= link_to('+ New RFP', new_buyers_rfp_path, class: 'buyers__button-new') %>
+    <%= button_to('+ New RFP', buyers_rfps_path, method: :post, local: true, data: {turbo: false}, class: 'buyers__button-new') %>
   </div>
 </div>
 
