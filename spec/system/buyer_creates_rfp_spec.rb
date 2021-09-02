@@ -116,7 +116,7 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Upload Item List'
     expect(page).to have_content('item_list.txt')
-    click_on 'Save and exit'
+    click_on 'Exit'
 
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')
 
