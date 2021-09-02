@@ -1,12 +1,17 @@
 <div class="field">
   <%= f.label :bid_type, 'Type', class: 'text-field-label' %>
-  <%= f.select :bid_type, Rfp.bid_types.keys.map { |w| [w.humanize, w] }, {}, class: 'select' %>
+  <%= f.select :bid_type, Rfp.bid_types.keys.map { |w| [w.humanize, w] }, {}, disabled: true, class: 'select' %>
 </div>
 
 <div class="field">
   <%= f.label :start_year, 'Year', class: 'text-field-label' %>
   <%= f.select :start_year, (Date.today.year..Date.today.year+5).map { |year| ["#{year} - #{year+1}", year] }, {}, class: 'select' %>
 </div>
+<p class='buyers__section-caption'>
+  Please
+  <%= link_to 'contact CAFF', 'https://www.caff.org/contact-us/' %>
+  to create other RFP types.
+</p>
 
 <div class='buyers__actions'>
   <div class='buyers__action'>
