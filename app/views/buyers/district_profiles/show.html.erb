@@ -111,4 +111,13 @@
     <td><%=number_to_currency(@district_profile.required_insurance_automobile, precision: 0)%></td>
   </tr>
 </table>
+<div class='buyers__table-head flex'>
+  <div class='flex-1'>
+    <h2>Delivery Locations</h2>
+  </div>
+  <div>
+    <%= link_to('Edit', buyers_district_profile_locations_path) %>
+  </div>
+</div>
+<%= render partial: 'buyers/locations/locations', locals: {locations: @current_buyer.locations} %>
 

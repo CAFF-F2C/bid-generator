@@ -36,11 +36,11 @@
     h2 {
       @apply text-xl;
     }
-    th {
+    th, div {
       @apply text-right pt-6 pb-4;
     }
 
-    th:first-child {
+    th:first-child, div:first-child {
       @apply pl-0 w-auto text-left;
     }
   }
