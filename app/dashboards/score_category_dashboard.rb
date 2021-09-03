@@ -12,6 +12,9 @@ class ScoreCategoryDashboard < Administrate::BaseDashboard
     name: Field::String,
     description: Field::Text,
     position: Field::Number,
+    point_awarded_basis: Field::Text,
+    point_split_descriptions: Field::Text,
+    vendor_questions: Field::Text,
     deleted_at: Field::DateTime.with_options(format: :long),
     created_at: Field::DateTime.with_options(format: :long),
     updated_at: Field::DateTime.with_options(format: :long)
@@ -34,6 +37,9 @@ class ScoreCategoryDashboard < Administrate::BaseDashboard
     name
     description
     position
+    point_split_descriptions
+    point_awarded_basis
+    vendor_questions
     created_at
     deleted_at
   ].freeze
@@ -45,6 +51,9 @@ class ScoreCategoryDashboard < Administrate::BaseDashboard
     name
     description
     position
+    point_split_descriptions
+    point_awarded_basis
+    vendor_questions
   ].freeze
 
   # COLLECTION_FILTERS
