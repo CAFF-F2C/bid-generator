@@ -4,6 +4,11 @@
 <p class='buyers__section-caption'>
   Please determine how to evaluate vendors who respond to this RFP. Assign a total of 100 points to the following categories. Zero point categories will be excluded. Price must have the highest number of points, but can be tied with other categories.
 </p>
+<p class='buyers__section-caption'>
+  Would you like to add a scoring category outside of the categories listed here? CAFF can work with you to create a custom scoring category. Please
+  <%= link_to 'contact us', 'https://www.caff.org/contact-us/' %>
+  for more information.
+</p>
 <div data-controller='buyers--rfp-scores-component--rfp-scores'>
   <%= render(Buyers::RfpScoresComponent.new(current_rfp: @current_rfp)) %>
 </div>

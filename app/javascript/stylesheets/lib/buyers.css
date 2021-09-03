@@ -15,7 +15,7 @@
   }
 
   &__section-caption {
-    @apply text-sm text-gray-600;
+    @apply text-sm text-gray-600 mt-2;
   }
 
   &__fieldset {
