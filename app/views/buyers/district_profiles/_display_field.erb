@@ -1,0 +1,9 @@
+<tr>
+  <td class="buyers__display-field-label <%=@district_profile.errors[attribute].present? ? 'buyers__display-field-label--error' : ''%>">
+    <%= DistrictProfile.human_attribute_name(attribute) %>
+  </td>
+  <td>
+    <%= local_assigns.fetch :display_value, @district_profile[attribute]%>
+    <%= render 'incomplete' if @district_profile.errors[attribute].present?%>
+  </td>
+</tr>

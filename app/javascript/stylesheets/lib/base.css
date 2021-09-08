@@ -1,4 +1,7 @@
 @layer base {
+  html {
+    font-size: 14px;
+  }
   h1, h2, h3 {
     @apply font-display font-semibold;
   }

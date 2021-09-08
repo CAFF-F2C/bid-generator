@@ -1,0 +1,20 @@
+.form-errors {
+  &__container {
+    @apply bg-red-50 text-red-800 bg-opacity-80 p-4 rounded;
+  }
+  &__header {
+    @apply flex font-sans;
+    span {
+      @apply ml-3;
+    }
+  }
+  &__icon {
+    @apply text-red-400;
+  }
+  &__errors {
+    @apply list-disc mt-3 ml-8 text-red-700;
+  }
+  &__error {
+    @apply ml-6 mt-1;
+  }
+}

@@ -19,7 +19,10 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('District Profile')
 
     fill_in 'District Name', with: 'The District'
-    click_on 'Next'
+    click_on 'Save and exit'
+
+    expect(page).to have_selector('.form-errors__error', count: 4)
+    click_on 'Edit contact information'
 
     expect(page).to have_content('Contact Information')
     fill_in 'Full name', with: 'FS Director'
@@ -52,7 +55,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content(/Deliver here/i)
     expect(page).to have_content(/123 main, okgo, california 12345/i)
 
-    click_on 'Finish'
+    click_on 'Review Profile'
 
     expect(page.find('main')).to have_content(/success/i)
 

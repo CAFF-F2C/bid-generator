@@ -1,4 +1,6 @@
 <% content_for(:page_header) { 'District Profile' } %>
+<%= render(FormErrorsComponent.new(errors: @district_profile.errors)) %>
+
 <table class='buyers__display-form'>
   <thead class='buyers__table-head'>
     <tr>
@@ -6,118 +8,60 @@
         <h2>District Demographics</h2>
       </th>
       <th>
-        <%= link_to('Edit', edit_buyers_district_profile_path) %>
+        <%= link_to('Edit', edit_buyers_district_profile_path, aria: {label: 'Edit district demographics'}) %>
       </th>
     </tr>
   </thead>
-  <tr>
-    <td class='buyers__display-field-label'>District name</td>
-    <td><%=@district_profile.district_name%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>City</td>
-    <td><%=@district_profile.city%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>County</td>
-    <td><%=@district_profile.county%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>City</td>
-    <td><%=@district_profile.city%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Number of enrolled students</td>
-    <td><%=@district_profile.enrolled_students_number%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Number of daily meals served</td>
-    <td><%=@district_profile.daily_meals_number%></td>
-  </tr>
+  <%= render partial: 'display_field', locals: {attribute: 'district_name'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'city'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'county'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'enrolled_students_number'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'daily_meals_number'} %>
+
   <thead class='buyers__table-head'>
     <tr>
       <th>
         <h2>Contact Information</h2>
       </th>
       <th>
-        <%= link_to('Edit', edit_buyers_district_profile_contact_path) %>
+        <%= link_to('Edit', edit_buyers_district_profile_contact_path, aria: {label: 'Edit contact information'}) %>
       </th>
     </tr>
   </thead>
-  <tr>
-    <td class='buyers__display-field-label'>Full name</td>
-    <td><%=@district_profile.contact_full_name%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Department name</td>
-    <td><%=@district_profile.contact_department_name%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Title</td>
-    <td><%=@district_profile.contact_title%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Phone number</td>
-    <td><%=@district_profile.contact_phone_number%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Mailing address</td>
-    <td><%=@district_profile.contact_mailing_address_street%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>City</td>
-    <td><%=@district_profile.contact_mailing_address_city%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>State</td>
-    <td><%=@district_profile.contact_mailing_address_state%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>ZIP code</td>
-    <td><%=@district_profile.contact_mailing_address_zip%></td>
-  </tr>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_full_name'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_department_name'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_title'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_phone_number'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_street'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_city'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_state'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_zip'} %>
+
   <thead class='buyers__table-head'>
     <tr>
       <th>
         <h2>Procurement Terms</h2>
       </th>
       <th>
-        <%= link_to('Edit', edit_buyers_district_profile_procurement_path) %>
+        <%= link_to('Edit', edit_buyers_district_profile_procurement_path, aria: {label: 'Edit procurement terms'}) %>
       </th>
     </tr>
   </thead>
-  <tr>
-    <td class='buyers__display-field-label'>Local percentage</td>
-    <td><%=number_to_percentage(@district_profile.local_percentage, precision: 0)%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Verify pricing</td>
-    <td><%=@district_profile.price_verified%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Add a piggyback clause</td>
-    <td><%=@district_profile.allow_piggyback%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Per-incident liability limit</td>
-    <td><%=number_to_currency(@district_profile.required_insurance_per_incident, precision: 0)%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Aggregate liability limit</td>
-    <td><%=number_to_currency(@district_profile.required_insurance_aggregate, precision: 0)%></td>
-  </tr>
-  <tr>
-    <td class='buyers__display-field-label'>Automobile liability limit</td>
-    <td><%=number_to_currency(@district_profile.required_insurance_automobile, precision: 0)%></td>
-  </tr>
+  <%= render partial: 'display_field', locals: {attribute: 'local_percentage', display_value: number_to_percentage(@district_profile.local_percentage, precision: 0)} %>
+  <%= render partial: 'display_field', locals: {attribute: 'price_verified'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'allow_piggyback'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'required_insurance_per_incident', display_value: number_to_currency(@district_profile.required_insurance_per_incident, precision: 0)} %>
+  <%= render partial: 'display_field', locals: {attribute: 'required_insurance_aggregate', display_value: number_to_currency(@district_profile.required_insurance_aggregate, precision: 0)} %>
+  <%= render partial: 'display_field', locals: {attribute: 'required_insurance_automobile', display_value: number_to_currency(@district_profile.required_insurance_automobile, precision: 0)} %>
 </table>
 <div class='buyers__table-head flex'>
   <div class='flex-1'>
     <h2>Delivery Locations</h2>
   </div>
   <div>
-    <%= link_to('Edit', buyers_district_profile_locations_path) %>
+    <%= link_to('Edit', buyers_district_profile_locations_path, aria: {label: 'Edit delivery locations'}) %>
   </div>
 </div>
-<%= render partial: 'buyers/locations/locations', locals: {locations: @current_buyer.locations} %>
-
+<div class='buyers__locations'>
+  <%= render partial: 'buyers/locations/locations', locals: {locations: @district_profile.locations} %>
+</div>

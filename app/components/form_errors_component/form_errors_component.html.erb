@@ -1,0 +1,17 @@
+<div class='form-errors__container'>
+  <h3 class='form-errors__header'>
+    <div class='form-errors__icon'>
+      <%= inline_svg_tag("icon_x.svg", class: "") %>
+    </div>
+    <span>
+      <%= t(:header, count: @errors.count, model: model_name, scope: [:activemodel, :errors, :complete]) %>
+    </span>
+  </h3>
+  <ul class='form-errors__errors'>
+    <% errors_display.each do |error| %>
+      <li class='form-errors__error'>
+        <%= error %>
+      </li>
+    <% end %>
+  </ul>
+</div>

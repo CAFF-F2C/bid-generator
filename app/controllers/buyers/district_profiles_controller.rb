@@ -1,9 +1,9 @@
-# Edits a Buyer's District Profile
 class Buyers::DistrictProfilesController < ApplicationController
   layout 'buyers'
 
   def show
     redirect_to new_buyers_district_profile_path unless district_profile.persisted?
+    district_profile.complete?
   end
 
   def new
@@ -40,7 +40,7 @@ class Buyers::DistrictProfilesController < ApplicationController
   private
 
   def district_profile
-    @district_profile = current_buyer.district_profile || current_buyer.build_district_profile
+    @district_profile ||= current_buyer.district_profile || current_buyer.build_district_profile
   end
 
   def district_profile_params

@@ -1,22 +1,33 @@
-<div class='buyers__locations'>
-  <% locations.each do |location| %>
-    <div class='buyers__location'>
-      <div class='buyers__location-display'>
-        <div class='buyers__location-name'><%= location.name %></div>
-        <div class='buyers__location-address'><%= location.full_address %></div>
+<% if locations.blank? %>
+<div class='buyers__empty-locations'>
+  <div class='inline-block mt-2'>
+    <%= inline_svg_tag('icon_location.svg', class: 'text-gray-400') %>
+  </div>
+  <div class='mt-2'>
+    No delivery sites
+  </div>
+  <div class='inline-block mt-4'>
+    <%= link_to('+ New Location', new_buyers_district_profile_location_path, class: 'buyers__button-new') %>
+  </div>
+</div>
+<% end %>
+<% locations.each do |location| %>
+  <div class='buyers__location'>
+    <div class='buyers__location-display'>
+      <div class='buyers__location-name'><%= location.name %></div>
+      <div class='buyers__location-address'><%= location.full_address %></div>
+    </div>
+    <div class='buyers__location-actions flex'>
+      <div class='buyers__action'>
+        <%= link_to edit_buyers_district_profile_location_path(location), aria: {label: 'edit'}  do %>
+          <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
+        <% end %>
       </div>
-      <div class='buyers__location-actions flex'>
-        <div class='buyers__action'>
-          <%= link_to edit_buyers_district_profile_location_path(location), aria: {label: 'edit'}  do %>
-            <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
-          <% end %>
-        </div>
-        <div class='buyers__action'>
-          <%= button_to buyers_district_profile_location_path(location), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
-            <% inline_svg_tag('icon_trash.svg', class: 'buyers__action-icon') %>
-          <% end %>
-        </div>
+      <div class='buyers__action'>
+        <%= button_to buyers_district_profile_location_path(location), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
+          <% inline_svg_tag('icon_trash.svg', class: 'buyers__action-icon') %>
+        <% end %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

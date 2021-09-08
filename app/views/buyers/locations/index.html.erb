@@ -1,20 +1,23 @@
 <% content_for(:page_header) { 'District Profile' } %>
 <%= render(Buyers::DistrictProfileNavComponent.new(current_path: request.path)) %>
-<h2 class='buyers__section-head'>Delivery Locations</h2>
-<p>
-  Please specify the locations where your district's purchases will be delivered. When you make an RFP, you'll pick locations from this list.
-</p>
+<div class='buyers__section-head'>
+  <h2>Delivery Locations</h2>
+  <p>
+    Please specify a complete list of possible locations where your district's purchases will be delivered. When you make an RFP, you'll pick locations from this list.
+  </p>
+</div>
 <hr class='my-6' />
 <div class='buyers__section-head-actions flex justify-end'>
   <div class='pr-2'>
-    <%= link_to('Finish', buyers_district_profile_path, class: 'button-primary') %>
+    <%= link_to('Review Profile', buyers_district_profile_path, class: 'button-primary') %>
   </div>
   <div>
-    <%= link_to('+ New Location', new_buyers_district_profile_location_path, class: 'buyers__button-new') %>
+    <%= link_to('+ New Location', new_buyers_district_profile_location_path, class: 'buyers__button-new') if @locations.present? %>
   </div>
 </div>
-
-<%= render partial: 'locations', locals: {locations: @locations} %>
+<div class='buyers__locations'>
+  <%= render partial: 'locations', locals: {locations: @locations} %>
+</div>
 
 
 

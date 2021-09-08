@@ -12,6 +12,9 @@
     h2 {
       @apply text-xl;
     }
+    p {
+      @apply text-gray-600 mt-1;
+    }
   }
 
   &__section-caption {
@@ -71,6 +74,13 @@
 
   &__display-field-label {
     @apply text-gray-700;
+    &--error {
+      @apply text-red-700;
+    }
+  }
+
+  &__display-field-error-pill {
+    @apply rounded-full py-1 px-3 bg-red-50 text-red-800 bg-opacity-80 text-sm font-medium;
   }
 
   &__documents-table {
@@ -111,6 +121,10 @@
 
   &__action-icon {
     @apply h-5 w-5 text-orange-400;
+  }
+
+  &__empty-locations {
+    @apply my-4 font-medium text-center py-10 border-2 border-dotted border-gray-300;
   }
 
   &__locations {

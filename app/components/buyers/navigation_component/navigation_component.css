@@ -28,7 +28,7 @@
   }
 
   &__nav-link {
-    @apply text-white text-sm flex py-4 px-3 rounded items-center hover:text-blue-50;
+    @apply text-white flex py-4 px-3 rounded items-center hover:text-blue-50;
 
     &--active {
       @apply bg-blue-500;

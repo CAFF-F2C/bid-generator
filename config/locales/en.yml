@@ -1,4 +1,35 @@
 en:
+  activemodel:
+    errors:
+      complete:
+        header: "There were %{count} errors with your %{model}."
+        messages:
+          blank: "%{model} is missing: %{attributes}."
+          contact_blank: "Contact Information is missing: %{attributes}."
+          procurement_terms_blank: "Procurement Terms is missing: %{attributes}."
+          locations_blank: "You need at least one delivery location."
+  activerecord:
+    errors:
+      messages:
+        contact_blank: "can't be blank"
+        procurement_terms_blank: "can't be blank"
+    attributes:
+      district_profile:
+        contact_full_name: Full name
+        contact_department_name: Department name
+        contact_mailing_address_city: City
+        contact_mailing_address_state: State
+        contact_mailing_address_street: Mailing address
+        contact_mailing_address_zip: ZIP code
+        contact_phone_number: Phone number
+        contact_title: Title
+        allow_piggyback: Piggyback clause
+        price_verified: Verify Pricing
+        required_insurance_aggregate: Aggregate liability limit
+        required_insurance_automobile: Automobile liability limit
+        required_insurance_per_incident: Per-incident liability limit
+        enrolled_students_number: Number of enrolled students
+        daily_meals_number: Number of daily meals served
   buyers:
     delivery:
       time:
