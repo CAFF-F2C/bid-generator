@@ -83,6 +83,19 @@
     @apply rounded-full py-1 px-3 bg-red-50 text-red-800 bg-opacity-80 text-sm font-medium;
   }
 
+ &__empty-documents {
+    @apply my-4 font-medium text-center py-10 border-2 border-dashed border-gray-300;
+  }
+
+  &__empty-documents-message {
+    @apply my-2
+  }
+
+  &__empty-documents-message p {
+    @apply text-gray-400 font-normal;
+  }
+
+
   &__documents-table {
     @apply w-full mb-4;
 
@@ -124,7 +137,7 @@
   }
 
   &__empty-locations {
-    @apply my-4 font-medium text-center py-10 border-2 border-dotted border-gray-300;
+    @apply my-4 font-medium text-center py-10 border-2 border-dashed border-gray-300;
   }
 
   &__locations {
@@ -173,7 +186,7 @@
   }
 
   &__prompt-message {
-    @apply flex-1 font-medium;
+    @apply flex-1 font-medium mr-2;
   }
 
   &__icon-warn {

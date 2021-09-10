@@ -1,39 +1,5 @@
 <% content_for(:page_header) { 'My Documents' } %>
 
 <%= render 'profile_complete_prompt' unless @current_buyer.district_profile&.complete? %>
-
-<div class='flex flex-row w-full'>
-  <h2 class='buyers__section-head flex-1'>Request for proposals</h2>
-  <div class='buyers__section-head-actions'>
-    <%= button_to('+ New RFP', buyers_rfps_path, method: :post, local: true, data: {turbo: false}, class: 'buyers__button-new') %>
-  </div>
-</div>
-
-<table class='buyers__documents-table'>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Created on</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= document.name %></td>
-        <td><%= l(document.created_at.to_date, format: :long) %></td>
-        <td class='buyers__documents-table-actions'>
-          <%= link_to edit_buyers_rfp_path(document), aria: {label: 'edit'}  do %>
-            <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
-          <% end %>
-          <%= link_to buyers_rfp_path(document) do %>
-            <% inline_svg_tag('icon_show.svg', class: 'buyers__action-icon') %>
-          <% end %>
-          <%= button_to buyers_rfp_path(document), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this RFP?'} do %>
-            <% inline_svg_tag('icon_trash.svg', class: 'buyers__action-icon') %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'documents_list' if @documents.present? %>
+<%= render 'documents_empty' unless @documents.present? %>

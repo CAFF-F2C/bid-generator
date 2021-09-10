@@ -1,15 +1,15 @@
 <% if locations.blank? %>
-<div class='buyers__empty-locations'>
-  <div class='inline-block mt-2'>
-    <%= inline_svg_tag('icon_location.svg', class: 'text-gray-400') %>
+  <div class='buyers__empty-locations'>
+    <div class='inline-block mt-2'>
+      <%= inline_svg_tag('icon_location.svg', class: 'text-gray-400') %>
+    </div>
+    <div class='mt-2'>
+      No delivery sites
+    </div>
+    <div class='inline-block mt-4'>
+      <%= link_to('+ New Location', new_buyers_district_profile_location_path, class: 'buyers__button-new') %>
+    </div>
   </div>
-  <div class='mt-2'>
-    No delivery sites
-  </div>
-  <div class='inline-block mt-4'>
-    <%= link_to('+ New Location', new_buyers_district_profile_location_path, class: 'buyers__button-new') %>
-  </div>
-</div>
 <% end %>
 <% locations.each do |location| %>
   <div class='buyers__location'>
