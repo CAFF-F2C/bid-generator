@@ -1,6 +1,9 @@
 <% content_for(:page_header) { 'My Documents' } %>
+
+<%= render 'profile_complete_prompt' unless @current_buyer.district_profile&.complete? %>
+
 <div class='flex flex-row w-full'>
-  <h2 class='buyers__section-head flex-1'>RFPs</h2>
+  <h2 class='buyers__section-head flex-1'>Request for proposals</h2>
   <div class='buyers__section-head-actions'>
     <%= button_to('+ New RFP', buyers_rfps_path, method: :post, local: true, data: {turbo: false}, class: 'buyers__button-new') %>
   </div>

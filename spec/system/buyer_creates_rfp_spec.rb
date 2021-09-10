@@ -14,6 +14,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     login_as buyer, scope: :buyer
 
     visit buyers_root_path
+    expect(page).to have_content('must complete your District Profile')
 
     click_on 'District Profile'
     expect(page).to have_content('District Profile')

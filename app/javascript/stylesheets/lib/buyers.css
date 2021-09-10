@@ -164,4 +164,19 @@
   &__delivery-window-separator {
     @apply text-gray-700 pl-5 pr-3 font-semibold self-center;
   }
+
+  &__prompt {
+    @apply flex bg-yellow-50 text-yellow-800 bg-opacity-80 p-4 rounded mb-6 items-center;
+    a {
+      @apply text-yellow-700 font-normal underline;
+    }
+  }
+
+  &__prompt-message {
+    @apply flex-1 font-medium;
+  }
+
+  &__icon-warn {
+    @apply text-yellow-400 mr-4;
+  }
 }
