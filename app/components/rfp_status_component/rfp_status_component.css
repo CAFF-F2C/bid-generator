@@ -1,0 +1,9 @@
+.rfp-status {
+  &__document-status {
+    @apply rounded-full py-1 px-3 bg-opacity-80 text-sm;
+  }
+
+  &__document-status--in-progress {
+    @apply bg-yellow-50 text-yellow-800;
+  }
+}
