@@ -30,12 +30,12 @@ RSpec.describe DistrictProfile, type: :model do
 
     context 'when there are locations' do
       let(:buyer) { create(:buyer) }
-      let(:district_profile) { FactoryBot.create(:district_profile, buyer: buyer) }
+      let(:district_profile) { FactoryBot.create(:district_profile, :complete, buyer: buyer) }
 
       before { create(:location, buyer: buyer) }
 
       it 'is complete' do
-        expect(district_profile).not_to be_complete
+        expect(district_profile).to be_complete
       end
     end
   end

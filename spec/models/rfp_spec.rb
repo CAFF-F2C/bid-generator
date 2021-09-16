@@ -20,7 +20,9 @@
 require 'rails_helper'
 
 RSpec.describe Rfp, type: :model do
-  subject(:rfp) { create(:rfp, start_year: 2021, bid_type: 'Produce') }
+  subject(:rfp) { create(:rfp, buyer: buyer, start_year: 2021, bid_type: 'Produce') }
+
+  let(:buyer) { create(:buyer) }
 
   it { is_expected.to belong_to(:buyer).inverse_of(:rfps) }
   it { is_expected.to have_many(:scores).inverse_of(:rfp) }
@@ -39,6 +41,36 @@ RSpec.describe Rfp, type: :model do
   describe '#school_year' do
     it 'builds the school year to current and next year' do
       expect(rfp.school_year).to eq('2021 - 2022')
+    end
+  end
+
+  describe '#positive_scores' do
+    let(:zero_score) { create(:score, rfp: rfp, value: 0) }
+    let(:positive_score) { create(:score, rfp: rfp, value: 20) }
+
+    it 'returns the postive scores' do
+      expect(rfp.positive_scores).to eq([positive_score])
+    end
+  end
+
+  describe 'complete?' do
+    context 'when the rfp is not complete' do
+      it 'is not complete' do
+        expect(rfp).not_to be_complete
+      end
+    end
+
+    context 'when the rfp is complete' do
+      let(:location) { create(:location, buyer: buyer) }
+
+      before do
+        create(:score, rfp: rfp, value: 20)
+        create(:delivery, location: location, rfp: rfp)
+      end
+
+      it 'is complete' do
+        expect(rfp).to be_complete
+      end
     end
   end
 end

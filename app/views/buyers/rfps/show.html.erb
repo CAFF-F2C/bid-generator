@@ -1,4 +1,5 @@
 <% content_for(:page_header) { 'Request for proposal' } %>
+<%= render(FormErrorsComponent.new(errors: @rfp.errors)) %>
 
 <% if @rfp.complete? %>
   <h2 class='border-b border-gray-200 pb-4'>Documents</h2>
@@ -33,6 +34,38 @@
   </thead>
   <%= render partial: 'display_field', locals: {attribute: 'bid_type'} %>
   <%= render partial: 'display_field', locals: {attribute: 'school_year'} %>
+
+  <thead class='buyers__table-head'>
+    <tr>
+      <th>
+        <h2 class='whitespace-nowrap'>Scoring Categories</h2>
+      </th>
+      <th>
+        <%= link_to('Edit', buyers_rfp_scores_path(@rfp), aria: {label: 'Edit scores'}) %>
+      </th>
+    </tr>
+  </thead>
+  <% if @rfp.scores.blank? %>
+    <tr>
+      <td class='buyers__display-field-label buyers__display-field-label--error'>No scores</td>
+      <td><span class='buyers__display-field-error-pill'>Incomplete</span></td>
+    </tr>
+  <% end %>
+  <% @rfp.scores.each do |score| %>
+    <tr><td><%= score.name %></td><td><%= score.value %></td></tr>
+  <% end %>
 </table>
+
+<div class='buyers__table-head flex'>
+  <div class='flex-1'>
+    <h2>Deliveries</h2>
+  </div>
+  <div>
+    <%= link_to('Edit', buyers_rfp_deliveries_path(@rfp), aria: {label: 'Edit deliveries'}) %>
+  </div>
+</div>
+<div class='buyers__locations'>
+  <%= render partial: 'buyers/deliveries/deliveries', locals: {deliveries: @rfp.deliveries, rfp: @rfp} %>
+</div>
 
 

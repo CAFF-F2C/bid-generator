@@ -79,8 +79,10 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on('New RFP')
     select '2021 - 2022', from: 'rfp_start_year'
+    click_on('Save and exit')
+    expect(page).to have_selector('.form-errors__error', count: 2)
+    click_on 'Edit scores'
 
-    click_on 'Next'
     expect(page).to have_content(/score/i)
 
     fill_in 'Item Prices', with: '40'

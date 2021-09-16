@@ -9,18 +9,35 @@
 #  updated_at :datetime         not null
 #  buyer_id   :bigint           not null
 #
+
+class ScoresPresenceValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    record.errors.add attribute, :scores_blank if value.blank?
+  end
+end
+
+class DeliveriesPresenceValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    record.errors.add attribute, :deliveries_blank if value.blank?
+  end
+end
+
 class Rfp < ApplicationRecord
   BID_TYPES = ['Produce', 'Dairy', 'Bread', 'Broadline', 'Grocery', 'Supplies', 'Equipment'].freeze
   enum bid_type: BID_TYPES
 
   belongs_to :buyer, inverse_of: :rfps
   has_many :scores, inverse_of: :rfp, dependent: :destroy
+  has_many :positive_scores, -> { where.not(value: 0) }, class_name: 'Score'
   has_many :deliveries, inverse_of: :rfp, dependent: :destroy
   has_one_attached :item_list, dependent: :destroy
   has_one_attached :draft
 
   validates :bid_type, :start_year, :buyer, presence: true
   validates :bid_type, inclusion: BID_TYPES
+
+  validates :positive_scores, scores_presence: true, on: :complete?
+  validates :deliveries, deliveries_presence: true, on: :complete?
 
   def name
     "#{bid_type} (#{school_year})"

@@ -22,6 +22,7 @@ class Buyers::RfpsController < ApplicationController
   def show
     @rfp = Rfp.find(params[:id])
     authorize @rfp
+    @rfp.complete?
   end
 
   def edit

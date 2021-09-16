@@ -1,0 +1,36 @@
+<% if deliveries.blank? %>
+  <div class='buyers__empty-locations'>
+    <div class='inline-block mt-2'>
+      <%= inline_svg_tag('icon_location.svg', class: 'text-gray-400') %>
+    </div>
+    <div class='mt-2'>
+      No deliveries
+    </div>
+    <div class='inline-block mt-4'>
+      <%= link_to('+ New Delivery', new_buyers_rfp_delivery_path(rfp), class: 'buyers__button-new') %>
+    </div>
+  </div>
+<% end %>
+<% deliveries.each do |delivery| %>
+  <div class='buyers__location'>
+    <div class='buyers__location-display'>
+      <div class='buyers__location-name'><%= delivery.location_name %></div>
+      <div class='buyers__location-address'><%= delivery.location.full_address %></div>
+      <div class='buyers__schedule-delivery'><%= delivery.deliveries_per_week %>x per week</div>
+      <div class='buyers__schedule-delivery'><%= delivery.display_delivery_days %></div>
+      <div class='buyers__schedule-delivery'><%= delivery.display_delivery_window %></div>
+    </div>
+    <div class='buyers__location-actions flex'>
+      <div class='buyers__action'>
+        <%= link_to edit_buyers_rfp_delivery_path(delivery, rfp_id: rfp.id), aria: {label: 'edit'}  do %>
+          <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
+        <% end %>
+      </div>
+      <div class='buyers__action'>
+        <%= button_to buyers_rfp_delivery_path(delivery, rfp_id: rfp.id), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this location?'} do %>
+          <% inline_svg_tag('icon_trash.svg', class: 'buyers__action-icon') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

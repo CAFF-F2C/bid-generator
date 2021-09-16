@@ -9,11 +9,16 @@ en:
           contact_blank: "Contact Information is missing: %{attributes}."
           procurement_terms_blank: "Procurement Terms is missing: %{attributes}."
           locations_blank: "You need at least one delivery location."
+          deliveries_blank: "You need at least one delivery."
+          scores_blank: "You need complete the scoring worksheet."
   activerecord:
     errors:
       messages:
         contact_blank: "can't be blank"
         procurement_terms_blank: "can't be blank"
+        locations_blank: "can't be blank"
+        deliveries_blank: "can't be blank"
+        scores_blank: "can't be blank"
     attributes:
       district_profile:
         contact_full_name: Full name
