@@ -5,6 +5,9 @@
   h1, h2, h3 {
     @apply font-display font-semibold;
   }
+  h1, h2 {
+    @apply text-lg;
+  }
   a {
     @apply font-medium text-blue-700 hover:text-blue-500;
   }

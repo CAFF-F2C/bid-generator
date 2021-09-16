@@ -5,6 +5,7 @@ en:
         header: "There were %{count} errors with your %{model}."
         messages:
           blank: "%{model} is missing: %{attributes}."
+          inclusion: "%{model} is missing: %{attributes}."
           contact_blank: "Contact Information is missing: %{attributes}."
           procurement_terms_blank: "Procurement Terms is missing: %{attributes}."
           locations_blank: "You need at least one delivery location."

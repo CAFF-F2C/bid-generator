@@ -17,6 +17,7 @@ class Rfp < ApplicationRecord
   has_many :scores, inverse_of: :rfp, dependent: :destroy
   has_many :deliveries, inverse_of: :rfp, dependent: :destroy
   has_one_attached :item_list, dependent: :destroy
+  has_one_attached :draft
 
   validates :bid_type, :start_year, :buyer, presence: true
   validates :bid_type, inclusion: BID_TYPES
@@ -27,5 +28,9 @@ class Rfp < ApplicationRecord
 
   def school_year
     "#{start_year} - #{start_year + 1}"
+  end
+
+  def complete?
+    valid?(:complete?)
   end
 end

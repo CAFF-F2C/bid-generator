@@ -31,7 +31,7 @@
         <div class='buyers__location-address'><%= delivery.location.full_address %></div>
         <div class='buyers__schedule-delivery'><%= delivery.deliveries_per_week %>x per week</div>
         <div class='buyers__schedule-delivery'><%= delivery.display_delivery_days %></div>
-        <div class='buyers__schedule-delivery'><%= t(delivery.window_start_time, scope: [:buyers, :delivery, :time]) %> - <%= t(delivery.window_end_time, scope: [:buyers, :delivery, :time]) %></div>
+        <div class='buyers__schedule-delivery'><%= delivery.display_delivery_window %></div>
       </div>
       <div class='buyers__location-actions flex'>
         <div class='buyers__action'>

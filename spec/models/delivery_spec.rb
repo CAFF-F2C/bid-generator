@@ -21,4 +21,10 @@ RSpec.describe Delivery, type: :model do
       end
     end
   end
+
+  describe '#display_delivery_window' do
+    it 'returns the delivery times' do
+      expect(delivery.display_delivery_window).to eq('10:00 am - 11:00 am')
+    end
+  end
 end

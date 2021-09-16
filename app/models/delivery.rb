@@ -28,4 +28,8 @@ class Delivery < ApplicationRecord
   def display_delivery_days
     delivery_days.map { |d| Date::DAYNAMES[d] }.join(', ')
   end
+
+  def display_delivery_window
+    [I18n.t(window_start_time, scope: [:buyers, :delivery, :time]), I18n.t(window_end_time, scope: [:buyers, :delivery, :time])].join(' - ')
+  end
 end

@@ -22,7 +22,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'District Name', with: 'The District'
     click_on 'Save and exit'
 
-    expect(page).to have_selector('.form-errors__error', count: 4)
+    expect(page).to have_selector('.form-errors__error', count: 5)
     click_on 'Edit contact information'
 
     expect(page).to have_content('Contact Information')
@@ -126,5 +126,10 @@ RSpec.describe 'Creates an RFP', type: :system do
     select '2022 - 2023', from: 'rfp_start_year'
     click_on 'Save and exit'
     expect(page.find('main')).to have_content('Produce (2022 - 2023)')
+    click_on 'show'
+    expect(page.find('main')).to have_content('Produce (2022 - 2023)')
+
+    click_on 'Create Draft RFP'
+    expect(page.find('main')).to have_link(Rfp.last.draft.filename)
   end
 end

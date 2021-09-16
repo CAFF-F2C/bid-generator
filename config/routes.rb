@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :scores, except: [:new, :edit, :destroy]
       resources :deliveries
       resource :item_list, only: [:edit, :update]
+      resource :draft, only: [:create]
     end
     resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
       resource :contact, only: [:edit, :update]

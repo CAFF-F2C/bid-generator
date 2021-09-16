@@ -88,7 +88,7 @@ RSpec.describe Buyers::RfpsController, type: :request do
 
       it 'renders the show page' do
         make_request
-        expect(page).to have_content('Produce (2021 - 2022)')
+        expect(page).to have_content('2021 - 2022')
       end
 
       context 'when the rfp does not belong to the buyer' do

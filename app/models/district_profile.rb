@@ -51,7 +51,9 @@ class DistrictProfile < ApplicationRecord
 
   validates :district_name, presence: true
   validates :enrolled_students_number, numericality: {only_integer: true, allow_nil: true}
+  validates :daily_meals_number, numericality: {only_integer: true, allow_nil: true}
   validates :city, :county, presence: true, on: :complete?
+  validates :allow_piggyback, :price_verified, inclusion: {in: [true, false]}, on: :complete?
 
   validates :contact_full_name,
             :contact_department_name,
@@ -63,9 +65,7 @@ class DistrictProfile < ApplicationRecord
             :contact_title,
             contact_presence: true, on: :complete?
 
-  validates :allow_piggyback,
-            :local_percentage,
-            :price_verified,
+  validates :local_percentage,
             :required_insurance_aggregate,
             :required_insurance_automobile,
             :required_insurance_per_incident,

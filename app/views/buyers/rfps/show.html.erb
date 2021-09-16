@@ -1,6 +1,38 @@
-<div class='flex flex-row w-full'>
-  <h2 class='buyers__section-head flex-1'>
-    <%= @rfp.name %>
-  </h2>
-  <%= link_to('Edit', edit_buyers_rfp_path(@rfp)) %>
-</div>
+<% content_for(:page_header) { 'Request for proposal' } %>
+
+<% if @rfp.complete? %>
+  <h2 class='border-b border-gray-200 pb-4'>Documents</h2>
+  <div class='flex w-full mt-6'>
+    <h3 class='flex-1'>Draft</h3>
+    <%= button_to("Create Draft RFP", buyers_rfp_draft_path(@rfp) , method: :post, class: 'button-primary') %>
+  </div>
+  <% if @rfp.draft.attached? %>
+    <div class='ml-4'>
+      <div class='buyers__rfp-item-list'>
+        <div>
+          <%= link_to @rfp.draft.filename, rails_blob_path(@rfp.draft, disposition: 'attachment') %>
+        </div>
+        <div class='text-sm text-gray-600'>
+          Created at: <%= l(@rfp.draft.created_at, format: :long) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<table class='buyers__display-form'>
+  <thead class='buyers__table-head'>
+    <tr>
+      <th>
+        <h2 class='whitespace-nowrap'>RFP Purpose</h2>
+      </th>
+      <th>
+        <%= link_to('Edit', edit_buyers_rfp_path(@rfp), aria: {label: 'Edit RFP Purpose'}) %>
+      </th>
+    </tr>
+  </thead>
+  <%= render partial: 'display_field', locals: {attribute: 'bid_type'} %>
+  <%= render partial: 'display_field', locals: {attribute: 'school_year'} %>
+</table>
+
+

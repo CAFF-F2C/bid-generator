@@ -17,9 +17,7 @@ RSpec.describe DistrictProfile, type: :model do
   it { is_expected.to validate_presence_of(:contact_mailing_address_zip).on(:complete?) }
   it { is_expected.to validate_presence_of(:contact_phone_number).on(:complete?) }
 
-  it { is_expected.to validate_presence_of(:allow_piggyback).on(:complete?) }
   it { is_expected.to validate_presence_of(:local_percentage).on(:complete?) }
-  it { is_expected.to validate_presence_of(:price_verified).on(:complete?) }
   it { is_expected.to validate_presence_of(:required_insurance_aggregate).on(:complete?) }
   it { is_expected.to validate_presence_of(:required_insurance_automobile).on(:complete?) }
 

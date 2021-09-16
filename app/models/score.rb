@@ -14,5 +14,5 @@ class Score < ApplicationRecord
   belongs_to :score_category
   validates :rfp, :score_category, :value, presence: true
 
-  delegate :name, :description, to: :score_category
+  delegate :name, :description, :point_awarded_basis, :point_split_descriptions, to: :score_category
 end

@@ -1,0 +1,9 @@
+<tr>
+  <td class="buyers__display-field-label <%=@rfp.errors[attribute].present? ? 'buyers__display-field-label--error' : ''%>">
+    <%= Rfp.human_attribute_name(attribute) %>
+  </td>
+  <td>
+    <%= local_assigns.fetch :display_value, @rfp.send(attribute) %>
+    <%= render 'incomplete' if @rfp.errors[attribute].present?%>
+  </td>
+</tr>

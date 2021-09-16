@@ -24,7 +24,7 @@
           <%= link_to edit_buyers_rfp_path(document), aria: {label: 'edit'}  do %>
             <% inline_svg_tag('icon_edit.svg', class: 'buyers__action-icon') %>
           <% end %>
-          <%= link_to buyers_rfp_path(document) do %>
+          <%= link_to buyers_rfp_path(document), aria: {label: 'show'} do %>
             <% inline_svg_tag('icon_show.svg', class: 'buyers__action-icon') %>
           <% end %>
           <%= button_to buyers_rfp_path(document), method: :delete, aria: {label: 'delete'}, data: {confirm: 'Are you sure you want to delete this RFP?'} do %>
