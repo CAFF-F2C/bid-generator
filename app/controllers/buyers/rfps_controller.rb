@@ -36,7 +36,7 @@ class Buyers::RfpsController < ApplicationController
 
     if @rfp.save
       flash[:success] = 'RFP was successfully updated.'
-      redirect_to buyers_documents_path if params[:commit] == 'Save and exit'
+      redirect_to buyers_rfp_path(@rfp) if params[:commit] == 'Save and exit'
       redirect_to buyers_rfp_scores_path(@rfp) if params[:commit] == 'Next'
     else
       flash[:alert] = @rfp.errors.full_messages

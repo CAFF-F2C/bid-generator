@@ -166,7 +166,7 @@ RSpec.describe Buyers::RfpsController, type: :request do
 
         it 'redirects to documents index page' do
           make_request(start_year: 2021, bid_type: 'Produce')
-          expect(response).to redirect_to(buyers_documents_path)
+          expect(response).to redirect_to(buyers_rfp_path(rfp))
         end
       end
 

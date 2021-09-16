@@ -118,16 +118,14 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Upload Item List'
     expect(page).to have_content('item_list.txt')
-    click_on 'Exit'
+    click_on 'Documents'
 
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')
 
     click_on 'edit'
     select '2022 - 2023', from: 'rfp_start_year'
     click_on 'Save and exit'
-    expect(page.find('main')).to have_content('Produce (2022 - 2023)')
-    click_on 'show'
-    expect(page.find('main')).to have_content('Produce (2022 - 2023)')
+    expect(page.find('main')).to have_content('2022 - 2023')
 
     click_on 'Create Draft RFP'
     expect(page.find('main')).to have_link(Rfp.last.draft.filename)
