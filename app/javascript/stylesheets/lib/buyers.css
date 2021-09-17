@@ -4,7 +4,7 @@
   }
 
   &__main-content {
-    @apply rounded bg-white shadow-md px-8 py-4 mb-10;
+    @apply px-8 py-4 mb-10;
   }
 
   &__section-head {
