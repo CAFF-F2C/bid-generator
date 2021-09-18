@@ -160,6 +160,10 @@
     }
   }
 
+  &__rfp-scores-container {
+    @apply mt-4;
+  }
+
   &__schedule-delivery {
     @apply text-gray-600 text-sm;
   }

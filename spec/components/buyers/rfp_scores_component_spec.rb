@@ -45,7 +45,7 @@ RSpec.describe Buyers::RfpScoresComponent, type: :component do
 
     it 'marks the total as having errors' do
       render_inline(component)
-      expect(page.find('#rfp_error_message').text).to eq('Total must equal 100')
+      expect(page.find('.form-errors__error').text).to include('Total must equal 100')
     end
 
     it 'mark scores as having errors' do

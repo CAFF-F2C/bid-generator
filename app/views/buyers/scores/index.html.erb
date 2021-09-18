@@ -9,7 +9,7 @@
   <%= link_to 'contact us', 'https://www.caff.org/contact-us/' %>
   for more information.
 </p>
-<div data-controller='buyers--rfp-scores-component--rfp-scores'>
+<div class='buyers__rfp-scores-container' data-controller='buyers--rfp-scores-component--rfp-scores'>
   <%= render(Buyers::RfpScoresComponent.new(current_rfp: @current_rfp)) %>
 </div>
 

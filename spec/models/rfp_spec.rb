@@ -8,15 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  buyer_id   :bigint           not null
-#
-# Indexes
-#
-#  index_rfps_on_buyer_id  (buyer_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (buyer_id => buyers.id)
-#
+
 require 'rails_helper'
 
 RSpec.describe Rfp, type: :model do
@@ -64,7 +56,8 @@ RSpec.describe Rfp, type: :model do
       let(:location) { create(:location, buyer: buyer) }
 
       before do
-        create(:score, rfp: rfp, value: 20)
+        create(:district_profile, :complete, buyer: buyer)
+        create(:score, rfp: rfp, value: 100)
         create(:delivery, location: location, rfp: rfp)
       end
 

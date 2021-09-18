@@ -20,9 +20,11 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('District Profile')
 
     fill_in 'District Name', with: 'The District'
+    fill_in 'City', with: 'DistrictCity'
+    fill_in 'County', with: 'DistrictCounty'
     click_on 'Save and exit'
 
-    expect(page).to have_selector('.form-errors__error', count: 5)
+    expect(page).to have_selector('.form-errors__error', count: 4)
     click_on 'Edit contact information'
 
     expect(page).to have_content('Contact Information')
@@ -57,8 +59,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content(/123 main, okgo, california 12345/i)
 
     click_on 'Review Profile'
-
-    expect(page.find('main')).to have_content(/success/i)
+    expect(page).not_to have_selector('.form-errors__error')
 
     expect(page).to have_content(/the district/i)
     expect(page).to have_content(/fs director/i)
@@ -93,10 +94,10 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page.find('#rfp_total_score')).to have_content('80')
     fill_in 'Cat 4', with: '30'
     expect(page.find('#rfp_total_score')).to have_content('110')
-    expect(page.find('#rfp_error_message')).to have_content('Total must equal 100')
+    expect(page.find('.form-errors__error')).to have_content('Total must equal 100')
 
     fill_in 'Cat 4', with: '20'
-    expect(page.find('#rfp_error_message')).to have_content('')
+    expect(page).not_to have_selector('.form-errors__error')
     expect(page.find('#rfp_total_score')).to have_content('100')
 
     click_on 'Next'

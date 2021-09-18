@@ -10,15 +10,15 @@
 #  buyer_id   :bigint           not null
 #
 
-class ScoresPresenceValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    record.errors.add attribute, :scores_blank if value.blank?
-  end
-end
-
 class DeliveriesPresenceValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     record.errors.add attribute, :deliveries_blank if value.blank?
+  end
+end
+
+class ScoreSheetValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    record.errors.add attribute, :scores_invalid unless value.valid?
   end
 end
 
@@ -33,11 +33,15 @@ class Rfp < ApplicationRecord
   has_one_attached :item_list, dependent: :destroy
   has_one_attached :draft
 
+  delegate :district_profile, to: :buyer
+  delegate :complete?, to: :district_profile, prefix: true, allow_nil: true
+
   validates :bid_type, :start_year, :buyer, presence: true
   validates :bid_type, inclusion: BID_TYPES
 
-  validates :positive_scores, scores_presence: true, on: :complete?
+  validates :district_profile_complete?, inclusion: {in: [true]}, on: :complete?
   validates :deliveries, deliveries_presence: true, on: :complete?
+  validates :score_sheet, score_sheet: true, on: :complete?
 
   def name
     "#{bid_type} (#{school_year})"
@@ -49,5 +53,9 @@ class Rfp < ApplicationRecord
 
   def complete?
     valid?(:complete?)
+  end
+
+  def score_sheet
+    @score_sheet ||= ScoreSheet.new(rfp: self)
   end
 end

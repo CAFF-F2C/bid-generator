@@ -8,9 +8,11 @@ en:
           inclusion: "%{model} is missing: %{attributes}."
           contact_blank: "Contact Information is missing: %{attributes}."
           procurement_terms_blank: "Procurement Terms is missing: %{attributes}."
-          locations_blank: "You need at least one delivery location."
-          deliveries_blank: "You need at least one delivery."
-          scores_blank: "You need complete the scoring worksheet."
+          locations_blank: You need at least one delivery location.
+          deliveries_blank: You need at least one delivery.
+          scores_invalid: You need to complete the scoring worksheet.
+          invalid_highest: First category must be the highest score.
+          total_score: Total must equal 100.
   activerecord:
     errors:
       messages:

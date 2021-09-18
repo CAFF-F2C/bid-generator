@@ -45,13 +45,23 @@
       </th>
     </tr>
   </thead>
-  <% if @rfp.scores.blank? %>
+  <% unless @rfp.score_sheet.valid? %>
     <tr>
-      <td class='buyers__display-field-label buyers__display-field-label--error'>No scores</td>
-      <td><span class='buyers__display-field-error-pill'>Incomplete</span></td>
+      <td colspan=2 class='form-errors__container'>
+        <% @rfp.score_sheet.errors.full_messages.uniq.each do |error| %>
+          <div class='flex pl-4 mb-2'>
+            <div class='form-errors__icon'>
+              <%= inline_svg_tag("icon_x.svg") %>
+            </div>
+            <div class='ml-4'>
+              <%= error %>
+            </div>
+          </div>
+        <% end %>
+      </td>
     </tr>
   <% end %>
-  <% @rfp.scores.each do |score| %>
+  <% @rfp.positive_scores.each do |score| %>
     <tr><td><%= score.name %></td><td><%= score.value %></td></tr>
   <% end %>
 </table>

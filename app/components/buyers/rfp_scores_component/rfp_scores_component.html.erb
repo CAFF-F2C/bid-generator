@@ -1,9 +1,10 @@
 <div class= 'rfp-scores' id='rfp_scores'>
+  <%= render(FormErrorsComponent.new(errors: errors.uniq)) %>
   <% scores.each do |score|%>
     <%= form_for [:buyers, @current_rfp, score], data: { controller: 'autosave', autosave_delay_value: '1000' } do |f| %>
       <div
         id="score_category_<%= score.score_category_id %>"
-        class="rfp-scores__score <%= (errors[score.score_category_id].present?) ? 'rfp-scores__score--errors' : ''%>"
+        class="rfp-scores__score <%= (score.errors.present?) ? 'rfp-scores__score--errors' : ''%>"
       >
         <div class='rfp-scores__category' data-action='click->buyers--rfp-scores-component--rfp-scores#click' data-category-id="<%=score.score_category_id%>">
           <%= f.label "value_#{score.score_category_id}", score.name, class: 'rfp-scores__name' %>
@@ -19,7 +20,6 @@
 
   <div class="rfp-scores__total-score rfp-scores__score <%= (errors[:base].present?) ? 'rfp-scores__score--errors' : ''%>">
     <div class='rfp-scores__category'>
-      <div id='rfp_error_message' class='rfp-scores__error'><%= errors[:base] %></div>
     </div>
     <div class='rfp-scores__value'>
       <div id='rfp_total_score' class='rfp-scores__total'>Total: <%= total_score %></div>
