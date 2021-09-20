@@ -29,10 +29,16 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 
+Metrics/ClassLength:
+  Enabled: false
+
 Metrics/BlockLength:
   IgnoredMethods: [describe, context, it, before, configure, task]
   Exclude:
     - 'config/routes.rb'
+
+Naming/VariableNumber:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact

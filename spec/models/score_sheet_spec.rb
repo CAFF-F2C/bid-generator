@@ -18,8 +18,11 @@ RSpec.describe ScoreSheet, type: :model do
         create(:score_category, name: 'Cat', position: 1)
       end
 
-      it 'builds a new score for each score category' do
+      it 'sets the first score to 100' do
         expect(score_sheet.find_or_initialize_scores.first).to have_attributes({rfp_id: rfp.id, value: 100})
+      end
+
+      it 'sets the remaining scores to zero' do
         expect(score_sheet.find_or_initialize_scores.second).to have_attributes({rfp_id: rfp.id, value: 0})
       end
     end
