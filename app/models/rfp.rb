@@ -32,6 +32,8 @@ class Rfp < ApplicationRecord
   has_many :deliveries, inverse_of: :rfp, dependent: :destroy
   has_one_attached :item_list, dependent: :destroy
   has_one_attached :draft
+  has_one_attached :reviewed
+  has_one_attached :final
 
   delegate :district_profile, to: :buyer
   delegate :complete?, to: :district_profile, prefix: true, allow_nil: true

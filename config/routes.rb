@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       resources :deliveries
       resource :item_list, only: [:edit, :update]
       resource :draft, only: [:create]
+      resource :reviewed, only: [:update]
+      resource :final, only: [:update]
     end
     resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
       resource :contact, only: [:edit, :update]

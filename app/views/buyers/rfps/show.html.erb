@@ -2,7 +2,9 @@
 <%= render(FormErrorsComponent.new(errors: @rfp.errors)) %>
 
 <% if @rfp.complete? %>
-  <h2 class='border-b border-gray-200 pb-4'>Documents</h2>
+  <div class='buyers__table-head'>
+    <h2 class='border-b border-gray-200 pb-4'>Documents</h2>
+  </div>
   <div class='flex w-full mt-6'>
     <h3 class='flex-1'>Draft</h3>
     <%= button_to("Create Draft RFP", buyers_rfp_draft_path(@rfp) , method: :post, class: 'button-primary') %>
@@ -19,7 +21,56 @@
       </div>
     </div>
   <% end %>
+
+  <h3 class='mt-6'>Reviewed RFP</h3>
+  <%= form_with model: [:buyers, @rfp], url: buyers_rfp_reviewed_path(rfp_id: @rfp.id), method: :patch, local: true, data: {turbo: false} do |f| %>
+    <div class='flex pl-4 mt-6 mb-4'>
+      <div class='flex-1'>
+        <%= f.file_field :reviewed, required: true, class: 'text-field' %>
+      </div>
+      <div>
+        <%= f.submit 'Upload reviewed RFP', class: 'button-primary' %>
+      </div>
+    </div>
+  <% end %>
+  <% if @rfp.reviewed.attached? %>
+    <div class='ml-4'>
+      <div class='buyers__rfp-item-list'>
+        <div>
+          <%= link_to @rfp.reviewed.filename, rails_blob_path(@rfp.reviewed, disposition: 'attachment') %>
+        </div>
+        <div class='text-sm text-gray-600'>
+          Created at: <%= l(@rfp.reviewed.created_at, format: :long) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+<h3 class='mt-6'>Final RFP</h3>
+  <%= form_with model: [:buyers, @rfp], url: buyers_rfp_final_path(rfp_id: @rfp.id), method: :patch, local: true, data: {turbo: false} do |f| %>
+    <div class='flex pl-4 mt-6 mb-4'>
+      <div class='flex-1'>
+        <%= f.file_field :final, required: true, class: 'text-field' %>
+      </div>
+      <div>
+        <%= f.submit 'Upload final RFP', class: 'button-primary' %>
+      </div>
+    </div>
+  <% end %>
+  <% if @rfp.final.attached? %>
+    <div class='ml-4'>
+      <div class='buyers__rfp-item-list'>
+        <div>
+          <%= link_to @rfp.final.filename, rails_blob_path(@rfp.final, disposition: 'attachment') %>
+        </div>
+        <div class='text-sm text-gray-600'>
+          Created at: <%= l(@rfp.final.created_at, format: :long) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
+
 
 <table class='buyers__display-form'>
   <thead class='buyers__table-head'>
