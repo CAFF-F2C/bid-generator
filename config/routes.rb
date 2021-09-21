@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :rfps, only: [:index, :show]
     resources :district_profiles, only: [:index, :show]
     resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :deliveries, only: [:show]
 
     root to: 'buyers#index'
   end

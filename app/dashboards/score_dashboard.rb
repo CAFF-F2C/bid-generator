@@ -1,6 +1,6 @@
-require 'administrate/base_dashboard'
+require "administrate/base_dashboard"
 
-class RfpDashboard < Administrate::BaseDashboard
+class ScoreDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,18 +8,12 @@ class RfpDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    buyer: Field::BelongsTo,
+    rfp: Field::BelongsTo,
+    score_category: Field::BelongsTo,
     id: Field::Number,
-    school_year: Field::String,
-    bid_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
-    positive_scores: ScoresField,
-    item_list: AttachedDocumentField,
-    draft: AttachedDocumentField,
-    reviewed: AttachedDocumentField,
-    final: AttachedDocumentField,
-    deliveries: Field::HasMany,
-    created_at: Field::DateTime.with_options(format: :long),
-    updated_at: Field::DateTime.with_options(format: :long)
+    value: Field::Number,
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -28,27 +22,30 @@ class RfpDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    buyer
-    bid_type
-    school_year
-    created_at
-    updated_at
+    rfp
+    score_category
+    id
+    value
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    buyer
-    bid_type
-    school_year
+    rfp
+    score_category
+    id
+    value
     created_at
     updated_at
-    positive_scores
-    deliveries
-    item_list
-    draft
-    reviewed
-    final
+  ].freeze
+
+  # FORM_ATTRIBUTES
+  # an array of attributes that will be displayed
+  # on the model's form (`new` and `edit`) pages.
+  FORM_ATTRIBUTES = %i[
+    rfp
+    score_category
+    value
   ].freeze
 
   # COLLECTION_FILTERS
@@ -63,10 +60,10 @@ class RfpDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how rfps are displayed
+  # Overwrite this method to customize how scores are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(rfp)
-    rfp.name
-  end
+  # def display_resource(score)
+  #   "Score ##{score.id}"
+  # end
 end

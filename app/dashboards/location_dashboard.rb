@@ -1,6 +1,6 @@
-require 'administrate/base_dashboard'
+require "administrate/base_dashboard"
 
-class RfpDashboard < Administrate::BaseDashboard
+class LocationDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,17 +9,15 @@ class RfpDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     buyer: Field::BelongsTo,
-    id: Field::Number,
-    school_year: Field::String,
-    bid_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
-    positive_scores: ScoresField,
-    item_list: AttachedDocumentField,
-    draft: AttachedDocumentField,
-    reviewed: AttachedDocumentField,
-    final: AttachedDocumentField,
     deliveries: Field::HasMany,
-    created_at: Field::DateTime.with_options(format: :long),
-    updated_at: Field::DateTime.with_options(format: :long)
+    id: Field::Number,
+    name: Field::String,
+    street_address: Field::String,
+    city: Field::String,
+    state: Field::String,
+    zip_code: Field::String,
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -29,26 +27,37 @@ class RfpDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     buyer
-    bid_type
-    school_year
-    created_at
-    updated_at
+    deliveries
+    id
+    name
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     buyer
-    bid_type
-    school_year
+    deliveries
+    id
+    name
+    street_address
+    city
+    state
+    zip_code
     created_at
     updated_at
-    positive_scores
+  ].freeze
+
+  # FORM_ATTRIBUTES
+  # an array of attributes that will be displayed
+  # on the model's form (`new` and `edit`) pages.
+  FORM_ATTRIBUTES = %i[
+    buyer
     deliveries
-    item_list
-    draft
-    reviewed
-    final
+    name
+    street_address
+    city
+    state
+    zip_code
   ].freeze
 
   # COLLECTION_FILTERS
@@ -63,10 +72,10 @@ class RfpDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how rfps are displayed
+  # Overwrite this method to customize how locations are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(rfp)
-    rfp.name
+  def display_resource(location)
+    location.name
   end
 end

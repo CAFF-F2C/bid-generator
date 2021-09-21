@@ -27,13 +27,13 @@ class Rfp < ApplicationRecord
   enum bid_type: BID_TYPES
 
   belongs_to :buyer, inverse_of: :rfps
-  has_many :scores, inverse_of: :rfp, dependent: :destroy
-  has_many :positive_scores, -> { where.not(value: 0) }, class_name: 'Score'
+  has_many :scores, -> { joins(:score_category).order('score_categories.position ASC') }, inverse_of: :rfp, dependent: :destroy
+  has_many :positive_scores, -> { where.not(value: 0).joins(:score_category).order('score_categories.position ASC') }, class_name: 'Score'
   has_many :deliveries, inverse_of: :rfp, dependent: :destroy
   has_one_attached :item_list, dependent: :destroy
-  has_one_attached :draft
-  has_one_attached :reviewed
-  has_one_attached :final
+  has_one_attached :draft, dependent: :destroy
+  has_one_attached :reviewed, dependent: :destroy
+  has_one_attached :final, dependent: :destroy
 
   delegate :district_profile, to: :buyer
   delegate :complete?, to: :district_profile, prefix: true, allow_nil: true
