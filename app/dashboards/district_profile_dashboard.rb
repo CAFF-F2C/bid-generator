@@ -16,7 +16,22 @@ class DistrictProfileDashboard < Administrate::BaseDashboard
     enrolled_students_number: Field::Number,
     daily_meals_number: Field::Number,
     created_at: Field::DateTime.with_options(format: :long),
-    updated_at: Field::DateTime.with_options(format: :long)
+    updated_at: Field::DateTime.with_options(format: :long),
+    allow_piggyback: Field::Boolean,
+    price_verified: Field::Boolean,
+    contact_department_name: Field::String,
+    contact_full_name: Field::String,
+    contact_mailing_address_city: Field::String,
+    contact_mailing_address_state: Field::String,
+    contact_mailing_address_street: Field::String,
+    contact_mailing_address_zip: Field::String,
+    contact_phone_number: Field::String,
+    contact_title: Field::String,
+    local_percentage: Field::Number,
+    required_insurance_aggregate: Field::Number,
+    required_insurance_automobile: Field::Number,
+    required_insurance_per_incident: Field::Number,
+    locations: Field::HasMany.with_options(class_name: 'Location')
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -35,14 +50,28 @@ class DistrictProfileDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     buyer
-    id
     district_name
     city
     county
-    enrolled_students_number
-    daily_meals_number
     created_at
     updated_at
+    enrolled_students_number
+    daily_meals_number
+    contact_full_name
+    contact_title
+    contact_phone_number
+    contact_department_name
+    contact_mailing_address_street
+    contact_mailing_address_city
+    contact_mailing_address_state
+    contact_mailing_address_zip
+    local_percentage
+    allow_piggyback
+    price_verified
+    required_insurance_aggregate
+    required_insurance_automobile
+    required_insurance_per_incident
+    locations
   ].freeze
 
   # COLLECTION_FILTERS
