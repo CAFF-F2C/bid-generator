@@ -60,4 +60,15 @@ class Rfp < ApplicationRecord
   def score_sheet
     @score_sheet ||= ScoreSheet.new(rfp: self)
   end
+
+  def status
+    @status ||=
+      [
+        [:final, final.attached?],
+        [:review, reviewed.attached?],
+        [:draft, draft.attached?],
+        [:complete, complete?],
+        [:in_progress, true]
+      ].find { |s| s[1] }[0]
+  end
 end

@@ -3,18 +3,11 @@ class RfpStatusComponent < ViewComponent::Base
     @rfp = rfp
   end
 
-  def status
-    @status ||=
-      [
-        ['Final', @rfp.final.attached?],
-        ['Review', @rfp.reviewed.attached?],
-        ['Draft', @rfp.draft.attached?],
-        ['Complete', @rfp.complete?],
-        ['In Progress', true]
-      ].find { |s| s[1] }[0]
+  def display_status
+    @rfp.status.to_s.humanize
   end
 
   def status_class
-    status.parameterize(separator: '-')
+    @rfp.status.to_s.dasherize
   end
 end

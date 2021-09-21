@@ -17,6 +17,7 @@ class RfpDashboard < Administrate::BaseDashboard
     draft: AttachedDocumentField,
     reviewed: AttachedDocumentField,
     final: AttachedDocumentField,
+    status: StatusField,
     deliveries: Field::HasMany,
     created_at: Field::DateTime.with_options(format: :long),
     updated_at: Field::DateTime.with_options(format: :long)
@@ -31,6 +32,7 @@ class RfpDashboard < Administrate::BaseDashboard
     buyer
     bid_type
     school_year
+    status
     created_at
     updated_at
   ].freeze

@@ -66,4 +66,60 @@ RSpec.describe Rfp, type: :model do
       end
     end
   end
+
+  describe '#status' do
+    let(:score_category) { create(:score_category) }
+    let(:location) { create(:location, buyer: buyer) }
+
+    context 'when the rfp is not complete' do
+      it 'shows the status as in progress' do
+        expect(rfp.status).to eq(:in_progress)
+      end
+    end
+
+    context 'when the rfp is complete' do
+      let(:rfp) { create(:rfp, buyer: buyer) }
+
+      before do
+        create(:district_profile, :complete, buyer: buyer)
+        create(:score, score_category: score_category, rfp: rfp, value: 100)
+        rfp.item_list.attach(io: File.open('spec/fixtures/files/item_list.txt'), filename: 'item_list.txt')
+        create(:delivery, location: location, rfp: rfp)
+      end
+
+      it 'shows the status as complete' do
+        expect(rfp.status).to eq(:complete)
+      end
+
+      context 'when the rfp has a downloaded rfp' do
+        before do
+          rfp.draft.attach(io: File.open('spec/fixtures/files/item_list.txt'), filename: 'draft_rfp.txt')
+        end
+
+        it 'shows the status as draft' do
+          expect(rfp.status).to eq(:draft)
+        end
+      end
+
+      context 'when the rfp has a uploaded reviewed rfp' do
+        before do
+          rfp.reviewed.attach(io: File.open('spec/fixtures/files/reviewed_rfp.txt'), filename: 'reviewed_rfp.txt')
+        end
+
+        it 'shows the status as review' do
+          expect(rfp.status).to eq(:review)
+        end
+      end
+
+      context 'when the rfp has a uploaded final rfp' do
+        before do
+          rfp.final.attach(io: File.open('spec/fixtures/files/final_rfp.txt'), filename: 'final_rfp.txt')
+        end
+
+        it 'shows the status as final' do
+          expect(rfp.status).to eq(:final)
+        end
+      end
+    end
+  end
 end
