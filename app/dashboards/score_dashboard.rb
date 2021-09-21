@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class ScoreDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -13,7 +13,7 @@ class ScoreDashboard < Administrate::BaseDashboard
     id: Field::Number,
     value: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES

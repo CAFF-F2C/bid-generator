@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class DeliveryDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -19,7 +19,7 @@ class DeliveryDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     window_start_time: Field::Number,
-    window_end_time: Field::Number,
+    window_end_time: Field::Number
   }.freeze
 
   # COLLECTION_ATTRIBUTES
