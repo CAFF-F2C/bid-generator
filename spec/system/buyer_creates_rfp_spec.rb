@@ -124,6 +124,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'Documents'
 
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')
+    expect(page.find('main')).to have_content('Complete')
 
     click_on 'edit'
     select '2022 - 2023', from: 'rfp_start_year'
