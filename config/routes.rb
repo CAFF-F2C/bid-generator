@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     resources :locations, only: [:show]
     resources :scores, only: [:edit, :update, :show]
 
+    delete :rfp_item_list_destroy, to: 'rfps#destroy_item_list'
+    delete :rfp_draft_destroy, to: 'rfps#destroy_draft'
+    delete :rfp_reviewed_destroy, to: 'rfps#destroy_reviewed'
+    delete :rfp_final_destroy, to: 'rfps#destroy_final'
+
     root to: 'buyers#index'
   end
 

@@ -117,7 +117,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('6:00 am - 8:00 am')
 
     click_on 'Next'
-    page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt', make_visible: true)
+    page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt')
 
     click_on 'Upload Item List'
     expect(page).to have_content('item_list.txt')
@@ -134,12 +134,14 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'Create Draft RFP'
     expect(page.find('main')).to have_link(Rfp.last.draft.filename)
 
-    page.attach_file('rfp_reviewed', 'spec/fixtures/files/reviewed_rfp.txt', make_visible: true)
+    expect(page).to have_field('rfp[reviewed]')
+    page.attach_file('rfp[reviewed]', 'spec/fixtures/files/reviewed_rfp.txt')
 
     click_on 'Upload reviewed RFP'
     expect(page).to have_content('reviewed_rfp.txt', wait: 30)
 
-    page.attach_file('rfp_final', 'spec/fixtures/files/final_rfp.txt', make_visible: true)
+    expect(page).to have_field('rfp[final]')
+    page.attach_file('rfp[final]', 'spec/fixtures/files/final_rfp.txt')
 
     click_on 'Upload final RFP'
     expect(page).to have_content('final_rfp.txt', wait: 30)

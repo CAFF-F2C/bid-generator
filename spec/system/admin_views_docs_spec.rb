@@ -32,18 +32,24 @@ RSpec.describe 'Log in', type: :system do
     expect(page).to have_content('2021')
 
     click_on 'Produce'
-
     expect(page).to have_content('Produce')
+    click_on 'Edit'
+    page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt')
+
+    click_on 'Update Rfp'
+    expect(page).to have_content('item_list.txt')
 
     within 'nav' do
       click_on 'District Profiles'
     end
-
     expect(page).to have_content('New District')
-
     click_on 'New District'
-
     expect(page).to have_content('New District')
+
+    click_on 'Edit New District'
+    fill_in 'Full name', with: 'ContactName'
+    click_on 'Update District profile'
+    expect(page).to have_content('ContactName')
 
     within 'nav' do
       click_on 'Buyers'

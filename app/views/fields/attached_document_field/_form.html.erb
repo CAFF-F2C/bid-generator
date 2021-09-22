@@ -5,6 +5,10 @@
 <div class="field-unit__field">
   <% if field.attached? %>
     <%= render partial: 'fields/attached_document_field/show', locals: { field: field } %>
+    <% if field.destroy_url.present? %>
+      |
+      <%= link_to("Delete", field.destroy_url.call(field.data.record) , method: :delete, class: 'text-color-red', data: { confirm: "Delete #{field.filename}?" } ) %>
+    <% end %>
   <% end %>
 
   <div>
