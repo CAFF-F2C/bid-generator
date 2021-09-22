@@ -135,7 +135,7 @@ class RfpCompositor
   end
 
   def template
-    file_name = Dir.entries('vendor/assets/templates/rfp').reject { |f| File.directory?(f) }.first
-    Sablon.template(File.expand_path(file_name, 'vendor/assets/templates/rfp'))
+    file_name = Dir.glob('vendor/assets/templates/rfp/*.docx').first
+    Sablon.template(File.expand_path(file_name))
   end
 end
