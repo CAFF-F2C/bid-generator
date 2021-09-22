@@ -71,4 +71,8 @@ class Rfp < ApplicationRecord
         [:in_progress, true]
       ].find { |s| s[1] }[0]
   end
+
+  def total_score
+    scores.sum(&:value)
+  end
 end

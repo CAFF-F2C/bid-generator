@@ -25,6 +25,13 @@ from the associated resource class's dashboard.
       <tr>
         <td><%= score.name %></td>
         <td><%= score.value %></td>
+        <td>
+          <%= link_to(
+            t("administrate.actions.edit"),
+            [:edit, namespace, score],
+            class: "action-edit",
+          ) if show_action? :edit, score %>
+        </td>
       </tr>
       <% end %>
     </tbody>

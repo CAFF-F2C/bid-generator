@@ -3,7 +3,7 @@ class ScoreSheet
 
   attr_accessor :rfp, :scores
 
-  delegate :positive_scores, to: :rfp
+  delegate :positive_scores, :total_score, to: :rfp
   validates :positive_scores, presence: true
   validate :valid_scores
 
@@ -18,10 +18,6 @@ class ScoreSheet
     end
     rfp_scores.first.assign_attributes(value: 100) unless rfp_scores.blank? || rfp_scores.first.persisted?
     rfp_scores
-  end
-
-  def total_score
-    scores.sum(&:value)
   end
 
   private

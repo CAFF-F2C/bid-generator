@@ -89,6 +89,29 @@ class DistrictProfileDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how district profiles are displayed
   # across all pages of the admin dashboard.
   #
+
+  FORM_ATTRIBUTES = %i[
+    district_name
+    city
+    county
+    enrolled_students_number
+    daily_meals_number
+    contact_full_name
+    contact_title
+    contact_phone_number
+    contact_department_name
+    contact_mailing_address_street
+    contact_mailing_address_city
+    contact_mailing_address_state
+    contact_mailing_address_zip
+    local_percentage
+    allow_piggyback
+    price_verified
+    required_insurance_aggregate
+    required_insurance_automobile
+    required_insurance_per_incident
+  ].freeze
+
   def display_resource(district_profile)
     district_profile.district_name
   end

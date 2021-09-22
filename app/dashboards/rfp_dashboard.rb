@@ -13,6 +13,7 @@ class RfpDashboard < Administrate::BaseDashboard
     school_year: Field::String,
     bid_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     positive_scores: ScoresField,
+    total_score: Field::Number,
     item_list: AttachedDocumentField,
     draft: AttachedDocumentField,
     reviewed: AttachedDocumentField,
@@ -20,7 +21,8 @@ class RfpDashboard < Administrate::BaseDashboard
     status: StatusField,
     deliveries: Field::HasMany,
     created_at: Field::DateTime.with_options(format: :long),
-    updated_at: Field::DateTime.with_options(format: :long)
+    updated_at: Field::DateTime.with_options(format: :long),
+    start_year: Field::Number
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -46,6 +48,7 @@ class RfpDashboard < Administrate::BaseDashboard
     created_at
     updated_at
     positive_scores
+    total_score
     deliveries
     item_list
     draft
@@ -68,6 +71,16 @@ class RfpDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how rfps are displayed
   # across all pages of the admin dashboard.
   #
+
+  FORM_ATTRIBUTES = %i[
+    bid_type
+    start_year
+    item_list
+    draft
+    reviewed
+    final
+  ].freeze
+
   def display_resource(rfp)
     rfp.name
   end

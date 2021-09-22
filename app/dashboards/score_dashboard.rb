@@ -43,8 +43,6 @@ class ScoreDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    rfp
-    score_category
     value
   ].freeze
 
@@ -63,7 +61,7 @@ class ScoreDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how scores are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(score)
-  #   "Score ##{score.id}"
-  # end
+  def display_resource(score)
+    "#{score.score_category.name} -- #{score.rfp.name} "
+  end
 end

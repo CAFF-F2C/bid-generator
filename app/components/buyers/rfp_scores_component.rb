@@ -21,6 +21,6 @@ class Buyers::RfpScoresComponent < ViewComponent::Base
   end
 
   def total_score
-    @score_sheet.total_score
+    @current_rfp.total_score
   end
 end

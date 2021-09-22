@@ -1,0 +1,13 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+
+<div class="field-unit__field">
+  <% if field.attached? %>
+    <%= render partial: 'fields/attached_document_field/show', locals: { field: field } %>
+  <% end %>
+
+  <div>
+    <%= f.file_field field.attribute %>
+  </div>
+</div>

@@ -45,6 +45,23 @@ RSpec.describe Rfp, type: :model do
     end
   end
 
+  describe '#total_score' do
+    it 'is zero when there are no scores' do
+      expect(rfp.total_score).to eq(0)
+    end
+
+    context 'when there are scores' do
+      before do
+        create(:score, rfp: rfp, value: 20)
+        create(:score, rfp: rfp, value: 15)
+      end
+
+      it 'is the sum of the scores' do
+        expect(rfp.total_score).to eq(35)
+      end
+    end
+  end
+
   describe 'complete?' do
     context 'when the rfp is not complete' do
       it 'is not complete' do

@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :admin_users
     resources :buyers, only: [:index, :show]
-    resources :rfps, only: [:index, :show]
-    resources :district_profiles, only: [:index, :show]
+    resources :rfps, only: [:index, :show, :edit, :update]
+    resources :district_profiles, only: [:index, :show, :edit, :update]
     resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :deliveries, only: [:show]
     resources :locations, only: [:show]
+    resources :scores, only: [:edit, :update, :show]
 
     root to: 'buyers#index'
   end
