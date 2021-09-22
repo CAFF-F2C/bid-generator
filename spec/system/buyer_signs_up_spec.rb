@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Buyer signs up', type: :system do
+  before do
+    create(:admin_user, email: 'admintest@example.com', notify_signup: true)
+  end
+
   it 'creates an account', :js do
     visit root_path
 
@@ -18,6 +22,9 @@ RSpec.describe 'Buyer signs up', type: :system do
     fill_in 'Password confirmation', with: 'password'
 
     perform_enqueued_jobs { click_on 'Sign up' }
+
+    open_email('admintest@example.com')
+    expect(current_email).to have_content 'A new buyer account has signed up with the email: buyer@example.com.'
 
     expect(page).to have_content(/confirmation link/i)
     expect(page).to be_axe_clean

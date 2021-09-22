@@ -2,6 +2,11 @@
 class Buyers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 
+  def create
+    super
+    AdminNotificationMailer.new_registration(resource).deliver
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -11,6 +11,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     id: Field::Number,
     full_name: Field::String,
     email: Field::String,
+    notify_signup: Field::Boolean,
     reset_password_sent_at: Field::DateTime.with_options(format: :long),
     current_sign_in_at: Field::DateTime.with_options(format: :long),
     last_sign_in_at: Field::DateTime.with_options(format: :long),
@@ -42,6 +43,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     id
     full_name
     email
+    notify_signup
     reset_password_sent_at
     current_sign_in_at
     last_sign_in_at
@@ -58,6 +60,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     full_name
     email
+    notify_signup
   ].freeze
 
   # COLLECTION_FILTERS
