@@ -138,12 +138,14 @@ RSpec.describe 'Creates an RFP', type: :system do
     page.attach_file('rfp[reviewed]', 'spec/fixtures/files/reviewed_rfp.txt')
 
     click_on 'Upload reviewed RFP'
-    expect(page).to have_content('reviewed_rfp.txt', wait: 30)
+    # expect(page).to have_content('reviewed_rfp.txt', wait: 30)
 
     expect(page).to have_field('rfp[final]')
     page.attach_file('rfp[final]', 'spec/fixtures/files/final_rfp.txt')
 
     click_on 'Upload final RFP'
-    expect(page).to have_content('final_rfp.txt', wait: 30)
+    # expect(page).to have_content('final_rfp.txt', wait: 30)
+    click_on 'Documents'
+    expect(page).to have_content('Final')
   end
 end
