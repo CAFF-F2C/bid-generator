@@ -1,5 +1,5 @@
 <% content_for(:page_header) { 'District Profile' } %>
-<%= render(FormErrorsComponent.new(errors: @district_profile.errors)) %>
+<%= render(FormErrorsComponent.new(errors: @district_profile.errors, scope: :complete)) %>
 
 <table class='buyers__display-form'>
   <thead class='buyers__table-head'>

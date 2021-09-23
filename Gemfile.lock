@@ -260,6 +260,7 @@ GEM
     parslet (1.8.2)
     pg (1.2.3)
     phantomjs (2.1.1.0)
+    phonelib (0.6.52)
     pivotal_git_scripts (1.4.0)
     public_suffix (4.0.6)
     puma (5.3.2)
@@ -484,6 +485,7 @@ DEPENDENCIES
   listen (~> 3.3)
   paranoia
   pg (~> 1.1)
+  phonelib
   pivotal_git_scripts
   puma (~> 5.0)
   pundit

@@ -52,6 +52,8 @@ class DistrictProfile < ApplicationRecord
   validates :district_name, presence: true
   validates :enrolled_students_number, numericality: {only_integer: true, allow_nil: true}
   validates :daily_meals_number, numericality: {only_integer: true, allow_nil: true}
+  validates :contact_phone_number, phone: true, allow_blank: true
+
   validates :city, :county, presence: true, on: :complete?
   validates :allow_piggyback, :price_verified, inclusion: {in: [true, false]}, on: :complete?
 

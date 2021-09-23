@@ -1,5 +1,5 @@
 <div class= 'rfp-scores' id='rfp_scores'>
-  <%= render(FormErrorsComponent.new(errors: errors.uniq)) %>
+  <%= render(FormErrorsComponent.new(errors: errors.uniq, scope: :complete)) %>
   <% scores.each do |score|%>
     <%= form_for [:buyers, @current_rfp, score], data: { controller: 'autosave', autosave_delay_value: '1000' } do |f| %>
       <div

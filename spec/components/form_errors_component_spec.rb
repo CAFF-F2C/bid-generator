@@ -26,14 +26,23 @@ RSpec.describe FormErrorsComponent, type: :component do
       errors.add(:zip_code, :blank)
     end
 
-    it 'shows the error message' do
-      render_inline(component)
-      expect(page).to have_content(/Test object is missing: Name, City, Zip code/i)
-    end
-
     it 'shows the error count' do
       render_inline(component)
       expect(page).to have_content(/There were 3 errors/i)
+    end
+
+    it 'shows the error message' do
+      render_inline(component)
+      expect(page).to have_content(/name can't be blank/i)
+    end
+
+    context 'when the scope is complete' do
+      let(:component) { described_class.new(errors: errors, scope: :complete) }
+
+      it 'shows the error message' do
+        render_inline(component)
+        expect(page).to have_content(/Test object is missing: Name, City, Zip code/i)
+      end
     end
   end
 end

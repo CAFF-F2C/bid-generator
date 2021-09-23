@@ -1,6 +1,7 @@
 class FormErrorsComponent < ViewComponent::Base
-  def initialize(errors:)
+  def initialize(errors:, scope: nil)
     @errors = errors
+    @scope = scope
   end
 
   def render?
@@ -8,8 +9,10 @@ class FormErrorsComponent < ViewComponent::Base
   end
 
   def errors_display
+    return @errors.full_messages unless @scope
+
     errors_by_type.map do |type, group|
-      t(type, model: model_name, attributes: group.collect { |e| attribute_name(e.attribute) }.join(', '), scope: [:activemodel, :errors, :complete, :messages])
+      t(type, model: model_name, attributes: group.collect { |e| attribute_name(e.attribute) }.join(', '), scope: [:activemodel, :errors, @scope, :messages])
     end
   end
 

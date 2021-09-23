@@ -1,5 +1,5 @@
 <% content_for(:page_header) { 'Request for proposal' } %>
-<%= render(FormErrorsComponent.new(errors: @rfp.errors)) %>
+<%= render(FormErrorsComponent.new(errors: @rfp.errors, scope: :complete)) %>
 
 <% if @rfp.complete? %>
   <div class='buyers__table-head'>
