@@ -43,5 +43,6 @@ module BidGenerator
     config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
     config.active_storage.variant_processor = :vips
     config.action_mailer.deliver_later_queue_name = :default
+    config.time_zone = "Pacific Time (US & Canada)"
   end
 end
