@@ -93,7 +93,8 @@ class RfpCompositor
       total_deliveries_count: deliveries.sum(:deliveries_per_week),
       delivery_locations_count: delivery_locations_count,
       deliveries: serialized_deliveries,
-      scores: serialized_scores
+      scores: serialized_scores,
+      vendor_questions: serialized_vendor_questions
     }
   end
 
@@ -112,13 +113,19 @@ class RfpCompositor
   end
 
   def serialized_scores
-    rfp.scores.joins(:score_category).where.not(value: 0).order(position: :asc).map do |score|
+    rfp.positive_scores.joins(:score_category).order(position: :asc).map do |score|
       {
         name: score.name,
         point_awarded_basis: score.point_awarded_basis,
         point_split_descriptions: score.point_split_descriptions,
         value: score.value
       }
+    end
+  end
+
+  def serialized_vendor_questions
+    rfp.positive_scores.joins(:score_category).order(position: :asc).map do |score|
+      score.score_category.vendor_questions
     end
   end
 

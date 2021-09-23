@@ -7,7 +7,7 @@
   </div>
   <div class='flex w-full mt-6'>
     <h3 class='flex-1'>Draft</h3>
-    <%= button_to("Create Draft RFP", buyers_rfp_draft_path(@rfp) , method: :post, class: 'button-primary') %>
+    <%= button_to("Create Draft RFP", buyers_rfp_draft_path(@rfp) , method: :post, class: 'button-primary', data: {turbo: false}) %>
   </div>
   <% if @rfp.draft.attached? %>
     <div class='ml-4'>

@@ -6,8 +6,8 @@ RSpec.describe RfpCompositor do
   let(:buyer) { create(:buyer) }
   let(:rfp) { create(:rfp, buyer: buyer, start_year: 2012) }
   let(:location) { create(:location, buyer: buyer, street_address: '123 Main') }
-  let(:score_category1) { create(:score_category, name: 'Cat1', position: 1, point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description') }
-  let(:score_category2) { create(:score_category, name: 'Cat2', position: 2, point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description') }
+  let(:score_category1) { create(:score_category, name: 'Cat1', position: 1, point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description', vendor_questions: 'Cat1 vendor question') }
+  let(:score_category2) { create(:score_category, name: 'Cat2', position: 2, point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description', vendor_questions: 'Cat2 vendor question') }
 
   context 'when the rfp is not valid' do
     it 'is not valid' do
@@ -131,6 +131,10 @@ RSpec.describe RfpCompositor do
           {name: 'Cat2', point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description', value: 40}
         ]
       )
+    end
+
+    it 'includes vendor_questions' do
+      expect(compositor.context[:vendor_questions]).to eq(['Cat1 vendor question', 'Cat2 vendor question'])
     end
   end
 end
