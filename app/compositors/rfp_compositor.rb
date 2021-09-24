@@ -80,7 +80,6 @@ class RfpCompositor
       required_insurance_per_incident: required_insurance_per_incident,
       bid_type: bid_type,
       school_year: school_year,
-      daily_meals_number: daily_meals_number,
       case_demonstrated_price_start: previous_november.strftime('%B %Y'),
       case_demonstrated_price_end: previous_july.strftime('%B %Y'),
       price_period_start: Date.new(start_year, 7, 1).strftime('%B %-d, %Y'),

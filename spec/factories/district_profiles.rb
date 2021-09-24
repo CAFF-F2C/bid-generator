@@ -14,7 +14,6 @@ FactoryBot.define do
       contact_mailing_address_zip { '12345' }
       contact_phone_number { '5553334444' }
       contact_title { 'Director' }
-      daily_meals_number { 800 }
       enrolled_students_number { 1000 }
       allow_piggyback { true }
       local_percentage { 25 }

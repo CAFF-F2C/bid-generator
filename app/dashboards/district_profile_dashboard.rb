@@ -56,7 +56,6 @@ class DistrictProfileDashboard < Administrate::BaseDashboard
     created_at
     updated_at
     enrolled_students_number
-    daily_meals_number
     contact_full_name
     contact_title
     contact_phone_number

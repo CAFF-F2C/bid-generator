@@ -149,8 +149,8 @@ RSpec.describe Buyers::DistrictProfilesController, type: :request do
         end
 
         it 'sets the attributes' do
-          make_request(district_name: 'My District', city: 'My City', county: 'My County', enrolled_students_number: 100, daily_meals_number: 100)
-          expect(DistrictProfile.last).to have_attributes(district_name: 'My District', city: 'My City', county: 'My County', enrolled_students_number: 100, daily_meals_number: 100)
+          make_request(district_name: 'My District', city: 'My City', county: 'My County', enrolled_students_number: 100)
+          expect(DistrictProfile.last).to have_attributes(district_name: 'My District', city: 'My City', county: 'My County', enrolled_students_number: 100)
         end
 
         context 'when the buyer clicks save and exit' do
