@@ -58,14 +58,17 @@
     </div>
   <% end %>
   <% if @rfp.final.attached? %>
-    <div class='ml-4'>
-      <div class='buyers__rfp-item-list'>
+    <div class='ml-4 flex'>
+      <div class='buyers__rfp-item-list flex-1'>
         <div>
           <%= link_to @rfp.final.filename, rails_blob_path(@rfp.final, disposition: 'attachment') %>
         </div>
         <div class='text-sm text-gray-600'>
           Created at: <%= l(@rfp.final.created_at, format: :long) %>
         </div>
+      </div>
+      <div>
+        <%= link_to('Post RFP', Rails.application.config.post_rfp_link, target: '_blank', class: 'button-primary') %>
       </div>
     </div>
   <% end %>
