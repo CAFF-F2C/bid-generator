@@ -8,8 +8,8 @@
   <%= f.select :start_year, (Date.today.year..Date.today.year+5).map { |year| ["#{year} - #{year+1}", year] }, {}, class: 'select' %>
 </div>
 <p class='buyers__section-caption'>
-  Please
-  <%= link_to 'contact CAFF', 'https://www.caff.org/contact-us/' %>
+  Please email
+  <%= mail_to 'farmtocafeteria@caff.org' %>
   to create other RFP types.
 </p>
 
