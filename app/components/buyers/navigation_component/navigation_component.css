@@ -28,10 +28,10 @@
   }
 
   &__nav-link {
-    @apply text-white flex py-4 px-3 rounded items-center hover:text-blue-50;
+    @apply text-cyan-100 flex py-4 px-3 rounded items-center hover:text-white;
 
     &--active {
-      @apply bg-blue-500;
+      @apply bg-cyan-800;
     }
 
     span {

@@ -5,8 +5,9 @@ RSpec.describe Buyers::NavigationComponent, type: :component do
 
   let(:component) { described_class.new(current_path: Rails.application.routes.url_helpers.buyers_documents_path) }
 
-  it { expect(page.find('.buyers__nav-link--active')).to have_content(/my documents/i) }
   it { expect(page).to have_content(/district profile/i) }
+  it { expect(page.find('.buyers__nav-link--active')).to have_content(/request for proposal/i) }
+  it { expect(page).to have_content(/resources/i) }
   it { expect(page).to have_content(/sign out/i) }
 
   describe '#external_resources_link' do

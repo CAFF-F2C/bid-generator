@@ -15,19 +15,19 @@
           <%= inline_svg_tag('logo.svg', class: 'w-64 mb-6', alt: 'bid generator') %>
         </div>
         <div>
-          <%= link_to(buyers_documents_path, class: "buyers__nav-link #{current_page?(buyers_documents_path) ? 'buyers__nav-link--active' : ''}") do %>
-            <%= inline_svg_tag('icon_documents.svg', alt: 'documents') %>
-            <span>My Documents</span>
-          <% end %>
-
           <%= link_to(buyers_district_profile_path, class: "buyers__nav-link #{current_page?(buyers_district_profile_path) ? 'buyers__nav-link--active' : ''}") do %>
             <%= inline_svg_tag('icon_district_profile.svg', alt: 'district profile') %>
             <span>District Profile</span>
           <% end %>
 
+          <%= link_to(buyers_documents_path, class: "buyers__nav-link #{current_page?(buyers_documents_path) ? 'buyers__nav-link--active' : ''}") do %>
+            <%= inline_svg_tag('icon_house.svg', alt: 'request for proposal') %>
+            <span>Request for Proposal</span>
+          <% end %>
+
           <% unless external_resources_link.blank? %>
             <%= link_to(external_resources_link, class: "buyers__nav-link", target: :_blank) do %>
-              <%= inline_svg_tag('icon_folder.svg', alt: 'Resources') %>
+              <%= inline_svg_tag('icon_documents.svg', alt: 'Resources') %>
               <span>Resources</span>
             <% end %>
           <% end %>
