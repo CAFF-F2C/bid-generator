@@ -76,7 +76,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('$2,000,000')
     expect(page).to have_content('$500,000')
 
-    click_on('Documents')
+    click_on('Request for Proposal')
 
     click_on('New RFP')
     select '2021 - 2022', from: 'rfp_start_year'
@@ -121,7 +121,7 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Upload Item List'
     expect(page).to have_content('item_list.txt')
-    click_on 'Documents'
+    click_on 'Request for Proposal'
 
     expect(page.find('main')).to have_content('Produce (2021 - 2022)')
     expect(page.find('main')).to have_content('Complete')
@@ -145,7 +145,6 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Upload final RFP'
     # expect(page).to have_content('final_rfp.txt', wait: 30)
-    click_on 'Documents'
     expect(page).to have_content('Final')
   end
 end

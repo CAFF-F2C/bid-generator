@@ -94,6 +94,8 @@ jobs:
         run: bundle exec rails assets:precompile
       - name: Ruby tests
         run: bin/rspec
+        env:
+          EXTERNAL_RESOURCES_LINK: https://www.google.com/
       - name: Archive screenshots
         uses: actions/upload-artifact@v2
         if: failure()
