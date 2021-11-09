@@ -1,0 +1,33 @@
+<div class="table-row group">
+  <%= link_to edit_buyers_rfp_delivery_path(item.rfp, item), class: 'table-cell border-t px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:bg-blue-50', aria: {labelledby: dom_id(item)} do %>
+    <div id="<%= dom_id(item) %>" class="group truncate text-sm">
+      <p class="truncate font-medium text-gray-800 group-hover:text-gray-900">
+        <%= item.location.name %>
+      </p>
+      <p class="text-gray-500">
+        <%= item.location.street_address %>
+      </p>
+    </div>
+  <% end %>
+  <%= link_to edit_buyers_rfp_delivery_path(item.rfp, item), class: 'hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:table-cell border-t group-hover:bg-blue-50', aria: {labelledby: dom_id(item)} do %>
+    <p class="truncate text-gray-800 group-hover:text-gray-900">
+      <% item.delivery_days.each do |day_index| %>
+        <%= I18n.translate("date.abbr_day_names")[day_index] %>
+      <% end %>
+    </p>
+    <p class="text-gray-500">
+      <%= I18n.t(item.window_start_time, scope: [:buyers, :delivery, :time]) %> &ndash; <%= I18n.t(item.window_end_time, scope: [:buyers, :delivery, :time]) %>
+    </p>
+  <% end %>
+  <%= link_to edit_buyers_rfp_delivery_path(item.rfp, item), class: 'hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:table-cell border-t group-hover:bg-blue-50', aria: {labelledby: dom_id(item)} do %>
+    <p class="truncate text-gray-800 group-hover:text-gray-900">
+      <%= t('.times_per_week', count: item.deliveries_per_week) %>
+    </p>
+  <% end %>
+  <div class="table-cell border-t px-6 py-4 text-right group-hover:bg-blue-50">
+    <%= button_to buyers_rfp_delivery_path(item.rfp, item), method: :delete, class: 'flex space-x-1 items-center text-sm text-gray-500 hover:text-red-700', data: {confirm: t('.confirm')} do %>
+      <%= inline_svg_tag 'buyers/deliveries/destroy.svg', class: 'h-4 w-4' %>
+      <span><%= t('.destroy') %></span>
+    <% end %>
+  </div>
+</div>

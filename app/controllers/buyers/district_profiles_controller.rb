@@ -1,52 +1,41 @@
 class Buyers::DistrictProfilesController < ApplicationController
   layout 'buyers'
 
-  def show
-    redirect_to new_buyers_district_profile_path unless district_profile.persisted?
-    district_profile.complete?
-  end
+  before_action -> { redirect_to edit_buyers_district_profile_path }, if: -> { current_buyer.district_profile.blank? }, only: [:show]
 
-  def new
-    redirect_to edit_buyers_district_profile_path if district_profile.persisted?
+  def show
+    @district_profile = current_buyer.district_profile || current_buyer.build_district_profile
   end
 
   def edit
-    redirect_to new_buyers_district_profile_path unless district_profile.persisted?
-  end
-
-  def create
-    @district_profile = current_buyer.build_district_profile(district_profile_params)
-    if @district_profile.save
-      flash[:success] = 'District Profile was successfully created.'
-      redirect_to buyers_district_profile_path if params[:commit] == 'Save and exit'
-      redirect_to edit_buyers_district_profile_contact_path if params[:commit] == 'Next'
-    else
-      flash[:alert] = 'District Profile could not be saved.'
-      render :new
-    end
+    @district_profile = current_buyer.district_profile || current_buyer.build_district_profile
   end
 
   def update
-    if district_profile.update(district_profile_params)
-      flash[:success] = 'District Profile was successfully updated.'
-      redirect_to buyers_district_profile_path if params[:commit] == 'Save and exit'
-      redirect_to edit_buyers_district_profile_contact_path if params[:commit] == 'Next'
-    else
-      flash[:alert] = 'District Profile could not be saved.'
-      render :edit
+    @district_profile = current_buyer.district_profile || current_buyer.build_district_profile
+    respond_to do |format|
+      if @district_profile.update(district_profile_params)
+        if params.key?(:draft)
+          @district_profile.valid?(:district_information)
+          format.html { render :edit }
+          format.turbo_stream { render :update }
+        else
+          format.any do
+            flash[:success] = 'District Profile was successfully updated.'
+            redirect_to edit_buyers_district_profile_contact_path, status: :see_other
+          end
+        end
+      else
+        flash[:alert] = 'District Profile could not be saved.'
+        format.html { render :edit }
+        format.turbo_stream { render :update }
+      end
     end
   end
 
   private
 
-  def district_profile
-    @district_profile ||= current_buyer.district_profile || current_buyer.build_district_profile
-  end
-
   def district_profile_params
-    params.require(:district_profile).permit(
-      :district_name, :city, :county, :enrolled_students_number,
-      :daily_meals_number
-    )
+    params.require(:district_profile).permit(:district_name, :city, :county, :enrolled_students_number)
   end
 end

@@ -1,0 +1,11 @@
+.forms-text-field {
+  @apply mt-1 relative;
+
+  &__input {
+    @apply appearance-none block w-full px-3 py-2 border border-gray-400 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cyan-600 focus:border-cyan-600 sm:text-sm;
+
+    &--error {
+      @apply appearance-none block w-full px-3 py-2 border border-red-400 text-red-900 rounded-md shadow-sm placeholder-red-300 focus:outline-none focus:ring-red-300 focus:border-red-300 sm:text-sm;
+    }
+  }
+}

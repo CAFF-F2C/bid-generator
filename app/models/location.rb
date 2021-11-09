@@ -14,6 +14,9 @@
 #
 class Location < ApplicationRecord
   belongs_to :buyer, inverse_of: :locations
+
+  has_one :district_profile, through: :buyer
+
   has_many :deliveries, inverse_of: :location, dependent: :restrict_with_error
 
   validates :name, :street_address, :city, :state, :zip_code, presence: true

@@ -1,0 +1,5 @@
+<% errors.group_by(&:type).each do |type, type_errors| %>
+<li>
+  <%= t(:format, scope: [:errors, :aggregate], group: t(section, scope: [:activerecord, :attributes, :district_profile]), message: t(type, scope: [:errors, :aggregate, :messages]), attributes: type_errors.map(&:attribute).map { |attribute| DistrictProfile.human_attribute_name(attribute) }.to_sentence) %>
+</li>
+<% end %>

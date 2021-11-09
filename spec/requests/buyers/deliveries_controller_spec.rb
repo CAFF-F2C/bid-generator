@@ -202,7 +202,7 @@ RSpec.describe Buyers::DeliveriesController, type: :request do
       end
 
       context 'with an incomplete delivery' do
-        it 'renders new' do
+        it 'renders an alert' do
           make_request(location_id: '')
           expect(flash[:alert]).to have_content(/could not be saved/i)
         end

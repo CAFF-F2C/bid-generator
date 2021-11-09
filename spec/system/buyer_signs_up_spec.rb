@@ -47,8 +47,8 @@ RSpec.describe 'Buyer signs up', type: :system do
 
     click_on 'Log in'
 
-    expect(page).to have_content(/my documents/i)
-    click_on 'Sign out'
+    expect(page).to have_content(/documents/i)
+    click_on 'Log out'
     expect(page).to have_content(/sign into your account/i)
 
     click_on 'Forgot your password?'

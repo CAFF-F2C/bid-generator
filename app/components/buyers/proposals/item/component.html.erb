@@ -1,0 +1,27 @@
+<div class="table-row bg-white group">
+  <%= link_to buyers_rfp_path(item), class: 'table-cell max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:bg-blue-50', aria: {labelledby: dom_id(item)} do %>
+    <div id="<%= dom_id(item) %>" class="group truncate text-sm">
+      <p class="truncate font-medium text-gray-800 group-hover:text-gray-900">
+        <%= item.bid_type %>
+      </p>
+      <p class="text-gray-500 truncate group-hover:text-gray-600">
+        <%= item.school_year %>
+      </p>
+    </div>
+  <% end %>
+  <%= link_to buyers_rfp_path(item), class: 'table-cell px-6 py-4 text-left whitespace-nowrap text-sm text-gray-600 group-hover:bg-blue-50', aria: {labelledby: dom_id(item)} do %>
+    <time datetime="<%= item.created_at.iso8601 %>"><%= l(item.created_at.to_date, format: :long) %></time>
+    <p class="text-gray-500">
+      <%= item.buyer.full_name %>
+    </p>
+  <% end %>
+  <%= link_to buyers_rfp_path(item), class: 'hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:table-cell group-hover:bg-blue-50', aria: {labelledby: dom_id(item)} do %>
+    <%= render(Buyers::Proposals::Status::Component.new(proposal: item)) %>
+  <% end %>
+  <div class="table-cell px-6 py-4 text-right group-hover:bg-blue-50">
+    <%= button_to buyers_rfp_path(item), method: :delete, class: 'flex space-x-1 items-center text-sm text-gray-500 hover:text-red-700', data: {confirm: t('.confirm')} do %>
+      <%= inline_svg_tag 'buyers/proposals/destroy.svg', class: 'h-4 w-4' %>
+      <span><%= t('.destroy') %></span>
+    <% end %>
+  </div>
+</div>

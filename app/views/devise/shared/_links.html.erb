@@ -1,6 +1,6 @@
 <div class="devise__container">
-  <%= inline_svg_tag('logo.svg', class: 'devise__logo', alt: t('.logo')) %>
-  <h1 class="devise__title"><%= title %></h1>
+  <h1 class="text-center text-5xl tracking-tight font-extrabold"><%= t(:title, scope: [:layouts, :buyers]) %></h1>
+  <h2 class="devise__title"><%= title %></h2>
   <p class="devise__links">
     <%- if controller_name != 'sessions' %>
       <%= t('.or_html', link: link_to(t('.login'), new_session_path(resource_name))) %><br />

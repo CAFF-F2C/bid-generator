@@ -1,5 +1,5 @@
 .flash {
-  @apply fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start;
+  @apply z-40 fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start;
 
   &__container {
     @apply w-full flex flex-col items-center space-y-2 sm:space-y-4 sm:items-end;
@@ -7,6 +7,10 @@
 
   &__message {
     @apply max-w-sm w-full bg-white shadow-md rounded-lg pointer-events-auto ring-1 ring-gray-900 ring-opacity-5 overflow-hidden;
+
+    &--warning {
+      @apply bg-yellow-50;
+    }
   }
 
   &__message-box {
@@ -15,6 +19,15 @@
 
   &__button {
     @apply bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  }
+
+  &__link {
+    @apply font-medium underline;
+  }
+
+  &__message--warning &__button,
+  &__message--warning &__link {
+    @apply text-yellow-700 hover:text-yellow-600;
   }
 
   &__text {
@@ -26,11 +39,7 @@
   }
 
   &__image {
-    @apply w-5 h-5 text-blue-500;
-
-    &--close {
-      @apply text-gray-400;
-    }
+    @apply w-5 h-5;
 
     &--notice {
       @apply text-green-500;
@@ -38,6 +47,10 @@
 
     &--alert {
       @apply text-red-500;
+    }
+
+    &--warning {
+      @apply text-yellow-500;
     }
   }
 }

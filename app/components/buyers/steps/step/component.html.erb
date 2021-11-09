@@ -1,0 +1,16 @@
+<% if index.eql?(current_index) %>
+  <%= link_to path, class: 'buyers-steps-step buyers-steps-step--current', aria: {current: 'step'} do %>
+    <span class="buyers-steps-step__label buyers-steps-step__label--current"><%= t('.step', index: index) %></span>
+    <span class="buyers-steps-step__title"><%= section %></span>
+  <% end %>
+<% elsif valid %>
+  <%= link_to path, class: 'buyers-steps-step buyers-steps-step--completed' do %>
+    <span class="buyers-steps-step__label buyers-steps-step__label--completed"><%= t('.step', index: index) %></span>
+    <span class="buyers-steps-step__title"><%= section %></span>
+  <% end %>
+<% else %>
+  <%= link_to path, class: 'buyers-steps-step buyers-steps-step--upcoming' do %>
+    <span class="buyers-steps-step__label buyers-steps-step__label--upcoming"><%= t('.step', index: index) %></span>
+    <span class="buyers-steps-step__title"><%= section %></span>
+  <% end %>
+<% end %>

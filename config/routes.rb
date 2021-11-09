@@ -24,6 +24,13 @@ Rails.application.routes.draw do
   end
 
   namespace :buyers do
+    resource :district_profile, only: [:show, :edit, :update, :destroy] do
+      scope module: :district_profiles do
+        resource :contact, only: [:edit, :update]
+        resource :procurement, only: [:edit, :update]
+        resources :locations, only: [:index, :show, :create, :new, :edit, :update, :destroy]
+      end
+    end
     resources :documents, only: [:index]
     resources :rfps, except: [:index] do
       resources :scores, except: [:new, :edit, :destroy]
@@ -33,11 +40,7 @@ Rails.application.routes.draw do
       resource :reviewed, only: [:update]
       resource :final, only: [:update]
     end
-    resource :district_profile, only: [:show, :create, :new, :edit, :update, :destroy] do
-      resource :contact, only: [:edit, :update]
-      resource :procurement, only: [:edit, :update]
-      resources :locations, only: [:index, :show, :create, :new, :edit, :update, :destroy]
-    end
+    resource :resources, only: [:show]
     root to: 'documents#index'
   end
 

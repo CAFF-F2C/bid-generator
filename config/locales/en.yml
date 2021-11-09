@@ -22,7 +22,17 @@ en:
         deliveries_blank: "can't be blank"
         scores_blank: "can't be blank"
     attributes:
+      delivery:
+        location: Delivery site
+        location_id: Delivery site
+        window_start_time: Start time
+        window_end_time: End time
       district_profile:
+        district_information: District Information
+        district_name: District name
+        rfp_contact: RFP Contact
+        locations: Delivery Sites
+        procurement_terms: Procurement Terms
         contact_full_name: Full name
         contact_department_name: Department name
         contact_mailing_address_city: City
@@ -38,6 +48,35 @@ en:
         required_insurance_per_incident: Per-incident liability limit
         enrolled_students_number: Number of enrolled students
         daily_meals_number: Number of daily meals served
+      location:
+        name: Name
+        street_address: Street address
+        city: City
+        state: State
+        zip_code: ZIP code
+      rfp:
+        purpose: RFP Purpose
+        scores: Scoring Categories
+        deliveries: Delivery Times
+        item_list: Item List
+        bid_type: Type
+        start_year: School year
+    models:
+      district_profile:
+        one: District Profile
+        other: District Profiles
+      rfp:
+        one: Request for Proposals
+        other: Requests for Proposals
+  errors:
+    aggregate:
+      format: "%{group} %{message} %{attributes}"
+      messages:
+        blank: "is missing"
+        deliveries_blank: "is missing"
+        invalid: "has invalid information in"
+        scores_invalid: "has invalid information in"
+        inclusion: "has invalid information in"
   buyers:
     delivery:
       time:
@@ -53,6 +92,239 @@ en:
         13: 1:00 pm
         14: 2:00 pm
         15: 3:00 pm
+    deliveries:
+      edit:
+        title: Edit %{name}
+      empty:
+        component:
+          title: No delivery times
+          new: New delivery time
+      form:
+        add_new_location: Add new delivery site
+        preferred_delivery_days: Preferred delivery days
+        submit: Save delivery schedule
+      index:
+        add_delivery_site: add a new delivery site
+        description_html: When will your delivery sites be able to receive deliveries? This schedule pulls from your district's delivery sites. If you don't see a delivery site you need for this RFP, you can %{add_delivery_site_link} now.
+        new: New delivery schedule
+        next: Next
+      list:
+        component:
+          actions: Actions
+          deliveries: Deliveries
+          delivery: delivery time
+          location: Delivery site
+          next: Next
+          pagination: Pagination
+          previous: Previous
+          times: Times
+        item:
+          component:
+            confirm: Are you sure you want to delete this delivery time?
+            destroy: Delete
+            times_per_week: "%{count}x per week"
+      new:
+        title: New delivery time
+    documents:
+      index:
+        title: Documents
+    district_profiles:
+      contacts:
+        form:
+          next: Next
+          save_draft: Save draft
+        edit:
+          title: RFP Contact
+          description: Who will be the primary point of contact for RFPs? Most of the time, this will be the food service director for the school district.
+      edit:
+        title: District Information
+        description: What general information should interested vendors know about your school district?
+      errors:
+        component:
+          title:
+            one: There was 1 error with your district profile
+            other: There were %{count} errors with your district profile
+      new:
+        title: District Information
+        description: What general information should interested vendors know about your school district?
+      locations:
+        edit:
+          title: Edit %{name}
+        form:
+          submit: Save delivery site
+        index:
+          description: Where will you receive deliveries? When you make an RFP, you'll pick locations from this list.
+          new: New delivery site
+          review: Review profile
+          title: Delivery Sites
+        new:
+          title: New delivery site
+      procurements:
+        form:
+          allow_piggyback: Piggyback clause
+          allow_piggyback_description_html: "Would you like to offer a piggyback clause in your contract? If you're not sure what this means, check out the %{cornell_link}. Your procurement department probably knows if you have this."
+          cornell_link: piggyback clause explainer from Cornell
+          insurance_requirements: Insurance requirements
+          insurance_requirements_description: What insurance coverage do you require from vendors? Your procurement department or business department probably knows these numbers.
+          local_produce: Local produce
+          local_produce_description: How do you define local for the purposes of buying fresh produce? We'll add this definition to RFPs, but you can always change it later.
+          price_verification: Price verification
+          price_verification_description: Would you like vendors to send you historical item prices? Most of the time, this is an easy way to check if you're getting an accurate quote.
+      section:
+        component:
+          update: Update
+        field:
+          component:
+            incomplete: Incomplete
+      show:
+        district_information: District information
+        district_information_description: What general information should interested vendors know about your school district?
+        incomplete: Incomplete
+        locations: Delivery sites
+        locations_description: Where will you receive deliveries?
+        piggyback_included: Piggyback clause included
+        piggyback_not_included: Piggyback clause not included
+        price_verified: Price verified
+        price_not_verified: No verification
+        procurement_terms: Procurement terms
+        procurement_terms_description: How would you like to handle commonly-included sections on procurement contracts?
+        rfp_contact: RFP contact
+        rfp_contact_description: Who will be the primary point of contact for RFPs?
+        title: District Profile
+    item_lists:
+      edit:
+        contact_html: Get in touch with us by email at %{mail_link}.
+        item_list_description: Do you know what items you'll be purchasing during the school year? Download and complete the item list template to tell vendors what products you're looking for, then upload it on this page.
+        review: Review proposal
+        title: Item List
+        usage_report_description: Don't know what items you'll be purchasing? Upload your annual usage report or purchasing history, and we'll develop an item list with you. Don't have a usage report handy? Your current vendor should have one.
+      form:
+        drag_and_drop: or drag and drop
+        download: Download
+        file_types: Excel, CSV, or PDF up to 10MB
+        step_1: "STEP 1: Download pre-made templates"
+        step_1_description: If you have your own item list or annual usage report already, you can skip this step.
+        step_2: "STEP 2: Upload your complete item list or annual usage report"
+        upload: Upload an item list
+    locations:
+      empty:
+        component:
+          title: Add your delivery sites
+          new: New delivery site
+      list:
+        component:
+          actions: Actions
+          address: Address
+          location: location
+          name: Name
+          next: Next
+          pagination: Pagination
+          previous: Previous
+        item:
+          component:
+            confirm: Are you sure you want to delete this delivery site?
+            destroy: Delete
+    navigation:
+      component:
+        close: Close sidebar
+        menu: Menu
+        open: Open sidebar
+    proposals:
+      documents:
+        component:
+          create_draft: Create draft
+          upload_reviewed: Upload reviewed
+          upload_final: Upload final
+          description: After you've filled out the information required for your proposal, you can create and download a draft here. If you'd like to review a copy of proposal with us, upload a Review document. When you're ready to finalize and post the propsal, upload a Final document.
+          rebuild_draft: Rebuild draft
+          post: Post proposal
+          title: Proposal versions
+          upload: Upload
+      empty:
+        component:
+          description: |
+            After you make your first draft, we're standing by to
+            walk you through item list creation, review, and posting.
+            Not quite ready to submit yet? Your draft proposals will show up here.
+          new: New proposal
+          prompt: Ready to make a proposal?
+          title: Requests for Proposals
+      errors:
+        component:
+          title:
+            one: There was 1 error with your proposal
+            other: There were %{count} errors with your proposal
+      item:
+        component:
+          confirm: Are you sure you want to delete this proposal?
+          destroy: Delete
+      list:
+        component:
+          actions: Actions
+          created_at: Created at
+          next: Next
+          new: New proposal
+          previous: Previous
+          pagination: Pagination
+          proposal: proposal
+          status: Status
+          title: Requests for Proposals
+          type: Type
+      section:
+        component:
+          update: Update
+      status:
+        component:
+          final: Final
+          review: Review
+          draft: Draft
+          complete: Complete
+          in_progress: In Progress
+    resources:
+      show:
+        title: Resources
+    rfps:
+      edit:
+        title: RFP Purpose
+        description_html: What types of products will you purchase using this RFP? When will you begin to purchase those products? Please email %{mail_link} to create other RFP types.
+      new:
+        title: RFP Purpose
+        description_html: What types of products will you purchase using this RFP? When will you begin to purchase those products? Please email %{mail_link} to create other RFP types.
+      show:
+        deliveries: Delivery Times
+        deliveries_description: Where and when will you receive deliveries?
+        incomplete: Incomplete
+        piggyback_included: Piggyback clause included
+        piggyback_not_included: Piggyback clause not included
+        price_not_verified: No verification
+        price_verified: Price verified
+        rfp_purpose: RFP Purpose
+        rfp_purpose_description: What types of products will you purchase using this RFP? When will you begin to purchase those products?
+        scores: Scoring Categories
+        scores_description: How will you score vendors responding to this RFP?
+        title: Request for Proposal
+    scores:
+      component:
+        update: Update
+      index:
+        title: Scoring Categories
+        description: How will you score vendors responding to this RFP?
+        rules_html: You'll need to spend 100 points on the following categories. If any category has zero points, it won't show up on your RFP. The <b>Price</b> category must have the highest number of points, but no more than 55 points. We also require you to spend at least 5 points on the <b>Local Geographic Preference</b> category.
+        custom_category_html: Would you like to add a scoring category outside of the categories listed here? CAFF can work with you to create a custom scoring category. Please email %{mail_link} for more information.
+    sessions:
+      destroy:
+        title: Log out
+    steps:
+      component:
+        label: Progress
+        title: District Profile
+      step:
+        component:
+          district_information: District Information
+          locations: Delivery Sites
+          procurement_terms: Procurement Terms
+          rfp_contact: RFP Contact
+          step: Step %{index}
   devise:
     shared:
       links:
@@ -99,3 +371,15 @@ en:
         forgot_password: Forgot your password?
         submit: Log in
         title: Sign into your account
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: 'Displaying <span class="font-medium">1</span> %{entry_name}'
+          other: 'Displaying <span class="font-medium">all %{count}</span> %{entry_name}'
+      more_pages:
+        display_entries: 'Displaying %{entry_name} <span class="font-medium">%{first}&nbsp;-&nbsp;%{last}</span> of <span class="font-medium">%{total}</span> in total'
+  layouts:
+    buyers:
+      title: Bid Generator

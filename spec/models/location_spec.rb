@@ -3,10 +3,12 @@ require 'rails_helper'
 RSpec.describe Location, type: :model do
   subject(:location) { FactoryBot.create(:location, buyer: buyer) }
 
-  let(:buyer) { create(:buyer) }
+  let(:buyer) { FactoryBot.create(:buyer) }
 
   it { is_expected.to belong_to(:buyer).inverse_of(:locations) }
+  it { is_expected.to have_one(:district_profile).through(:buyer) }
   it { is_expected.to have_many(:deliveries).inverse_of(:location) }
+
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:street_address) }
   it { is_expected.to validate_presence_of(:city) }

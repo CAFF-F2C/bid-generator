@@ -1,5 +1,18 @@
-<% content_for(:page_header) { "Request for proposal - #{@current_rfp.name}" } %>
-<%= render(Buyers::RfpNavComponent.new(current_path: request.path, current_rfp: @current_rfp)) %>
-<h2 class='buyers__section-head'>Delivery Schedule</h2>
+<div class="divide-y divide-gray-200">
+  <div class="space-y-8">
+    <%= render(Buyers::Steps::Component.new(title: Rfp.model_name.human)) do |component| %>
+      <%= component.step index: 1, current_index: 3, section: t(:purpose, scope: [:activerecord, :attributes, :rfp]), path: edit_buyers_rfp_path(@delivery.rfp), valid: @delivery.rfp.valid?(:purpose) %>
+      <%= component.step index: 2, current_index: 3, section: t(:scores, scope: [:activerecord, :attributes, :rfp]), path: buyers_rfp_scores_path(@delivery.rfp), valid: @delivery.rfp.valid?(:scores) %>
+      <%= component.step index: 3, current_index: 3, section: t(:deliveries, scope: [:activerecord, :attributes, :rfp]), path: buyers_rfp_deliveries_path(@delivery.rfp), valid: @delivery.rfp.valid?(:deliveries) %>
+      <%= component.step index: 4, current_index: 3, section: t(:item_list, scope: [:activerecord, :attributes, :rfp]), path: edit_buyers_rfp_item_list_path(@delivery.rfp), valid: @delivery.rfp.item_list.present? %>
+    <% end %>
 
-<%= render partial: 'form', locals: {current_rfp: @current_rfp, delivery: @delivery} %>
+    <div>
+      <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h2>
+    </div>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= render partial: 'form', locals: {delivery: @delivery} %>
+  </div>
+</div>

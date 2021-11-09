@@ -1,6 +1,0 @@
-<% content_for(:page_header) { 'District Profile' } %>
-<%= render(Buyers::DistrictProfileNavComponent.new(current_path: request.path)) %>
-
-<%= form_with model: [:buyers, @district_profile], url: buyers_district_profile_url, method: :post, local: true do |f| %>
-  <%= render partial: 'form', locals: {f: f} %>
-<% end %>

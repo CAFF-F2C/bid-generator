@@ -5,6 +5,7 @@ import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Autosave from "stimulus-rails-autosave"
 import PlacesAutocomplete from "stimulus-places-autocomplete"
+import { Slideover } from "tailwindcss-stimulus-components"
 
 const application = Application.start()
 const context = require.context("controllers", true, /_controller\.(js|ts)$/)
@@ -12,6 +13,4 @@ const contextComponents = require.context("../../components", true, /_controller
 application.load(definitionsFromContext(context).concat(definitionsFromContext(contextComponents)))
 application.register("autosave", Autosave)
 application.register("places", PlacesAutocomplete)
-
-// application.debug = true
-// window.stimulusApplication = application
+application.register('slideover', Slideover)

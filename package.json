@@ -19,6 +19,7 @@
     "stimulus-places-autocomplete": "^0.4.0",
     "stimulus-rails-autosave": "^3.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tailwindcss-stimulus-components": "^3.0.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },

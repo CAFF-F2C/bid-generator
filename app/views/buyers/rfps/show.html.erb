@@ -1,135 +1,86 @@
-<% content_for(:page_header) { 'Request for proposal' } %>
-<%= render(FormErrorsComponent.new(errors: @rfp.errors, scope: :complete)) %>
+<div class="space-y-4">
+  <h2 class="text-xl font-bold md:text-2xl"><%= t('.title') %></h2>
 
-<% if @rfp.complete? %>
-  <div class='buyers__table-head'>
-    <h2 class='border-b border-gray-200 pb-4'>Documents</h2>
+  <%= render(Buyers::Proposals::Documents::Component.new(proposal: @rfp)) %>
+
+  <%= render(Buyers::DistrictProfiles::Errors::Component.new(district_profile: @rfp.district_profile, sections: [:district_information, :rfp_contact, :procurement_terms, :locations])) %>
+
+  <%= render(Buyers::Proposals::Errors::Component.new(proposal: @rfp, sections: [:rfp_purpose, :scores, :deliveries, :item_list])) %>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::Proposals::Section::Component.new(name: t('.rfp_purpose'), description: t('.rfp_purpose_description'), path: edit_buyers_rfp_path(@rfp))) do |component| %>
+      <% component.field(proposal: @rfp, section: :rfp_purpose, name: :bid_type) %>
+      <% component.field(proposal: @rfp, section: :rfp_purpose, name: :start_year) do %>
+        <%= @rfp.school_year %>
+      <% end %>
+    <% end %>
   </div>
-  <div class='flex w-full mt-6'>
-    <h3 class='flex-1'>Draft</h3>
-    <%= button_to("Create Draft RFP", buyers_rfp_draft_path(@rfp) , method: :post, class: 'button-primary', data: {turbo: false}) %>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t(:district_information, scope: [:buyers, :district_profiles, :show]), description: t(:district_information_description, scope: [:buyers, :district_profiles, :show]), path: edit_buyers_district_profile_path)) do |component| %>
+      <% component.field(district_profile: @rfp.district_profile, section: :district_information, name: :district_name) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :district_information, name: :city) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :district_information, name: :county) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :district_information, name: :enrolled_students_number) %>
+    <% end %>
   </div>
-  <% if @rfp.draft.attached? %>
-    <div class='ml-4'>
-      <div class='buyers__rfp-item-list'>
-        <div>
-          <%= link_to @rfp.draft.filename, rails_blob_path(@rfp.draft, disposition: 'attachment') %>
-        </div>
-        <div class='text-sm text-gray-600'>
-          Created at: <%= l(@rfp.draft.created_at, format: :long) %>
-        </div>
-      </div>
-    </div>
-  <% end %>
 
-  <h3 class='mt-6'>Reviewed RFP</h3>
-  <%= form_with model: [:buyers, @rfp], url: buyers_rfp_reviewed_path(rfp_id: @rfp.id), method: :patch, local: true, data: {turbo: false} do |f| %>
-    <div class='flex pl-4 mt-6 mb-4'>
-      <div class='flex-1'>
-        <%= f.file_field :reviewed, required: true, class: 'text-field' %>
-      </div>
-      <div>
-        <%= f.submit 'Upload reviewed RFP', class: 'button-primary' %>
-      </div>
-    </div>
-  <% end %>
-  <% if @rfp.reviewed.attached? %>
-    <div class='ml-4'>
-      <div class='buyers__rfp-item-list'>
-        <div>
-          <%= link_to @rfp.reviewed.filename, rails_blob_path(@rfp.reviewed, disposition: 'attachment') %>
-        </div>
-        <div class='text-sm text-gray-600'>
-          Created at: <%= l(@rfp.reviewed.created_at, format: :long) %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-<h3 class='mt-6'>Final RFP</h3>
-  <%= form_with model: [:buyers, @rfp], url: buyers_rfp_final_path(rfp_id: @rfp.id), method: :patch, local: true, data: {turbo: false} do |f| %>
-    <div class='flex pl-4 mt-6 mb-4'>
-      <div class='flex-1'>
-        <%= f.file_field :final, required: true, class: 'text-field' %>
-      </div>
-      <div>
-        <%= f.submit 'Upload final RFP', class: 'button-primary' %>
-      </div>
-    </div>
-  <% end %>
-  <% if @rfp.final.attached? %>
-    <div class='ml-4 flex'>
-      <div class='buyers__rfp-item-list flex-1'>
-        <div>
-          <%= link_to @rfp.final.filename, rails_blob_path(@rfp.final, disposition: 'attachment') %>
-        </div>
-        <div class='text-sm text-gray-600'>
-          Created at: <%= l(@rfp.final.created_at, format: :long) %>
-        </div>
-      </div>
-      <div>
-        <%= link_to('Post RFP', Rails.application.config.post_rfp_link, target: '_blank', class: 'button-primary') %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
-
-<table class='buyers__display-form'>
-  <thead class='buyers__table-head'>
-    <tr>
-      <th>
-        <h2 class='whitespace-nowrap'>RFP Purpose</h2>
-      </th>
-      <th>
-        <%= link_to('Edit', edit_buyers_rfp_path(@rfp), aria: {label: 'Edit RFP Purpose'}) %>
-      </th>
-    </tr>
-  </thead>
-  <%= render partial: 'display_field', locals: {attribute: 'bid_type'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'school_year'} %>
-
-  <thead class='buyers__table-head'>
-    <tr>
-      <th>
-        <h2 class='whitespace-nowrap'>Scoring Categories</h2>
-      </th>
-      <th>
-        <%= link_to('Edit', buyers_rfp_scores_path(@rfp), aria: {label: 'Edit scores'}) %>
-      </th>
-    </tr>
-  </thead>
-  <% unless @rfp.score_sheet.valid? %>
-    <tr>
-      <td colspan=2 class='form-errors__container'>
-        <% @rfp.score_sheet.errors.full_messages.uniq.each do |error| %>
-          <div class='flex pl-4 mb-2'>
-            <div class='form-errors__icon'>
-              <%= inline_svg_tag("icon_x.svg") %>
-            </div>
-            <div class='ml-4'>
-              <%= error %>
-            </div>
-          </div>
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t(:rfp_contact, scope: [:buyers, :district_profiles, :show]), description: t(:rfp_contact_description, scope: [:buyers, :district_profiles, :show]), path: edit_buyers_district_profile_contact_path)) do |component| %>
+      <% component.field(district_profile: @rfp.district_profile, section: :rfp_contact, name: :contact_full_name) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :rfp_contact, name: :contact_department_name) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :rfp_contact, name: :contact_title) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :rfp_contact, name: :contact_phone_number) %>
+      <% component.field(district_profile: @rfp.district_profile, section: :rfp_contact, name: :contact_mailing_address) do %>
+        <% if @rfp.district_profile.address.present? %>
+          <%= @rfp.district_profile.address %>
+        <% else %>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+            <%= t('.incomplete') %>
+          </span>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-  <% @rfp.positive_scores.each do |score| %>
-    <tr><td><%= score.name %></td><td><%= score.value %></td></tr>
-  <% end %>
-</table>
-
-<div class='buyers__table-head flex'>
-  <div class='flex-1'>
-    <h2>Deliveries</h2>
+      <% end %>
+    <% end %>
   </div>
-  <div>
-    <%= link_to('Edit', buyers_rfp_deliveries_path(@rfp), aria: {label: 'Edit deliveries'}) %>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t(:procurement_terms, scope: [:buyers, :district_profiles, :show]), description: t(:procurement_terms_description, scope: [:buyers, :district_profiles, :show]), path: edit_buyers_district_profile_procurement_path)) do |component| %>
+      <% component.field(district_profile: @rfp.district_profile, section: :procurement_terms, name: :local_percentage) do %>
+        <%= number_to_percentage(@rfp.district_profile.local_percentage, precision: 0) %>
+      <% end %>
+      <% component.field(district_profile: @rfp.district_profile, section: :procurement_terms, name: :price_verified) do %>
+        <% unless @rfp.district_profile.price_verified.nil? %>
+          <%= @rfp.district_profile.price_verified ? t('.price_verified') : t('.price_not_verified') %>
+        <% end %>
+      <% end %>
+      <% component.field(district_profile: @rfp.district_profile, section: :procurement_terms, name: :allow_piggyback) do %>
+        <% unless @rfp.district_profile.allow_piggyback.nil? %>
+          <%= @rfp.district_profile.allow_piggyback ? t('.piggyback_included') : t('.piggyback_not_included') %>
+        <% end %>
+      <% end %>
+      <% component.field(district_profile: @rfp.district_profile, section: :procurement_terms, name: :required_insurance_per_incident) do %>
+        <%= number_to_currency(@rfp.district_profile.required_insurance_per_incident, precision: 0) %>
+      <% end %>
+      <% component.field(district_profile: @rfp.district_profile, section: :procurement_terms, name: :required_insurance_aggregate) do %>
+        <%= number_to_currency(@rfp.district_profile.required_insurance_aggregate, precision: 0) %>
+      <% end %>
+      <% component.field(district_profile: @rfp.district_profile, section: :procurement_terms, name: :required_insurance_automobile) do %>
+        <%= number_to_currency(@rfp.district_profile.required_insurance_automobile, precision: 0) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::Scores::Component.new(name: t('.scores'), description: t('.scores_description'), path: buyers_rfp_scores_path(@rfp))) do |component| %>
+      <% @rfp.scores.each do |score| %>
+        <% component.category(name: score.score_category.name, value: score.value) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::Proposals::Section::Component.new(name: t('.deliveries'), description: t('.deliveries_description'), path: buyers_rfp_deliveries_path(@rfp))) do |component| %>
+      <%= render(Buyers::Deliveries::List::Component.new(deliveries: @rfp.deliveries.page.per(@rfp.deliveries.size + 1))) %>
+    <% end %>
   </div>
 </div>
-<div class='buyers__locations'>
-  <%= render partial: 'buyers/deliveries/deliveries', locals: {deliveries: @rfp.deliveries, rfp: @rfp} %>
-</div>
-
-

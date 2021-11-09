@@ -38,12 +38,13 @@ class Rfp < ApplicationRecord
   delegate :district_profile, to: :buyer
   delegate :complete?, to: :district_profile, prefix: true, allow_nil: true
 
-  validates :bid_type, :start_year, :buyer, presence: true
-  validates :bid_type, inclusion: BID_TYPES
+  validates :buyer, presence: true
+  validates :bid_type, inclusion: BID_TYPES, on: [:create, :update, :purpose]
+  validates :bid_type, :start_year, presence: true, on: [:create, :update, :purpose]
 
   validates :district_profile_complete?, inclusion: {in: [true]}, on: :complete?
-  validates :deliveries, deliveries_presence: true, on: :complete?
-  validates :score_sheet, score_sheet: true, on: :complete?
+  validates :deliveries, deliveries_presence: true, on: [:deliveries, :complete?]
+  validates :score_sheet, score_sheet: true, on: [:scores, :complete?]
 
   def name
     "#{bid_type} (#{school_year})"

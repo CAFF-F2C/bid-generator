@@ -1,0 +1,91 @@
+<%= turbo_frame_tag 'buyers-district-profile-procurements' do %>
+  <%= form_for district_profile, as: :district_profile, url: buyers_district_profile_procurement_path, method: :patch, html: {data: {turbo_frame: '_top'}} do |f| %>
+    <div class="divide-y divide-gray-200">
+      <div class="space-y-4">
+        <div>
+          <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.local_produce') %></h2>
+          <p class="mt-1 text-sm text-gray-600"><%= t('.local_produce_description') %></p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <%= f.label :local_percentage %>
+            <%= f.select :local_percentage, ((25..60).step(5)).map { |value| ["#{value}%", value] }, {} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-4 space-y-4">
+        <div>
+          <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.price_verification') %></h2>
+          <p class="mt-1 text-sm text-gray-600"><%= t('.price_verification_description') %></p>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <%= f.radio_button :price_verified, true %>
+            <%= f.label :price_verified, 'Verify product prices for the previous school year', class: 'ml-3 block text-sm font-medium text-gray-700', value: true %>
+          </div>
+
+          <div class="flex items-center">
+            <%= f.radio_button :price_verified, false %>
+            <%= f.label :price_verified, 'Do not verify pricing', class: 'ml-3 block text-sm font-medium text-gray-700', value: false %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-4 space-y-4">
+        <div>
+          <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.allow_piggyback') %></h2>
+          <p class="mt-1 text-sm text-gray-600"><%= t('.allow_piggyback_description_html', cornell_link: link_to(t('.cornell_link'), 'https://www.clrp.cornell.edu/q-a/243-Piggybacking.html', class: 'text-cyan-700 font-medium underline hover:text-cyan-600')) %></p>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <%= f.radio_button :allow_piggyback, true %>
+            <%= f.label :allow_piggyback, "Allow other districts to piggyback on this RFP's pricing", class: 'ml-3 block text-sm font-medium text-gray-700', value: true %>
+          </div>
+
+          <div class="flex items-center">
+            <%= f.radio_button :allow_piggyback, false %>
+            <%= f.label :allow_piggyback, 'Do not add a piggyback clause', class: 'ml-3 block text-sm font-medium text-gray-700', value: false %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-4 space-y-4">
+        <div>
+          <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.insurance_requirements') %></h2>
+          <p class="mt-1 text-sm text-gray-600"><%= t('.insurance_requirements_description') %></p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-2">
+            <%= f.label :required_insurance_per_incident %>
+            <%= f.number_field :required_insurance_per_incident %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-2">
+            <%= f.label :required_insurance_aggregate %>
+            <%= f.number_field :required_insurance_aggregate %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-2">
+            <%= f.label :required_insurance_automobile %>
+            <%= f.number_field :required_insurance_automobile %>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 mt-8">
+        <div class="flex justify-start space-x-4">
+          <%= f.button 'Next', class: 'forms-submit' %>
+          <%= f.button 'Save draft', class: 'forms-submit--outline', name: :draft, value: true %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

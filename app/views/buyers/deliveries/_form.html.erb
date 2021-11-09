@@ -1,64 +1,58 @@
-<%= form_for [:buyers, current_rfp, delivery] do |f| %>
-  <div class='field'>
-    <%= f.label :location_id, 'Location', class: 'text-field-label' %>
-    <%= f.select :location_id, options_from_collection_for_select(@current_buyer.locations, :id, :name_with_address), {}, class: 'select' %>
-    <div>
-      or
-      <%= link_to 'Add a new location', new_buyers_district_profile_location_path %>
-  </div>
+<%= turbo_frame_tag 'buyers-rfp-delivery' do %>
+  <%= form_for [:buyers, delivery.rfp, delivery], as: :delivery, html: {data: {turbo_frame: '_top'}} do |f| %>
+    <div class="divide-y divide-gray-200">
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-4">
+            <%= f.label :location_id %>
+            <%= f.select :location_id, options_from_collection_for_select(@delivery.rfp.buyer.locations, :id, :name_with_address), {} %>
+            <p><%= link_to t('.add_new_location'), new_buyers_district_profile_location_path, class: 'text-cyan-700 text-sm underline hover:text-cyan-500' %></p>
+          </div>
+        </div>
 
-  <fieldset class='buyers__fieldset' role='checkbox'>
-    <legend class='buyers__legend'>Preferred delivery days</legend>
-    <div class='field'>
-      <%= f.check_box :delivery_days, {multiple: true}, '1', nil %>
-      <%= f.label :delivery_days, 'Monday', value: 1, class: 'radio-label' %>
-    </div>
-    <div class='field'>
-      <%= f.check_box :delivery_days, {multiple: true}, '2', nil %>
-      <%= f.label :delivery_days, 'Tuesday', value: 2, class: 'radio-label' %>
-    </div>
-    <div class='field'>
-      <%= f.check_box :delivery_days, {multiple: true}, '3', nil %>
-      <%= f.label :delivery_days, 'Wednesday', value: 3, class: 'radio-label' %>
-    </div>
-    <div class='field'>
-      <%= f.check_box :delivery_days, {multiple: true}, '4', nil %>
-      <%= f.label :delivery_days, 'Thursday', value: 4, class: 'radio-label' %>
-    </div>
-    <div class='field'>
-      <%= f.check_box :delivery_days, {multiple: true}, '5', nil %>
-      <%= f.label :delivery_days, 'Friday', value: 5, class: 'radio-label' %>
-    </div>
-  </fieldset>
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-2">
+            <%= f.label :window_start_time %>
+            <%= f.select :window_start_time, [*4..15].map { |time| [t(time, scope: [:buyers, :delivery, :time]), time] }, {} %>
+          </div>
 
-  <div class='field'>
-    <%= f.label :deliveries_per_week, 'Deliveries per week', class: 'text-field-label' %>
-    <%= f.select :deliveries_per_week, 1..5, {}, class: 'select' %>
-  </div>
+          <div class="sm:col-span-2">
+            <%= f.label :window_end_time %>
+            <%= f.select :window_end_time, [*4..15].map { |time| [t(time, scope: [:buyers, :delivery, :time]), time] }, {} %>
+          </div>
+        </div>
 
-  <fieldset class='buyers__fieldset'>
-    <legend class='text-field-label'>Delivery window</legend>
-    <div class='buyers__delivery-window'>
-      <div class='field'>
-        <%= f.select :window_start_time, [*4..15].map { |time| [t(time, scope: [:buyers, :delivery, :time]), time] }, {}, class: 'select', aria: {label: 'Start time'} %>
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <fieldset class="sm:col-span-4">
+            <legend class="text-base font-medium text-gray-900"><%= t('.preferred_delivery_days') %></legend>
+            <div class="mt-4 space-y-4">
+              <%= f.collection_check_boxes(:delivery_days, I18n.translate("date.day_names").map.with_index.to_a[1...-1], :second, :first) do |b| %>
+                <div class="relative flex items-start">
+                  <div class="flex items-center h-5">
+                    <%= b.check_box class: 'focus:ring-cyan-500 h-4 w-4 text-cyan-600 border-gray-300 rounded' %>
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <%= b.label class: 'font-medium text-gray-700' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-2">
+            <%= f.label :deliveries_per_week %>
+            <%= f.select :deliveries_per_week, 1..5, {} %>
+          </div>
+        </div>
       </div>
-      <div class='buyers__delivery-window-separator'>
-        to
-      </div>
-      <div class='field'>
-        <%= f.select :window_end_time, [*4..15].map { |time| [t(time, scope: [:buyers, :delivery, :time]), time] }, {}, class: 'select', aria: {label: 'End time'} %>
-      </div>
-    </div>
-  </fieldset>
 
-  <div class='buyers__actions'>
-    <div class='buyers__action'>
-      <%= f.submit 'Save', class: 'button-primary' %>
+      <div class="pt-4 mt-4">
+        <div class="flex justify-start space-x-4">
+          <%= f.button t('.submit'), class: 'forms-submit' %>
+        </div>
+      </div>
     </div>
-    <div class='buyers__action'>
-      <%= link_to 'Cancel', buyers_rfp_deliveries_path(current_rfp), class: 'button-secondary' %>
-    </div>
-  </div>
-</div>
-
+  <% end %>
 <% end %>

@@ -1,0 +1,35 @@
+.buyers-steps-step {
+  @apply pl-4 py-2 flex flex-col border-l-4 md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4;
+
+  &--current {
+    @apply border-cyan-500;
+  }
+
+  &--completed {
+    @apply group border-cyan-700 hover:border-cyan-500;
+  }
+
+  &--upcoming {
+    @apply group border-gray-200 hover:border-gray-300;
+  }
+
+  &__label {
+    @apply text-xs font-semibold tracking-wide uppercase;
+
+    &--completed {
+      @apply text-cyan-700 group-hover:text-cyan-500;
+    }
+
+    &--current {
+      @apply text-cyan-700;
+    }
+
+    &--upcoming {
+      @apply text-gray-600 group-hover:text-gray-800;
+    }
+  }
+
+  &__title {
+    @apply text-sm font-medium;
+  }
+}

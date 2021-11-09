@@ -19,15 +19,15 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'District Profile'
     expect(page).to have_content('District Profile')
 
-    fill_in 'District Name', with: 'The District'
-    fill_in 'City', with: 'DistrictCity'
-    fill_in 'County', with: 'DistrictCounty'
-    click_on 'Save and exit'
+    fill_in 'District name', with: 'The District'
+    fill_in 'City', with: 'The City'
+    fill_in 'County', with: 'The County'
 
-    expect(page).to have_selector('.form-errors__error', count: 4)
-    click_on 'Edit contact information'
+    click_on 'Save draft'
+    expect(page).to have_selector('.forms-errors')
 
-    expect(page).to have_content('Contact Information')
+    click_on 'RFP Contact'
+
     fill_in 'Full name', with: 'FS Director'
     fill_in 'Department name', with: 'School Meals R Us'
     fill_in 'Title', with: 'FS Director'
@@ -39,27 +39,38 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Next'
 
-    select '35%', from: 'district_profile_local_percentage'
+    select '35%', from: 'Local percentage'
     choose 'Do not verify pricing'
     choose 'Do not add a piggyback clause'
     fill_in 'Per-incident liability limit', with: '1_000_000'
     fill_in 'Aggregate liability limit', with: '2_000_000'
     fill_in 'Automobile liability limit', with: '500_000'
+
     click_on 'Next'
 
-    click_on '+ New Location'
-    fill_in 'Location name', with: 'Deliver here'
-    fill_in 'Street address', with: '123 Main'
-    fill_in 'City', with: 'OKGO'
-    fill_in 'State', with: 'California'
+    click_on 'New delivery site'
+
+    fill_in 'Name', with: 'Deliver here'
+    fill_in 'Street address', with: '123 Main Way'
+    fill_in 'City', with: 'The City'
+    fill_in 'State', with: 'CA'
     fill_in 'ZIP code', with: '12345'
 
     click_on 'Save'
     expect(page).to have_content(/Deliver here/i)
-    expect(page).to have_content(/123 main, okgo, california 12345/i)
+    expect(page).to have_content('123 Main Way').and have_content('The City').and have_content('CA').and have_content('12345')
 
-    click_on 'Review Profile'
-    expect(page).not_to have_selector('.form-errors__error')
+    click_on 'Review profile'
+
+    expect(page).to have_content('Incomplete')
+
+    click_on 'Update', match: :first
+
+    fill_in 'Number of enrolled students', with: '1000'
+
+    click_on 'Save draft'
+
+    click_on 'District Profile'
 
     expect(page).to have_content(/the district/i)
     expect(page).to have_content(/fs director/i)
@@ -76,15 +87,14 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content('$2,000,000')
     expect(page).to have_content('$500,000')
 
-    click_on('Request for Proposal')
+    click_on 'Documents'
 
-    click_on('New RFP')
-    select '2021 - 2022', from: 'rfp_start_year'
-    click_on('Save and exit')
-    expect(page).to have_selector('.form-errors__error', count: 2)
-    click_on 'Edit scores'
+    click_on 'New proposal'
+    select '2021 - 2022', from: 'School year'
 
-    expect(page).to have_content(/score/i)
+    click_on 'Next'
+
+    expect(page).to have_content('Price')
 
     fill_in 'Item Prices', with: '40'
     expect(page.find('#rfp_total_score')).to have_content('40')
@@ -101,50 +111,58 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page.find('#rfp_total_score')).to have_content('100')
 
     click_on 'Next'
-    expect(page).to have_content(/delivery schedule/i)
-    click_on '+ New delivery'
-    select 'Deliver here', from: 'Location'
+
+    click_on 'New delivery time'
+
+    select 'Deliver here', from: 'Delivery site'
     check 'Monday'
     check 'Wednesday'
     select '2', from: 'Deliveries per week'
     select '6:00 am', from: 'Start time'
     select '8:00 am', from: 'End time'
+
     click_on 'Save'
 
     expect(page).to have_content('Deliver here')
     expect(page).to have_content('2x per week')
-    expect(page).to have_content('Monday, Wednesday')
-    expect(page).to have_content('6:00 am - 8:00 am')
+    expect(page).to have_content('Mon').and have_content('Wed')
+    expect(page).to have_content('6:00 am').and have_content('8:00 am')
 
     click_on 'Next'
-    page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt')
 
-    click_on 'Upload Item List'
+    page.attach_file('Upload an item list', 'spec/fixtures/files/item_list.txt')
     expect(page).to have_content('item_list.txt')
-    click_on 'Request for Proposal'
 
-    expect(page.find('main')).to have_content('Produce (2021 - 2022)')
-    expect(page.find('main')).to have_content('Complete')
+    click_on 'Documents'
 
-    click_on 'edit'
-    select '2022 - 2023', from: 'rfp_start_year'
-    click_on 'Save and exit'
-    expect(page.find('main')).to have_content('2022 - 2023')
+    expect(page).to have_content('Complete').and have_content('Produce').and have_content('2021').and have_content('2022')
 
-    click_on 'Create Draft RFP'
-    expect(page.find('main')).to have_link(Rfp.last.draft.filename)
+    click_on 'Produce'
+    click_on 'Update', match: :first
 
-    expect(page).to have_field('rfp[reviewed]')
-    page.attach_file('rfp[reviewed]', 'spec/fixtures/files/reviewed_rfp.txt')
+    select '2022 - 2023', from: 'School year'
 
-    click_on 'Upload reviewed RFP'
-    # expect(page).to have_content('reviewed_rfp.txt', wait: 30)
+    click_on 'Save draft'
 
-    expect(page).to have_field('rfp[final]')
-    page.attach_file('rfp[final]', 'spec/fixtures/files/final_rfp.txt')
+    click_on 'Documents'
 
-    click_on 'Upload final RFP'
-    # expect(page).to have_content('final_rfp.txt', wait: 30)
+    expect(page).to have_content('Complete').and have_content('Produce').and have_content('2022').and have_content('2023')
+
+    click_on 'Produce'
+
+    click_on 'Create draft'
+    expect(page).to have_link(Rfp.last.draft.filename.to_s)
+
+    page.attach_file('Upload reviewed', 'spec/fixtures/files/reviewed_rfp.txt')
+    click_on 'Submit Reviewed'
+    expect(page).to have_link('reviewed_rfp.txt')
+
+    page.attach_file('Upload final', 'spec/fixtures/files/final_rfp.txt')
+    click_on 'Submit Final'
+    expect(page).to have_link('final_rfp.txt').and have_link('Post proposal')
+
+    click_on 'Documents'
+
     expect(page).to have_content('Final')
   end
 end

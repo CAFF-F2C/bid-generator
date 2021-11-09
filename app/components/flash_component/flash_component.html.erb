@@ -1,7 +1,7 @@
 <section aria-live="assertive" class="flash">
   <section class="flash__container">
     <% @flash.each do |level, message| %>
-      <article data-controller="flash-component--flash" class="flash__message">
+      <article data-controller="flash-component--flash" class="flash__message flash__message--<%= level %>">
         <div class="flash__message-box">
           <div class="flex-shrink-0">
             <%= inline_svg_tag("flash/#{level}.svg", fallback: 'flash/message.svg', class: "flash__image flash__image--#{level}") %>

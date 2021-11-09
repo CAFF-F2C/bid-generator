@@ -1,5 +1,0 @@
-<% content_for(:page_header) { 'District Profile' } %>
-
-<%= form_with model: [:buyers, @location], url: buyers_district_profile_locations_path, method: :post, local: true do |f| %>
-  <%= render partial: 'form', locals: {f: f} %>
-<% end %>

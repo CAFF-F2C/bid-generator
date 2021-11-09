@@ -1,0 +1,91 @@
+<div class="space-y-2">
+  <h3 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h3>
+  <p class="mt-1 max-w-2xl text-sm text-gray-600 hidden md:block"><%= t('.description') %></p>
+
+  <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
+    <% if proposal.draft.attached? %>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm truncate">
+        <%= link_to rails_blob_path(proposal.draft, disposition: 'attachment'), class: 'w-0 flex-1 flex items-center hover:text-cyan-500' do %>
+          <%= inline_svg_tag 'buyers/documents/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+          <span class="ml-2 flex-1 w-0 truncate"><%= proposal.draft.filename %></span>
+          <span class='text-sm text-gray-600'><%= l(proposal.draft.created_at, format: :short) %></span>
+        <% end %>
+        <%= form_for proposal, url: buyers_rfp_draft_path(proposal), method: :create, html: {class: 'block ml-4 flex-shrink-0 flex items-center', data: {turbo_frame: '_top', controller: 'autosave', autosave_delay_value: '1000'}} do |f| %>
+          <%= f.button do %>
+            <p class="flex items-center group cursor-pointer">
+              <span class="ml-2 truncate text-left text-medium text-cyan-700 hover:text-cyan-500"><%= t('.rebuild_draft') %></span>
+            </p>
+          <% end %>
+        <% end %>
+      </li>
+    <% else %>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+        <%= form_for proposal, url: buyers_rfp_draft_path(proposal), method: :create, html: {class: 'flex-1 flex items-center', data: {turbo_frame: '_top'}} do |f| %>
+          <%= f.button t('.create_draft'), class: 'w-0 flex-1 flex items-center group' do %>
+            <%= inline_svg_tag 'buyers/documents/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+            <span class="ml-2 truncate text-left text-medium text-cyan-700 group-hover:text-cyan-500"><%= t('.create_draft') %></span>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if proposal.reviewed.attached? %>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm truncate">
+        <%= link_to rails_blob_path(proposal.reviewed, disposition: 'attachment'), class: 'w-0 flex-1 flex items-center hover:text-cyan-500' do %>
+          <%= inline_svg_tag 'buyers/documents/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+          <span class="ml-2 flex-1 w-0 truncate"><%= proposal.reviewed.filename %></span>
+          <span class='text-sm text-gray-600'><%= l(proposal.reviewed.created_at, format: :short) %></span>
+        <% end %>
+        <%= form_for proposal, url: buyers_rfp_reviewed_path(proposal), method: :patch, html: {class: 'block ml-4 flex-shrink-0 flex items-center', data: {turbo_frame: '_top', controller: 'autosave', autosave_delay_value: '1000'}} do |f| %>
+          <label for="rfp_reviewed" class="flex items-center group cursor-pointer">
+            <span class="ml-2 truncate text-left text-medium text-cyan-700 group-hover:text-cyan-500"><%= t('.upload_reviewed') %></span>
+            <%= f.file_field :reviewed, required: true, class: 'sr-only', data: {action: 'change->autosave#save'} %>
+          </label>
+        <% end %>
+      </li>
+    <% else %>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm group">
+        <%= form_for proposal, url: buyers_rfp_reviewed_path(proposal), method: :patch, html: {class: 'flex-1 flex items-center', data: {turbo_frame: '_top', controller: 'autosave', autosave_delay_value: '1000'}} do |f| %>
+          <label for="rfp_reviewed" class="w-0 flex-1 flex items-center group cursor-pointer">
+            <%= inline_svg_tag 'buyers/documents/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+            <span class="ml-2 truncate text-left text-medium text-cyan-700 group-hover:text-cyan-500"><%= t('.upload_reviewed') %></span>
+            <%= f.file_field :reviewed, required: true, class: 'sr-only', data: {action: 'change->autosave#save'} %>
+            <%= f.submit 'Submit Reviewed' if Rails.env.test? %>
+          </label>
+        <% end %>
+    <% end %>
+
+    <% if proposal.final.attached? %>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm truncate">
+        <%= link_to rails_blob_path(proposal.final, disposition: 'attachment'), class: 'w-0 flex-1 flex items-center hover:text-cyan-500' do %>
+          <%= inline_svg_tag 'buyers/documents/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+          <span class="ml-2 flex-1 w-0 truncate"><%= proposal.final.filename %></span>
+          <span class='text-sm text-gray-600'><%= l(proposal.final.created_at, format: :short) %></span>
+        <% end %>
+        <%= form_for proposal, url: buyers_rfp_final_path(proposal), method: :patch, html: {class: 'block ml-4 flex-shrink-0 flex items-center', data: {turbo_frame: '_top', controller: 'autosave', autosave_delay_value: '1000'}} do |f| %>
+          <label for="rfp_final" class="flex items-center group cursor-pointer">
+            <span class="ml-2 truncate text-left text-medium text-cyan-700 hover:text-cyan-500"><%= t('.upload_final') %></span>
+            <%= f.file_field :final, required: true, class: 'sr-only', data: {action: 'change->autosave#save'} %>
+          </label>
+        <% end %>
+      </li>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm group truncate">
+        <%= link_to Rails.application.config.post_rfp_link, target: '_blank', rel: 'noopener noreferrer', class: 'w-0 flex-1 flex items-center' do %>
+          <%= inline_svg_tag 'buyers/documents/airplane.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+          <span class="ml-2 flex-1 w-0 truncate text-medium text-cyan-700 bg-transparent hover:text-cyan-500"><%= t('.post') %></span>
+        <% end %>
+      </li>
+    <% else %>
+      <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm group">
+        <%= form_for proposal, url: buyers_rfp_final_path(proposal), method: :patch, html: {class: 'flex-1 flex items-center', data: {turbo_frame: '_top', controller: 'autosave', autosave_delay_value: '1000'}} do |f| %>
+          <label for="rfp_final" class="w-0 flex-1 flex items-center group cursor-pointer">
+            <%= inline_svg_tag 'buyers/documents/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+            <span class="ml-2 truncate text-left text-medium text-cyan-700 group-hover:text-cyan-500"><%= t('.upload_final') %></span>
+            <%= f.file_field :final, required: true, class: 'sr-only', data: {action: 'change->autosave#save'} %>
+            <%= f.submit 'Submit Final' if Rails.env.test? %>
+          </label>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

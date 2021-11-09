@@ -1,6 +1,19 @@
-<% content_for(:page_header) { 'District Profile' } %>
-<%= render(Buyers::DistrictProfileNavComponent.new(current_path: request.path)) %>
-<%= render(FormErrorsComponent.new(errors: @district_profile.errors)) %>
-<%= form_with model: [:buyers, @district_profile], url: buyers_district_profile_url, method: :patch, local: true, data: {turbo: false} do |f| %>
-  <%= render partial: 'form', locals: {f: f} %>
-<% end %>
+<div class="divide-y divide-gray-200">
+  <div class="space-y-8">
+    <%= render(Buyers::Steps::Component.new(title: DistrictProfile.model_name.human)) do |component| %>
+      <%= component.step index: 1, current_index: 1, section: t(:district_information, scope: [:activerecord, :attributes, :district_profile]), path: edit_buyers_district_profile_path, valid: @district_profile.valid?(:district_information) %>
+      <%= component.step index: 2, current_index: 1, section: t(:rfp_contact, scope: [:activerecord, :attributes, :district_profile]), path: edit_buyers_district_profile_contact_path, valid: @district_profile.valid?(:rfp_contact) %>
+      <%= component.step index: 3, current_index: 1, section: t(:procurement_terms, scope: [:activerecord, :attributes, :district_profile]), path: edit_buyers_district_profile_procurement_path, valid: @district_profile.valid?(:procurement_terms) %>
+      <%= component.step index: 4, current_index: 1, section: t(:locations, scope: [:activerecord, :attributes, :district_profile]), path: buyers_district_profile_locations_path, valid: @district_profile.valid?(:locations) %>
+    <% end %>
+
+    <div>
+      <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h2>
+      <p class="mt-1 text-sm text-gray-600"><%= t('.description') %></p>
+    </div>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= render partial: 'form', locals: {district_profile: @district_profile} %>
+  </div>
+</div>

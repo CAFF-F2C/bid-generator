@@ -1,37 +1,27 @@
-<% content_for(:page_header) { "Request for proposal - #{@current_rfp.name}" } %>
-<%= render(Buyers::RfpNavComponent.new(current_path: request.path, current_rfp: @current_rfp)) %>
-<h2 class='buyers__section-head'>Item List</h2>
-<p class='buyers__section-caption'>
-  In order to tell vendors about the things you'd like to procure, download the blank item list template linked below, complete it, and upload it here. You can also upload a usage report from the previous school year if you'd like CAFF to make your item list for you.
-</p>
-<p class='buyers__section-caption'>
-  Download <%= link_to 'blank item list template.',  Rails.application.config.item_list_template_link, target: '_blank' %>
-</p>
+<div class="divide-y divide-gray-200">
+  <div class="space-y-8">
+    <%= render(Buyers::Steps::Component.new(title: Rfp.model_name.human)) do |component| %>
+      <%= component.step index: 1, current_index: 4, section: t(:purpose, scope: [:activerecord, :attributes, :rfp]), path: edit_buyers_rfp_path(@rfp), valid: @rfp.valid?(:purpose) %>
+      <%= component.step index: 2, current_index: 4, section: t(:scores, scope: [:activerecord, :attributes, :rfp]), path: buyers_rfp_scores_path(@rfp), valid: @rfp.valid?(:scores) %>
+      <%= component.step index: 3, current_index: 4, section: t(:deliveries, scope: [:activerecord, :attributes, :rfp]), path: buyers_rfp_deliveries_path(@rfp), valid: @rfp.valid?(:deliveries) %>
+      <%= component.step index: 4, current_index: 4, section: t(:item_list, scope: [:activerecord, :attributes, :rfp]), path: edit_buyers_rfp_item_list_path(@rfp), valid: @rfp.item_list.present? %>
+    <% end %>
 
-<hr class='my-6' />
-
-<div class='buyers__section-head-actions flex justify-end'>
-  <div >
-    <%= link_to('Save and exit', buyers_rfp_path(@current_rfp), class: 'button-primary') %>
-  </div>
-</div>
-
-<% if @current_rfp.item_list.attached? %>
-  <div class='buyers__rfp-item-list'>
-    <div>
-      <%= link_to @current_rfp.item_list.filename, rails_blob_path(@current_rfp.item_list, disposition: "attachment") %>
-    </div>
-    <div>
-      Uploaded at: <%= l(@current_rfp.item_list.created_at, format: :long) %>
+    <div class="space-y-2">
+      <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h2>
+      <div class="space-y-2">
+        <p class="text-sm text-gray-600"><%= t('.item_list_description') %></p>
+        <p class="text-sm text-gray-600"><%= t('.usage_report_description') %></p>
+        <p class="text-sm text-gray-600"><%= t('.contact_html', mail_link: mail_to(Rails.application.config.support_email, Rails.application.config.support_email, class: 'text-cyan-700 font-medium underline hover:text-cyan-600')) %></p>
+      </div>
     </div>
   </div>
-<% end %>
 
-<div class='buyers__rfp-upload-item-list'>
-  <%= form_with model: [:buyers, @current_rfp], url: buyers_rfp_item_list_path(rfp_id: @current_rfp.id), method: :patch, local: true, data: {turbo: false} do |f| %>
-    <div class='field'>
-      <%= f.file_field :item_list, required: true, class: 'text-field' %>
-    </div>
-    <%= f.submit 'Upload Item List or Usage Report', class: 'button-primary' %>
-  <% end %>
+  <div class="pt-4 mt-4">
+    <%= render partial: 'form', locals: {proposal: @rfp} %>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= link_to t('.review'), buyers_rfp_path(@rfp), class: 'forms-submit' %>
+  </div>
 </div>

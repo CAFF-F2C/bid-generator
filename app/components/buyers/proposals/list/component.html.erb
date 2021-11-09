@@ -1,0 +1,45 @@
+<div class="space-y-4 md:space-y-0 md:flex md:items-center">
+  <h2 class="text-xl font-bold md:text-2xl md:flex-1"><%= t('.title') %></h2>
+  <%= link_to new_buyers_rfp_path, class: 'inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-700 hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500' do %>
+    <%= inline_svg_tag 'buyers/proposals/plus.svg', class: '-ml-1 mr-2 h-5 w-5', aria_hidden: true %>
+    <span><%= t('.new') %></span>
+  <% end %>
+</div>
+
+<div class="flex flex-col mt-4">
+  <div class="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
+    <div class="table min-w-full divide-y divide-gray-200">
+      <div class="table-header-group">
+        <div class="table-row">
+          <div class="table-cell px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <%= t('.type') %>
+          </div>
+          <div class="table-cell px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <%= t('.created_at') %>
+          </div>
+          <div class="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:table-cell">
+            <%= t('.status') %>
+          </div>
+          <div class="table-cell px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <span class="sr-only"><%= t('.actions') %></span>
+          </div>
+        </div>
+      </div>
+      <div class="table-row-group bg-white divide-y divide-gray-200">
+        <%= render(Buyers::Proposals::Item::Component.with_collection(proposals)) %>
+      </div>
+    </div>
+
+    <nav class="w-full bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6" aria-label="<%= t('.pagination') %>">
+      <p class="text-sm text-gray-700">
+        <%= page_entries_info(proposals, entry_name: t('.proposal')) %>
+      </p>
+      <% unless proposals.total_pages.zero? %>
+        <div class="flex-1 flex justify-between sm:justify-end">
+          <%= link_to_prev_page proposals, t('.previous'), class: 'relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50' %>
+          <%= link_to_next_page proposals, t('.next'), class: 'ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50' %>
+        </div>
+      <% end %>
+    </nav>
+  </div>
+</div>

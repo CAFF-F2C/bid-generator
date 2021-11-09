@@ -1,0 +1,3 @@
+.forms-errors {
+  @apply mt-2 text-sm text-red-600;
+}

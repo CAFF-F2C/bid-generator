@@ -1,6 +1,4 @@
 .rfp-scores {
-  @apply mt-5 border-gray-200 border-t pt-4;
-
   &__score {
     @apply flex p-3 pl-0;
 

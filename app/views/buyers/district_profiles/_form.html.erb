@@ -1,31 +1,34 @@
-<h2 class='buyers__section-head'>District Demographics</h2>
+<%= turbo_frame_tag 'buyers-district-profile' do %>
+  <%= form_for district_profile, as: :district_profile, url: buyers_district_profile_url, method: :patch, html: {data: {turbo_frame: '_top'}} do |f| %>
+    <div class="divide-y divide-gray-200">
+      <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+        <div class="sm:col-span-6">
+          <%= f.label :district_name %>
+          <%= f.text_field :district_name, required: true %>
+        </div>
 
-<div class="field">
-  <%= f.label :district_name, 'District Name', class: 'text-field-label' %>
-  <%= f.text_field :district_name, required: true, class: 'text-field' %>
-</div>
+        <div class="sm:col-span-3">
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+        </div>
 
-<div class="field">
-  <%= f.label :city, 'City', class: 'text-field-label' %>
-  <%= f.text_field :city, class: 'text-field' %>
-</div>
+        <div class="sm:col-span-3">
+          <%= f.label :county %>
+          <%= f.text_field :county %>
+        </div>
 
-<div class="field">
-  <%= f.label :county, 'County', class: 'text-field-label' %>
-  <%= f.text_field :county, class: 'text-field' %>
-</div>
+        <div class="sm:col-span-3">
+          <%= f.label :enrolled_students_number %>
+          <%= f.number_field :enrolled_students_number %>
+        </div>
+      </div>
 
-<div class="field">
-  <%= f.label :enrolled_students_number, 'Number of enrolled students', class: 'text-field-label' %>
-  <%= f.number_field :enrolled_students_number, class: 'text-field' %>
-</div>
-
-<div class='buyers__actions'>
-  <div class='buyers__action'>
-    <%= f.submit 'Next', class: 'button-primary' %>
-  </div>
-  <div class='buyers__action'>
-    <%= f.submit 'Save and exit', class: 'button-secondary' %>
-  </div>
-</div>
-
+      <div class="pt-4 mt-4">
+        <div class="flex justify-start space-x-4">
+          <%= f.button 'Next', class: 'forms-submit' %>
+          <%= f.button 'Save draft', class: 'forms-submit--outline', name: :draft, value: true %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,4 +1,4 @@
-.buyers {
+/*.buyers {
   &__page-title {
     @apply text-2xl mb-5;
   }
@@ -197,3 +197,4 @@
     @apply text-yellow-400 mr-4;
   }
 }
+*/

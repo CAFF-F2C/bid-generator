@@ -1,0 +1,60 @@
+<%= turbo_frame_tag 'buyers-district-profile-contact' do %>
+  <%= form_for district_profile, as: :district_profile, url: buyers_district_profile_contact_url, method: :patch, html: {data: {turbo_frame: '_top', controller: 'autoplaces', action: 'google-maps-callback@window->autoplaces#initAutocomplete', autoplaces_country_value: ['us']}} do |f| %>
+    <div class="divide-y divide-gray-200">
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-4">
+            <%= f.label :contact_full_name %>
+            <%= f.text_field :contact_full_name %>
+          </div>
+
+          <div class="sm:col-span-4">
+            <%= f.label :contact_title %>
+            <%= f.text_field :contact_title %>
+          </div>
+
+          <div class="sm:col-span-4">
+            <%= f.label :contact_department_name %>
+            <%= f.text_field :contact_department_name %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-2">
+            <%= f.label :contact_phone_number %>
+            <%= f.telephone_field :contact_phone_number, placeholder: '(555) 123-4567 x123' %>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-6">
+            <%= f.label :contact_mailing_address_street %>
+            <%= f.text_field :contact_mailing_address_street, data: {action: 'keydown->autoplaces#preventSubmit', autoplaces_target: 'address'} %>
+          </div>
+
+          <div class="sm:col-span-2">
+            <%= f.label :contact_mailing_address_city %>
+            <%= f.text_field :contact_mailing_address_city, data: {autoplaces_target: 'city'} %>
+          </div>
+
+          <div class="sm:col-span-2">
+            <%= f.label :contact_mailing_address_state %>
+            <%= f.text_field :contact_mailing_address_state, data: {autoplaces_target: 'state'} %>
+          </div>
+
+          <div class="sm:col-span-2">
+            <%= f.label :contact_mailing_address_zip %>
+          <%= f.text_field :contact_mailing_address_zip, data: {autoplaces_target: 'postalCode'} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 mt-4">
+        <div class="flex justify-start space-x-4">
+          <%= f.button t('.next'), class: 'forms-submit' %>
+          <%= f.button t('.save_draft'), class: 'forms-submit--outline', name: :draft, value: true %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

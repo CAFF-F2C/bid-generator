@@ -1,0 +1,19 @@
+<div class="flex items-center">
+  <div class="flex-1">
+    <h3 class="text-lg leading-6 font-medium text-gray-900"><%= name %></h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-600 hidden md:block"><%= description %></p>
+  </div>
+  <div>
+    <%= link_to t('.update'), path, class: 'font-medium text-cyan-700 hover:text-cyan-500' %>
+  </div>
+</div>
+
+<%= content %>
+
+<div class="mt-5 border-t border-gray-200">
+  <dl class="sm:divide-y sm:divide-gray-200">
+    <% categories.each do |category| %>
+        <%= category %>
+    <% end %>
+  </dl>
+</div>

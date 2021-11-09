@@ -1,30 +1,25 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= I18n.locale %>" class="h-full bg-gray-100">
   <head>
-    <title>BidGenerator</title>
+    <title><%= t('.title') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= javascript_pack_tag 'application', data: { turbo_track: :reload } %>
-    <%= stylesheet_pack_tag 'application', media: :all, data: { turbo_track: :reload } %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.config.google_maps_api_key}&libraries=places&callback=AutoplacesController.dispatchEvent", async: true, defer: true, data: { turbolinks_eval: false } %>
+    <%= javascript_pack_tag 'application', data: {turbo_track: :reload} %>
+    <%= stylesheet_pack_tag 'application', media: :all, data: {turbo_track: :reload} %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.config.google_maps_api_key}&libraries=places&callback=AutoplacesController.dispatchEvent", async: true, defer: true, data: {turbolinks_eval: false} %>
   </head>
-
-  <body class="bg-gray-50 h-screen md:flex overflow-hidden">
-    <%= render(Buyers::NavigationComponent.new(current_path: request.path)) %>
-    <main class='flex-1 h-full overflow-y-scroll p-6 buyers__main buyers__main--<%= controller_path.parameterize %>-<%= action_name %>"' role='main'>
-      <h1 class='buyers__page-title'>
-        <%= content_for(:page_header) unless content_for(:page_header).blank?  %>
-      </h1>
-      <%= render(FlashComponent.new(flash: flash)) %>
-      <div class='buyers__main-content'>
-        <%= yield %>
-      </div>
-    </main>
+  <body class="h-full">
+    <%= render(Buyers::Navigation::Component.new(current_controller: controller_path)) do %>
+      <main role="main" class="flex-1 pb-8">
+        <div class="max-w-3xl mx-auto my-4 px-4 md:px-6 lg:px-8 md:my-7">
+          <%= yield %>
+        </div>
+        <%= render(FlashComponent.new(flash: flash)) %>
+      </main>
+    <% end %>
   </body>
 </html>

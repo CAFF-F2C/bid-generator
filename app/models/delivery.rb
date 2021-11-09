@@ -19,7 +19,7 @@ class Delivery < ApplicationRecord
   delegate :name, to: :location, prefix: true, allow_nil: true
 
   validates :rfp, presence: true
-  validates :location, presence: true
+  validates :location_id, presence: true
   validates :delivery_days, inclusion: {in: [*1..5]}
   validates :window_start_time, inclusion: {in: [*4..15]}
   validates :window_end_time, inclusion: {in: [*4..15]}

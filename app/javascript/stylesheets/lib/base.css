@@ -1,4 +1,4 @@
-@layer base {
+/*@layer base {
   html {
     font-size: 14px;
   }
@@ -67,3 +67,4 @@
     @apply md:ml-4;
   }
 }
+*/

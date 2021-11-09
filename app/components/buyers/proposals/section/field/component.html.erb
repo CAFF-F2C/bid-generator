@@ -1,0 +1,11 @@
+<dt class="text-sm font-medium <%= valid? ? 'text-gray-600' : 'text-red-700' %>">
+  <%= proposal.class.human_attribute_name(name) %>
+</dt>
+<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+  <%= content.presence || proposal.attributes[name.to_s] %>
+  <% unless valid? %>
+    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+      <%= t('.incomplete') %>
+    </span>
+  <% end %>
+</dd>

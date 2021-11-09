@@ -1,42 +1,39 @@
 require 'rails_helper'
 
 RSpec.describe DistrictProfile, type: :model do
-  subject(:district_profile) { FactoryBot.create(:district_profile) }
+  subject(:district_profile) { FactoryBot.create(:district_profile, :complete, buyer: buyer) }
+
+  let(:buyer) { FactoryBot.create(:buyer) }
 
   it { is_expected.to belong_to(:buyer).inverse_of(:district_profile) }
-  it { is_expected.to validate_presence_of(:district_name) }
 
-  it { is_expected.to validate_presence_of(:city).on(:complete?) }
-  it { is_expected.to validate_presence_of(:county).on(:complete?) }
+  it { is_expected.to validate_presence_of(:district_name).on(:district_information) }
+  it { is_expected.to validate_presence_of(:city).on(:district_information) }
+  it { is_expected.to validate_presence_of(:county).on(:district_information) }
+  it { is_expected.to validate_numericality_of(:enrolled_students_number).on(:district_information) }
 
-  it { is_expected.to validate_presence_of(:contact_full_name).on(:complete?) }
-  it { is_expected.to validate_presence_of(:contact_department_name).on(:complete?) }
-  it { is_expected.to validate_presence_of(:contact_mailing_address_city).on(:complete?) }
-  it { is_expected.to validate_presence_of(:contact_mailing_address_state).on(:complete?) }
-  it { is_expected.to validate_presence_of(:contact_mailing_address_street).on(:complete?) }
-  it { is_expected.to validate_presence_of(:contact_mailing_address_zip).on(:complete?) }
-  it { is_expected.to validate_presence_of(:contact_phone_number).on(:complete?) }
+  it { is_expected.to validate_presence_of(:contact_full_name).on(:rfp_contact) }
+  it { is_expected.to validate_presence_of(:contact_department_name).on(:rfp_contact) }
+  it { is_expected.to validate_presence_of(:contact_mailing_address_city).on(:rfp_contact) }
+  it { is_expected.to validate_presence_of(:contact_mailing_address_state).on(:rfp_contact) }
+  it { is_expected.to validate_presence_of(:contact_mailing_address_street).on(:rfp_contact) }
+  it { is_expected.to validate_presence_of(:contact_mailing_address_zip).on(:rfp_contact) }
+  it { is_expected.to validate_presence_of(:contact_phone_number).on(:rfp_contact) }
 
-  it { is_expected.to validate_presence_of(:local_percentage).on(:complete?) }
-  it { is_expected.to validate_presence_of(:required_insurance_aggregate).on(:complete?) }
-  it { is_expected.to validate_presence_of(:required_insurance_automobile).on(:complete?) }
+  it { is_expected.to validate_presence_of(:local_percentage).on(:procurement_terms) }
+  it { is_expected.to validate_presence_of(:required_insurance_aggregate).on(:procurement_terms) }
+  it { is_expected.to validate_presence_of(:required_insurance_automobile).on(:procurement_terms) }
+  it { is_expected.to validate_presence_of(:required_insurance_per_incident).on(:procurement_terms) }
 
-  describe 'locations complete?' do
+  describe '#complete?' do
     context 'when there are no locations' do
-      it 'is not complete' do
-        expect(district_profile).not_to be_complete
-      end
+      it { is_expected.not_to be_complete }
     end
 
     context 'when there are locations' do
-      let(:buyer) { create(:buyer) }
-      let(:district_profile) { FactoryBot.create(:district_profile, :complete, buyer: buyer) }
+      before { FactoryBot.create(:location, buyer: buyer) }
 
-      before { create(:location, buyer: buyer) }
-
-      it 'is complete' do
-        expect(district_profile).to be_complete
-      end
+      it { is_expected.to be_complete }
     end
   end
 end

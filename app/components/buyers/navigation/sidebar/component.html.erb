@@ -1,0 +1,22 @@
+<nav class="px-2 flex-shrink-0 h-full overflow-y-auto" aria-label="<%= "ham" %>">
+  <h1 class="px-2 text-3xl tracking-tight font-bold text-white"><%= t(:title, scope: [:layouts, :buyers]) %></h1>
+  <div class="mt-5 divide-y divide-cyan-800">
+    <div class="space-y-1">
+      <% routes.each do |route| %>
+        <%= link_to route.path, class: current_controller.include?(route.controller) ? 'bg-cyan-800 text-white group flex items-center px-2 py-2 text-base font-medium rounded-md' : 'text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-base font-medium rounded-md', aria: {current: current_controller.include?(route.controller) ? 'page': nil} do %>
+          <%= inline_svg_tag "#{route.controller}.svg", class: 'mr-4 flex-shrink-0 h-6 w-6 text-cyan-200' %>
+          <span><%= t(:title, scope: route.controller.split('/') + [route.action]) %></span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="mt-6 pt-6">
+      <div class="space-y-1">
+        <%= button_to(destroy_buyer_session_path, method: :delete, class: 'w-full flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600', data: {turbo: false}) do %>
+          <%= inline_svg_tag 'buyers/sessions.svg', class: 'mr-4 h-6 w-6 text-cyan-200' %>
+          <span><%= t(:title, scope: [:buyers, :sessions, :destroy]) %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

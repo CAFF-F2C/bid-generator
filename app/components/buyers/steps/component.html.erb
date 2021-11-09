@@ -1,0 +1,10 @@
+<nav class="space-y-4" aria-label="<%= t('.label') %>">
+  <h2 class="text-xl font-bold md:text-2xl"><%= title %></h2>
+  <ol role="list" class="space-y-4 md:flex md:space-y-0 md:space-x-8">
+    <% steps.each do |step| %>
+      <li class="md:flex-1">
+        <%= step %>
+      </li>
+    <% end %>
+  </ol>
+</nav>

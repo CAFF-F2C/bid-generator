@@ -1,66 +1,65 @@
-<% content_for(:page_header) { 'District Profile' } %>
-<%= render(FormErrorsComponent.new(errors: @district_profile.errors, scope: :complete)) %>
+<div class="space-y-4">
+  <h2 class="text-xl font-bold md:text-2xl"><%= t('.title') %></h2>
 
-<table class='buyers__display-form'>
-  <thead class='buyers__table-head'>
-    <tr>
-      <th>
-        <h2 class='whitespace-nowrap'>District Demographics</h2>
-      </th>
-      <th>
-        <%= link_to('Edit', edit_buyers_district_profile_path, aria: {label: 'Edit district demographics'}) %>
-      </th>
-    </tr>
-  </thead>
-  <%= render partial: 'display_field', locals: {attribute: 'district_name'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'city'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'county'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'enrolled_students_number'} %>
+  <%= render(Buyers::DistrictProfiles::Errors::Component.new(district_profile: @district_profile, sections: [:district_information, :rfp_contact, :procurement_terms, :locations])) %>
 
-  <thead class='buyers__table-head'>
-    <tr>
-      <th>
-        <h2>Contact Information</h2>
-      </th>
-      <th>
-        <%= link_to('Edit', edit_buyers_district_profile_contact_path, aria: {label: 'Edit contact information'}) %>
-      </th>
-    </tr>
-  </thead>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_full_name'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_department_name'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_title'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_phone_number'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_street'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_city'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_state'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'contact_mailing_address_zip'} %>
-
-  <thead class='buyers__table-head'>
-    <tr>
-      <th>
-        <h2>Procurement Terms</h2>
-      </th>
-      <th>
-        <%= link_to('Edit', edit_buyers_district_profile_procurement_path, aria: {label: 'Edit procurement terms'}) %>
-      </th>
-    </tr>
-  </thead>
-  <%= render partial: 'display_field', locals: {attribute: 'local_percentage', display_value: number_to_percentage(@district_profile.local_percentage, precision: 0)} %>
-  <%= render partial: 'display_field', locals: {attribute: 'price_verified'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'allow_piggyback'} %>
-  <%= render partial: 'display_field', locals: {attribute: 'required_insurance_per_incident', display_value: number_to_currency(@district_profile.required_insurance_per_incident, precision: 0)} %>
-  <%= render partial: 'display_field', locals: {attribute: 'required_insurance_aggregate', display_value: number_to_currency(@district_profile.required_insurance_aggregate, precision: 0)} %>
-  <%= render partial: 'display_field', locals: {attribute: 'required_insurance_automobile', display_value: number_to_currency(@district_profile.required_insurance_automobile, precision: 0)} %>
-</table>
-<div class='buyers__table-head flex'>
-  <div class='flex-1'>
-    <h2>Delivery Locations</h2>
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t('.district_information'), description: t('.district_information_description'), path: edit_buyers_district_profile_path)) do |component| %>
+      <% component.field(district_profile: @district_profile, section: :district_information, name: :district_name) %>
+      <% component.field(district_profile: @district_profile, section: :district_information, name: :city) %>
+      <% component.field(district_profile: @district_profile, section: :district_information, name: :county) %>
+      <% component.field(district_profile: @district_profile, section: :district_information, name: :enrolled_students_number) %>
+    <% end %>
   </div>
-  <div>
-    <%= link_to('Edit', buyers_district_profile_locations_path, aria: {label: 'Edit delivery locations'}) %>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t('.rfp_contact'), description: t('.rfp_contact_description'), path: edit_buyers_district_profile_contact_path)) do |component| %>
+      <% component.field(district_profile: @district_profile, section: :rfp_contact, name: :contact_full_name) %>
+      <% component.field(district_profile: @district_profile, section: :rfp_contact, name: :contact_department_name) %>
+      <% component.field(district_profile: @district_profile, section: :rfp_contact, name: :contact_title) %>
+      <% component.field(district_profile: @district_profile, section: :rfp_contact, name: :contact_phone_number) %>
+      <% component.field(district_profile: @district_profile, section: :rfp_contact, name: :contact_mailing_address) do %>
+        <% if @district_profile.address.present? %>
+          <%= @district_profile.address %>
+        <% else %>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+            <%= t('.incomplete') %>
+          </span>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
-</div>
-<div class='buyers__locations'>
-  <%= render partial: 'buyers/locations/locations', locals: {locations: @district_profile.locations} %>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t('.procurement_terms'), description: t('.procurement_terms_description'), path: edit_buyers_district_profile_procurement_path)) do |component| %>
+      <% component.field(district_profile: @district_profile, section: :procurement_terms, name: :local_percentage) do %>
+        <%= number_to_percentage(@district_profile.local_percentage, precision: 0) %>
+      <% end %>
+      <% component.field(district_profile: @district_profile, section: :procurement_terms, name: :price_verified) do %>
+        <% unless @district_profile.price_verified.nil? %>
+          <%= @district_profile.price_verified ? t('.price_verified') : t('.price_not_verified') %>
+        <% end %>
+      <% end %>
+      <% component.field(district_profile: @district_profile, section: :procurement_terms, name: :allow_piggyback) do %>
+        <% unless @district_profile.allow_piggyback.nil? %>
+          <%= @district_profile.allow_piggyback ? t('.piggyback_included') : t('.piggyback_not_included') %>
+        <% end %>
+      <% end %>
+      <% component.field(district_profile: @district_profile, section: :procurement_terms, name: :required_insurance_per_incident) do %>
+        <%= number_to_currency(@district_profile.required_insurance_per_incident, precision: 0) %>
+      <% end %>
+      <% component.field(district_profile: @district_profile, section: :procurement_terms, name: :required_insurance_aggregate) do %>
+        <%= number_to_currency(@district_profile.required_insurance_aggregate, precision: 0) %>
+      <% end %>
+      <% component.field(district_profile: @district_profile, section: :procurement_terms, name: :required_insurance_automobile) do %>
+        <%= number_to_currency(@district_profile.required_insurance_automobile, precision: 0) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::DistrictProfiles::Section::Component.new(name: t('.locations'), description: t('.locations_description'), path: buyers_district_profile_locations_path)) do |component| %>
+      <%= render(Buyers::Locations::List::Component.new(locations: @district_profile.locations.page.per(@district_profile.locations.size + 1))) %>
+    <% end %>
+  </div>
 </div>

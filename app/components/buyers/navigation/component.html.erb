@@ -1,0 +1,38 @@
+<div data-controller="slideover" data-slideover-active-target="#slideover-target" data-slideover-invisible-class="-translate-x-full,opacity-0" data-slideover-visible-class="translate-x-0,opacity-100" data-slideover-enter-timeout="300,300" data-slideover-leave-timeout="300,300" class="flex">
+  <div data-slideover-target="overlay" class="fixed inset-0 flex z-40 transition-opacity ease-linear duration-300 opacity-0 hidden" role="dialog" aria-modal="true" aria-label="<%= t('.menu') %>">
+    <div class="fixed inset-0 bg-gray-600 bg-opacity-75" data-action="click->slideover#toggle" aria-hidden="true"></div>
+    <div id="slideover-target" data-slideover-target="menu" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-cyan-900 transition ease-in-out duration-300 transform -translate-x-full hidden">
+      <div class="absolute top-0 right-0 -mr-12 pt-2">
+        <button type="button" data-action="slideover#toggle" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+          <span class="sr-only"><%= t('.close') %></span>
+          <%= inline_svg_tag 'buyers/navigation/sidebar/x.svg', class: 'h-6 w-6 text-white sr-hidden' %>
+        </button>
+      </div>
+
+      <%= render(Buyers::Navigation::Sidebar::Component.new(namespace: :buyers, current_controller: current_controller)) %>
+    </div>
+
+    <div class="flex-shrink-0 w-14" aria-hidden="true"></div>
+  </div>
+
+  <div class="hidden md:flex md:w-64 md:flex-col md:inset-y-0">
+    <div class="flex flex-col flex-grow pt-5 bg-cyan-900 overflow-y-auto">
+      <%= render(Buyers::Navigation::Sidebar::Component.new(namespace: :buyers, current_controller: current_controller)) %>
+    </div>
+  </div>
+
+  <div class="flex flex-col flex-1 md:min-h-screen">
+    <header class="md:hidden">
+      <div class="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+        <h1 class="text-xl font-bold tracking-tight"><%= t(:title, scope: [:layouts, :buyers]) %></h1>
+        <div>
+          <button type="button" data-action="slideover#show" class="-mr-3 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900">
+            <span class="sr-only"><%= t('.open') %></span>
+            <%= inline_svg_tag 'buyers/navigation/sidebar/menu.svg', class: 'h-6 w-6 text-current sr-hidden' %>
+          </button>
+        </div>
+      </div>
+    </header>
+    <%= content %>
+  </div>
+</div>

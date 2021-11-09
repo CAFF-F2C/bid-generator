@@ -26,7 +26,7 @@ RSpec.describe 'Log in', type: :system do
     expect(page).to have_content('admin@example.com')
 
     within 'nav' do
-      click_on 'Rfps'
+      click_on 'Requests for Proposals'
     end
 
     expect(page).to have_content('2021')
@@ -36,7 +36,7 @@ RSpec.describe 'Log in', type: :system do
     click_on 'Edit'
     page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt')
 
-    click_on 'Update Rfp'
+    click_on 'Update Request for Proposal'
     expect(page).to have_content('item_list.txt')
 
     within 'nav' do
@@ -48,7 +48,7 @@ RSpec.describe 'Log in', type: :system do
 
     click_on 'Edit New District'
     fill_in 'Full name', with: 'ContactName'
-    click_on 'Update District profile'
+    click_on 'Update District Profile'
     expect(page).to have_content('ContactName')
 
     within 'nav' do

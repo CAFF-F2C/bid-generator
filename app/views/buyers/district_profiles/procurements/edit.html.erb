@@ -1,0 +1,12 @@
+<div class="space-y-8">
+  <%= render(Buyers::Steps::Component.new(title: DistrictProfile.model_name.human)) do |component| %>
+      <%= component.step index: 1, current_index: 3, section: t(:district_information, scope: [:activerecord, :attributes, :district_profile]), path: edit_buyers_district_profile_path, valid: @district_profile.valid?(:district_information) %>
+      <%= component.step index: 2, current_index: 3, section: t(:rfp_contact, scope: [:activerecord, :attributes, :district_profile]), path: edit_buyers_district_profile_contact_path, valid: @district_profile.valid?(:rfp_contact) %>
+      <%= component.step index: 3, current_index: 3, section: t(:procurement_terms, scope: [:activerecord, :attributes, :district_profile]), path: edit_buyers_district_profile_procurement_path, valid: @district_profile.valid?(:procurement_terms) %>
+      <%= component.step index: 4, current_index: 3, section: t(:locations, scope: [:activerecord, :attributes, :district_profile]), path: buyers_district_profile_locations_path, valid: @district_profile.valid?(:locations) %>
+  <% end %>
+</div>
+
+<div class="pt-4 mt-4">
+  <%= render partial: 'form', locals: {district_profile: @district_profile} %>
+</div>

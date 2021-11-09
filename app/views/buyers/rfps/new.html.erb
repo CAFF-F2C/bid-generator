@@ -1,5 +1,19 @@
-<% content_for(:page_header) { 'Request for proposal' } %>
+<div class="divide-y divide-gray-200">
+  <div class="space-y-8">
+    <%= render(Buyers::Steps::Component.new(title: Rfp.model_name.human)) do |component| %>
+      <%= component.step index: 1, current_index: 1, section: t(:purpose, scope: [:activerecord, :attributes, :rfp]), path: '#', valid: true %>
+      <%= component.step index: 2, current_index: 1, section: t(:scores, scope: [:activerecord, :attributes, :rfp]), path: '#', valid: true %>
+      <%= component.step index: 3, current_index: 1, section: t(:deliveries, scope: [:activerecord, :attributes, :rfp]), path: '#', valid: true %>
+      <%= component.step index: 4, current_index: 1, section: t(:item_list, scope: [:activerecord, :attributes, :rfp]), path: '#', valid: true %>
+    <% end %>
 
-<%= form_with model: [:buyers, @rfp], url: buyers_rfps_path, method: :post, local: true do |f| %>
-  <%= render partial: 'form', locals: {f: f} %>
-<% end %>
+    <div>
+      <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h2>
+      <p class="mt-1 text-sm text-gray-600"><%= t('.description_html', mail_link: mail_to(Rails.application.config.support_email, Rails.application.config.support_email, class: 'text-cyan-700 font-medium underline hover:text-cyan-600')) %></p>
+    </div>
+  </div>
+
+  <div class="pt-4 mt-4">
+    <%= render partial: 'form', locals: {proposal: @rfp} %>
+  </div>
+</div>
