@@ -3,7 +3,7 @@
 
   <%= render(Buyers::Proposals::Documents::Component.new(proposal: @rfp)) %>
 
-  <%= render(Buyers::DistrictProfiles::Errors::Component.new(district_profile: @rfp.district_profile, sections: [:district_information, :rfp_contact, :procurement_terms, :locations])) %>
+  <%= render(Buyers::DistrictProfiles::Errors::Component.new(district_profile: @rfp.district_profile, sections: [:district_information, :rfp_contact, :procurement_terms])) %>
 
   <%= render(Buyers::Proposals::Errors::Component.new(proposal: @rfp, sections: [:rfp_purpose, :scores, :deliveries, :item_list])) %>
 
