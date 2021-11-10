@@ -128,6 +128,8 @@ en:
     documents:
       index:
         title: Requests for Proposals
+        complete_your_profile_html: You must complete your District Profile before you can download an RFP. %{complete_link}
+        complete_link_html: Complete →
     district_profiles:
       contacts:
         form:

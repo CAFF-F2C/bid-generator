@@ -1,5 +1,3 @@
-<%= render(FlashComponent.new(flash: {warning: "You must complete your District Profile before you can download an RFP. #{link_to("Complete →", edit_buyers_district_profile_path, class: 'flash__link')}".html_safe})) unless @current_buyer.district_profile&.complete? %>
-
 <% if @documents.size.positive? %>
   <%= render(Buyers::Proposals::List::Component.new(proposals: @documents)) %>
 <% else %>
