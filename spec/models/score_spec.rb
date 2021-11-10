@@ -8,4 +8,6 @@ RSpec.describe Score, type: :model do
   it { is_expected.to validate_presence_of(:rfp) }
   it { is_expected.to validate_presence_of(:score_category) }
   it { is_expected.to validate_presence_of(:value) }
+  it { is_expected.to validate_numericality_of(:value).only_integer.is_greater_than_or_equal_to(0).is_less_than_or_equal_to(100) }
+  it { is_expected.to validate_uniqueness_of(:score_category_id).scoped_to(:rfp_id) }
 end
