@@ -6,7 +6,7 @@
           <div class="sm:col-span-4">
             <%= f.label :location_id %>
             <%= f.select :location_id, options_from_collection_for_select(@delivery.rfp.buyer.locations, :id, :name_with_address), {} %>
-            <p><%= link_to t('.add_new_location'), new_buyers_district_profile_location_path, class: 'text-cyan-700 text-sm underline hover:text-cyan-500' %></p>
+            <p><%= link_to t('.add_new_location'), new_buyers_district_profile_location_path, class: 'text-cyan-700 text-sm underline hover:text-cyan-500', data: {turbo_frame: '_top'} %></p>
           </div>
         </div>
 
