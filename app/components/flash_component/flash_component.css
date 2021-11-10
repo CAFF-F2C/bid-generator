@@ -8,9 +8,11 @@
   &__message {
     @apply max-w-sm w-full bg-white shadow-md rounded-lg pointer-events-auto ring-1 ring-gray-900 ring-opacity-5 overflow-hidden;
 
+    /* purgecss start ignore */
     &--warning {
       @apply bg-yellow-50;
     }
+    /* purgecss end ignore */
   }
 
   &__message-box {
@@ -25,10 +27,12 @@
     @apply font-medium underline;
   }
 
+  /* purgecss start ignore */
   &__message--warning &__button,
   &__message--warning &__link {
     @apply text-yellow-700 hover:text-yellow-600;
   }
+  /* purgecss end ignore */
 
   &__text {
     @apply ml-3 w-0 flex-1 pt-0.5 text-sm font-medium text-gray-900;
@@ -41,6 +45,7 @@
   &__image {
     @apply w-5 h-5;
 
+    /* purgecss start ignore */
     &--notice {
       @apply text-green-500;
     }
@@ -52,5 +57,6 @@
     &--warning {
       @apply text-yellow-500;
     }
+    /* purgecss end ignore */
   }
 }

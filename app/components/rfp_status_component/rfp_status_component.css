@@ -1,25 +1,27 @@
 .rfp-status {
   &__document-status {
     @apply rounded-full py-1 px-3 bg-opacity-80 text-sm text-center;
-  }
 
-  &__document-status--in-progress {
-    @apply bg-yellow-50 text-yellow-800;
-  }
+    /* purgecss start ignore */
+    &--in-progress {
+      @apply bg-yellow-50 text-yellow-800;
+    }
 
-  &__document-status--draft {
-    @apply bg-blue-100 text-blue-800;
-  }
+    &--draft {
+      @apply bg-blue-100 text-blue-800;
+    }
 
-  &__document-status--review {
-    @apply bg-blue-100 text-blue-800;
-  }
+    &--review {
+      @apply bg-blue-100 text-blue-800;
+    }
 
-  &__document-status--final {
-    @apply bg-blue-100 text-blue-800;
-  }
+    &--final {
+      @apply bg-blue-100 text-blue-800;
+    }
 
-  &__document-status--complete {
-    @apply bg-green-100 text-green-800;
+    &--complete {
+      @apply bg-green-100 text-green-800;
+    }
+    /* purgecss end ignore */
   }
 }
