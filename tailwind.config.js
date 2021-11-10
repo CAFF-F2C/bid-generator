@@ -14,6 +14,7 @@ module.exports = {
       white: colors.white,
       green: colors.green,
       cyan: colors.cyan,
+      coolGray: colors.coolGray,
       blue: {
         50: '#E2F8FF',
         100: '#B2E2F1',

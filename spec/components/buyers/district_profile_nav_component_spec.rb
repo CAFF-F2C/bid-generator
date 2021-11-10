@@ -5,46 +5,12 @@ RSpec.describe Buyers::DistrictProfileNavComponent, type: :component do
 
   let(:component) { described_class.new(current_path: current_path) }
 
-  describe '#progress_percent' do
-    context 'with new profile' do
-      let(:current_path) { Rails.application.routes.url_helpers.new_buyers_district_profile_path }
-
-      it 'returns current' do
-        expect(component.progress_percent).to eq('12.5%')
-      end
-    end
-
-    context 'with edit profile' do
-      let(:current_path) { Rails.application.routes.url_helpers.edit_buyers_district_profile_path }
-
-      it 'returns current' do
-        expect(component.progress_percent).to eq('12.5%')
-      end
-    end
-
-    context 'with contact' do
-      let(:current_path) { Rails.application.routes.url_helpers.edit_buyers_district_profile_contact_path }
-
-      it 'returns current' do
-        expect(component.progress_percent).to eq('37.5%')
-      end
-    end
-
-    context 'with locations' do
-      let(:current_path) { Rails.application.routes.url_helpers.buyers_district_profile_locations_path }
-
-      it 'returns current' do
-        expect(component.progress_percent).to eq('87.5%')
-      end
-    end
-  end
-
   describe 'classes' do
     context 'with the current page' do
       let(:current_path) { Rails.application.routes.url_helpers.new_buyers_district_profile_path }
 
       it 'returns current' do
-        expect(component.classes(Rails.application.routes.url_helpers.new_buyers_district_profile_path)).to eq('current')
+        expect(component.classes(Rails.application.routes.url_helpers.new_buyers_district_profile_path)).to eq('document-nav__tab-current')
       end
     end
   end

@@ -15,6 +15,28 @@
     }
   }
 
+  &__tab {
+    @apply group pl-4 py-2 flex flex-col border-l-4 border-cyan-600 hover:border-cyan-800 md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4;
+  }
+  &__tab-current {
+    @apply pl-4 py-2 flex flex-col border-l-4 border-cyan-800 md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4;
+  }
+  &__tab-upcoming {
+    @apply group pl-4 py-2 flex flex-col border-l-4 border-gray-200 hover:border-cyan-800 md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4;
+  }
+
+  &__header {
+    @apply text-xs text-cyan-700 font-semibold tracking-wide uppercase;
+  }
+
+  &__header-upcoming {
+    @apply text-xs text-coolGray-500 font-semibold tracking-wide uppercase;
+  }
+
+  &__subheader {
+    @apply text-sm text-coolGray-500 font-medium;
+  }
+
   .current ~ a svg {
     rect { stroke: gray; }
     circle { fill: transparent; }

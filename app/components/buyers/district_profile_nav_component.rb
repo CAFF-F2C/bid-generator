@@ -17,7 +17,7 @@ class Buyers::DistrictProfileNavComponent < ViewComponent::Base
   end
 
   def classes(path)
-    current_page?(path) ? 'current' : ''
+    current_page?(path) ? 'document-nav__tab-current' : 'document-nav__tab'
   end
 
   def current_page?(path)
