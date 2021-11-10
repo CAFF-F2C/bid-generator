@@ -22,7 +22,8 @@ if (process.env.RAILS_ENV === 'production') {
         './app/javascript/**/*.js',
         './app/components/**/*.erb',
         './app/components/**/*.css',
-        './app/components/**/*.js'
+        './app/components/**/*.js',
+        './app/components/**/*.rb',
       ],
       defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
     })
