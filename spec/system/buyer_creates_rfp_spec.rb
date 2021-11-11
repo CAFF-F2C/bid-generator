@@ -56,9 +56,16 @@ RSpec.describe 'Creates an RFP', type: :system do
     fill_in 'State', with: 'CA'
     fill_in 'ZIP code', with: '12345'
 
-    click_on 'Save'
+    click_on 'Save delivery site'
     expect(page).to have_content(/Deliver here/i)
     expect(page).to have_content('123 Main Way').and have_content('The City').and have_content('CA').and have_content('12345')
+
+    click_on 'Deliver here'
+    expect(page).to have_content(/Edit Deliver here/i)
+
+    fill_in 'Name', with: 'New Delivery Location'
+    click_on 'Cancel'
+    expect(page).to have_content(/Deliver here/i)
 
     click_on 'Review profile'
 

@@ -2,6 +2,7 @@ class Buyers::DistrictProfiles::LocationsController < ApplicationController
   layout 'buyers'
 
   before_action -> { redirect_to edit_buyers_district_profile_path }, unless: -> { current_buyer.district_profile.present? }
+  before_action :redirect_cancel, only: [:new, :create, :update]
   after_action :verify_authorized, except: [:index, :new, :create]
 
   def index
@@ -63,4 +64,9 @@ class Buyers::DistrictProfiles::LocationsController < ApplicationController
   def location_params
     params.require(:location).permit(:name, :street_address, :city, :state, :zip_code)
   end
+
+  def redirect_cancel
+    redirect_to buyers_district_profile_locations_path if params[:cancel]
+  end
+
 end

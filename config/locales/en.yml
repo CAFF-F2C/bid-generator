@@ -153,6 +153,7 @@ en:
         edit:
           title: Edit %{name}
         form:
+          cancel: Cancel
           submit: Save delivery site
         index:
           description: Where will you receive deliveries? When you make an RFP, you'll pick locations from this list.
