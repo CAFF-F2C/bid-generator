@@ -1,7 +1,5 @@
-class Buyers::RfpsController < ApplicationController
+class Buyers::RfpsController < Buyers::ApplicationController
   after_action :verify_authorized, except: [:new, :create]
-
-  layout 'buyers'
 
   def new
     @rfp = current_buyer.rfps.build(bid_type: 'Produce', start_year: Time.current.year)

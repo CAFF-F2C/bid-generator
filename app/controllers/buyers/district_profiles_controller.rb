@@ -1,6 +1,4 @@
-class Buyers::DistrictProfilesController < ApplicationController
-  layout 'buyers'
-
+class Buyers::DistrictProfilesController < Buyers::ApplicationController
   before_action -> { redirect_to edit_buyers_district_profile_path }, if: -> { current_buyer.district_profile.blank? }, only: [:show]
 
   def show

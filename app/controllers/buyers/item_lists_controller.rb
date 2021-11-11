@@ -1,6 +1,5 @@
-class Buyers::ItemListsController < ApplicationController
+class Buyers::ItemListsController < Buyers::ApplicationController
   after_action :verify_authorized
-  layout 'buyers'
 
   def edit
     @rfp = Rfp.find(params[:rfp_id])

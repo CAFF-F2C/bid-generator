@@ -22,6 +22,12 @@
         <div class="devise__card">
           <%= yield %>
         </div>
+        <footer class="w-full max-w-container mx-auto border-t py-10 text-center flex items-center justify-center text-sm text-gray-500">
+          <p>© <%= Time.current.year%> CAFF</p>
+          <p class="ml-3 border-l border-gray-200 pl-3">
+            <%= link_to t('.terms'), terms_path, class: 'hover:text-cyan-600' %>
+          </p>
+        </footer>
       </div>
     </main>
   </body>

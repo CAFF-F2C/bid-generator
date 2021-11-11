@@ -1,6 +1,4 @@
-class Buyers::DistrictProfiles::ContactsController < ApplicationController
-  layout 'buyers'
-
+class Buyers::DistrictProfiles::ContactsController < Buyers::ApplicationController
   before_action -> { redirect_to edit_buyers_district_profile_path }, unless: -> { current_buyer.district_profile.present? }
 
   def edit

@@ -1,4 +1,4 @@
-class Buyers::ResourcesController < ApplicationController
+class Buyers::ResourcesController < Buyers::ApplicationController
   skip_before_action :authenticate_buyer!
 
   def show

@@ -384,4 +384,10 @@ en:
         display_entries: 'Displaying %{entry_name} <span class="font-medium">%{first}&nbsp;-&nbsp;%{last}</span> of <span class="font-medium">%{total}</span> in total'
   layouts:
     buyers:
-      title: Bid Generator
+      application:
+        title: Bid Generator
+    devise:
+      terms: Terms and Conditions
+    terms:
+      title: Terms and Conditions
+      updated: Updated on %{date}

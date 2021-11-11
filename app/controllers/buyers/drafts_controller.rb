@@ -1,4 +1,4 @@
-class Buyers::DraftsController < ApplicationController
+class Buyers::DraftsController < Buyers::ApplicationController
   after_action :verify_authorized
 
   def create

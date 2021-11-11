@@ -1,6 +1,4 @@
-class Buyers::DistrictProfiles::LocationsController < ApplicationController
-  layout 'buyers'
-
+class Buyers::DistrictProfiles::LocationsController < Buyers::ApplicationController
   before_action -> { redirect_to edit_buyers_district_profile_path }, unless: -> { current_buyer.district_profile.present? }
   after_action :verify_authorized, except: [:index, :new, :create]
 

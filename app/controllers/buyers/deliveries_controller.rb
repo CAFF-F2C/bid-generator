@@ -1,6 +1,4 @@
-class Buyers::DeliveriesController < ApplicationController
-  layout 'buyers'
-
+class Buyers::DeliveriesController < Buyers::ApplicationController
   after_action :verify_authorized
 
   def index

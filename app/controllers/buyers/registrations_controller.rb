@@ -1,4 +1,3 @@
-# Handle registration for new Buyers
 class Buyers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 

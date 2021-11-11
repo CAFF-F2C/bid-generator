@@ -44,5 +44,7 @@ Rails.application.routes.draw do
     root to: 'documents#index'
   end
 
+  resource :terms, only: [:show]
+
   root to: 'buyers/documents#index'
 end
