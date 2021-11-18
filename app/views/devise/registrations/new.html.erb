@@ -33,6 +33,14 @@
     <% end %>
   </div>
 
+  <div class="mb-6 flex items-center">
+    <%= f.check_box :terms_and_conditions, required: true %>
+    <%= f.label :terms_and_conditions, "I have read and agreed to the #{link_to('Terms of Conditions', terms_path)}.".html_safe, class: 'ml-3 text-sm'%>
+    <% if f.object.errors.full_messages_for(:terms_and_conditions).present? %>
+      <p class="text-sm text-red-800"><%= f.object.errors.full_messages_for(:terms_and_conditions).first %></p>
+    <% end %>
+  </div>
+
   <div>
     <%= f.submit t(".submit") %>
   </div>

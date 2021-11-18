@@ -19,6 +19,8 @@
 class Buyer < ApplicationRecord
   devise :database_authenticatable, :confirmable, :registerable, :recoverable, :rememberable, :validatable
 
+  validates :terms_and_conditions, acceptance: true
+
   has_one :district_profile, inverse_of: :buyer, dependent: :destroy
   has_many :rfps, inverse_of: :buyer, dependent: :destroy
   has_many :locations, inverse_of: :buyer, dependent: :destroy
