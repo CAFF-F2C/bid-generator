@@ -21,7 +21,7 @@ RSpec.describe 'Buyer signs up', type: :system do
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
 
-    check 'I have read and agreed to the Terms of Conditions.'
+    check 'I have read and agreed to the Terms and Conditions.'
 
     perform_enqueued_jobs { click_on 'Sign up' }
 
