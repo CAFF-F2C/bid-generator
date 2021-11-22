@@ -60,6 +60,13 @@ RSpec.describe 'Creates an RFP', type: :system do
     expect(page).to have_content(/Deliver here/i)
     expect(page).to have_content('123 Main Way').and have_content('The City').and have_content('CA').and have_content('12345')
 
+    click_on 'New delivery site'
+
+    fill_in 'Name', with: 'Deliver now'
+
+    click_on 'Cancel'
+    expect(page).to have_content(/Deliver here/i)
+
     click_on 'Review profile'
 
     expect(page).to have_content('Incomplete')
