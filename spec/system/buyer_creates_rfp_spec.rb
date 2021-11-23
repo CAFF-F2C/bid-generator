@@ -128,11 +128,20 @@ RSpec.describe 'Creates an RFP', type: :system do
     select '6:00 am', from: 'Start time'
     select '8:00 am', from: 'End time'
 
-    click_on 'Save'
+    click_on 'Save delivery schedule'
 
     expect(page).to have_content('Deliver here')
     expect(page).to have_content('2x per week')
     expect(page).to have_content('Mon').and have_content('Wed')
+    expect(page).to have_content('6:00 am').and have_content('8:00 am')
+
+    click_on 'Deliver here'
+
+    select '12:00 pm', from: 'Start time'
+    select '2:00 pm', from: 'End time'
+
+    click_on 'Cancel'
+
     expect(page).to have_content('6:00 am').and have_content('8:00 am')
 
     click_on 'Next'

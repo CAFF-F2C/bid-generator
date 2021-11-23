@@ -94,6 +94,7 @@ en:
         15: 3:00 pm
     deliveries:
       edit:
+        cancel: Cancel
         title: Edit %{name}
       empty:
         component:
@@ -124,6 +125,7 @@ en:
             destroy: Delete
             times_per_week: "%{count}x per week"
       new:
+        cancel: Cancel
         title: New delivery time
     documents:
       index:
