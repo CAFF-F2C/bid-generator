@@ -102,6 +102,7 @@ en:
           new: New delivery time
       form:
         add_new_location: Add new delivery site
+        cancel: Cancel
         preferred_delivery_days: Preferred delivery days
         submit: Save delivery schedule
       index:
@@ -156,6 +157,7 @@ en:
           cancel: Cancel
           title: Edit %{name}
         form:
+          cancel: Cancel
           submit: Save delivery site
         index:
           description: Where will you receive deliveries? When you make an RFP, you'll pick locations from this list.

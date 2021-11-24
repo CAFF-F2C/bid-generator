@@ -51,6 +51,7 @@
       <div class="pt-4 mt-4">
         <div class="flex justify-start space-x-4">
           <%= f.button t('.submit'), class: 'forms-submit' %>
+          <%= link_to t('.cancel'), buyers_rfp_deliveries_path, data: {turbo_frame: '_top'}, class: 'forms-submit--outline' %>
         </div>
       </div>
     </div>
