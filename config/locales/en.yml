@@ -241,7 +241,7 @@ en:
           create_draft: Create draft
           upload_reviewed: Upload reviewed
           upload_final: Upload final
-          description: After you've filled out the information required for your proposal, you can create and download a draft here. If you'd like to review a copy of proposal with us, upload a Review document. When you're ready to finalize and post the propsal, upload a Final document.
+          description: After you've filled out the information required for your proposal, you can create and download a draft here. If you'd like to review a copy of the proposal with us, upload a Review document. When you're ready to finalize and post the proposal, upload a Final document.
           rebuild_draft: Rebuild draft
           post: Post proposal
           title: Proposal versions
