@@ -71,7 +71,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'timecop'
   gem 'vcr'
-  gem 'webdrivers'
+  gem 'webdrivers', ">= 5.2"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
