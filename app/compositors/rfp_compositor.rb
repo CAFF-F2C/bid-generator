@@ -49,7 +49,7 @@ class RfpCompositor
     begin
       tempfile.write(template.render_to_string(context))
       tempfile.rewind
-      rfp.draft.attach(io: tempfile, filename: "DRAFT_RFP_#{Time.current.to_s(:number)}.docx")
+      rfp.draft.attach(io: tempfile, filename: "DRAFT_RFP_#{Time.current.to_fs(:number)}.docx")
     ensure
       tempfile.close
       tempfile.unlink
