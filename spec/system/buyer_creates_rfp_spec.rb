@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Creates an RFP', type: :system do
   let!(:buyer) { create(:buyer, :confirmed) }
+  let(:current_year) { 1.hour.from_now.year }
 
   before do
     create(:score_category, name: 'Item Prices', description: 'price description', position: 1)
@@ -97,7 +98,7 @@ RSpec.describe 'Creates an RFP', type: :system do
     click_on 'Requests for Proposals'
 
     click_on 'New proposal'
-    select '2021 - 2022', from: 'School year'
+    select "#{current_year} - #{current_year + 1}", from: 'School year'
 
     click_on 'Next'
 
@@ -151,18 +152,18 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Requests for Proposals'
 
-    expect(page).to have_content('Complete').and have_content('Produce').and have_content('2021').and have_content('2022')
+    expect(page).to have_content('Complete').and have_content('Produce').and have_content(current_year).and have_content(current_year + 1)
 
     click_on 'Produce'
     click_on 'Update', match: :first
 
-    select '2022 - 2023', from: 'School year'
+    select "#{current_year} - #{current_year + 1}", from: 'School year'
 
     click_on 'Save draft'
 
     click_on 'Requests for Proposals'
 
-    expect(page).to have_content('Complete').and have_content('Produce').and have_content('2022').and have_content('2023')
+    expect(page).to have_content('Complete').and have_content('Produce').and have_content(current_year).and have_content(current_year + 1)
 
     click_on 'Produce'
 
