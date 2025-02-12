@@ -8,24 +8,27 @@
     "@rails/actioncable": "^7.0.8",
     "@rails/activestorage": "^7.0.8",
     "@rails/ujs": "^7.0.8",
-    "@rails/webpacker": "5.4.4",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^9",
-    "postcss": "^7.0.36",
-    "postcss-easy-import": "^3.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "postcss-import": "^16.1.0",
+    "postcss-import-ext-glob": "^2.1.1",
     "postcss-nested": "^4",
+    "sass": "^1.84.0",
     "stimulus": "^2.0.0",
     "stimulus-places-autocomplete": "^0.4.0",
     "stimulus-rails-autosave": "^3.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tailwindcss": "^3.4.17",
     "tailwindcss-stimulus-components": "^3.0.1",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   },
   "version": "0.1.0",
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
-  }
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

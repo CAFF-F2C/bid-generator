@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <%= javascript_pack_tag 'application', data: {turbo_track: :reload} %>
-    <%= stylesheet_pack_tag 'application', media: :all, data: {turbo_track: :reload} %>
+
+    <%= javascript_include_tag 'application', defer: true, data: {turbo_track: :reload} %>
+    <%= javascript_include_tag "turbo", type: "module" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application', media: :all, data: {turbo_track: :reload} %>
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.config.google_maps_api_key}&libraries=places&callback=AutoplacesController.dispatchEvent", async: true, defer: true, data: {turbolinks_eval: false} %>
   </head>
   <body class="h-full">
