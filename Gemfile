@@ -32,7 +32,7 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 0.3.3'
 gem 'turbo-rails'
 gem 'view_component', require: 'view_component/engine'
-gem 'webpacker', '~> 5.0'
+gem 'webpacker', '~> 5.4.4'
 
 group :development, :test do
   gem 'annotate', '~> 3.0'
@@ -71,7 +71,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'timecop'
   gem 'vcr'
-  gem 'webdrivers', ">= 5.2"
+  gem 'webdrivers', '>= 5.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
