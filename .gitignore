@@ -36,3 +36,6 @@ yarn-debug.log*
 .yarn-integrity
 .env
 **.DS_Store
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

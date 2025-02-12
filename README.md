@@ -53,10 +53,10 @@ $ bin/rails db:setup
 ```
 
 
-You can then start the Bid Generator application by using the Heroku CLI:
+You can then start the Bid Generator application:
 
 ```bash
-$ heroku local
+$ bin/dev
 ```
 
 Alternatively, you can start the Rails server directly:

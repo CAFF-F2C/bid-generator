@@ -6,12 +6,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application', data: { turbo_track: :reload } %>
-    <%= stylesheet_pack_tag 'application', media: :all, data: { turbo_track: :reload } %>
+    <%= javascript_include_tag 'application', defer: true, data: { turbo_track: :reload } %>
+    <%= javascript_include_tag "turbo", type: "module" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <%= yield :head %>
   </head>
 
   <body class="bg-gray-50">
