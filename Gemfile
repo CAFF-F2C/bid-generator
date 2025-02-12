@@ -1,3 +1,6 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -20,7 +23,7 @@ gem 'hiredis'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.7'
 gem 'markdown-rails'
-gem 'paranoia'
+gem 'paranoia', '~> 2.6'
 gem 'phonelib'
 gem 'pundit'
 gem 'redis'
@@ -35,12 +38,13 @@ gem 'view_component', require: 'view_component/engine'
 gem 'webpacker', '~> 5.4.4'
 
 group :development, :test do
-  gem 'annotate', '~> 3.0'
+  gem 'annotate', '~> 3.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'jasmine'
   gem 'license_finder', '~> 6.0'
+  gem 'next_rails'
   gem 'teaspoon-jasmine'
 end
 
