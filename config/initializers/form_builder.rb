@@ -1,3 +1,4 @@
 require 'forms/form_builder'
-
-ActionView::Base.default_form_builder = Forms::FormBuilder
+Rails.application.config.to_prepare do
+  ActionView::Base.default_form_builder = FormBuilder
+end

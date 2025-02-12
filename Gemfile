@@ -1,6 +1,3 @@
-def next?
-  File.basename(__FILE__) == "Gemfile.next"
-end
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -8,7 +5,7 @@ ruby '3.0.0'
 
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 7.0.8'
 
 gem 'dotenv-rails', groups: [:test, :development]
 
@@ -17,6 +14,7 @@ gem 'aws-sdk-rails', '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'concurrent-ruby', '1.3.4'
 gem 'connection_pool'
 gem 'devise'
 gem 'hiredis'
@@ -31,8 +29,8 @@ gem 'rspec'
 gem 'ruby-vips'
 gem 'sablon'
 gem 'sass-rails', '>= 6'
-gem 'stimulus-rails'
-gem 'tailwindcss-rails', '~> 0.3.3'
+gem 'stimulus-rails', '~> 1.0.4'
+gem 'tailwindcss-rails', '~> 1.0'
 gem 'turbo-rails'
 gem 'view_component', require: 'view_component/engine'
 gem 'webpacker', '~> 5.4.4'
