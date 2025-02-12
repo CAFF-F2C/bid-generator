@@ -12,7 +12,6 @@ require 'action_mailbox/engine'
 require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'
-require 'sprockets/railtie'
 # require "rails/test_unit/railtie"
 
 require 'view_component/engine'
@@ -32,7 +31,6 @@ module BidGenerator
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
@@ -44,5 +42,8 @@ module BidGenerator
     config.active_storage.variant_processor = :vips
     config.action_mailer.deliver_later_queue_name = :default
     config.time_zone = 'Pacific Time (US & Canada)'
+
+    # Don't generate system test files.
+    config.generators.system_tests = nil
   end
 end

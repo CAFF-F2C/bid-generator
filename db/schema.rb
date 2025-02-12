@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_155152) do
-
+ActiveRecord::Schema[7.0].define(version: 2025_02_12_115244) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -48,19 +47,19 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "notify_signup", default: false
     t.index ["confirmation_token"], name: "index_admin_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admin_users_on_email", unique: true
@@ -72,14 +71,14 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_buyers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_buyers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_buyers_on_reset_password_token", unique: true
@@ -90,8 +89,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.bigint "location_id", null: false
     t.integer "delivery_days", default: [], array: true
     t.integer "deliveries_per_week"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "window_start_time"
     t.integer "window_end_time"
     t.index ["location_id"], name: "index_deliveries_on_location_id"
@@ -105,8 +104,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.integer "enrolled_students_number"
     t.integer "daily_meals_number"
     t.bigint "buyer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "contact_full_name"
     t.string "contact_department_name"
     t.string "contact_title"
@@ -131,8 +130,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.string "city", null: false
     t.string "state", null: false
     t.string "zip_code", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_locations_on_buyer_id"
   end
 
@@ -140,8 +139,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.bigint "buyer_id", null: false
     t.integer "start_year", null: false
     t.integer "bid_type", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_rfps_on_buyer_id"
   end
 
@@ -149,9 +148,9 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.string "name", null: false
     t.text "description", null: false
     t.integer "position", null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "vendor_questions"
     t.text "point_split_descriptions"
     t.text "point_awarded_basis"
@@ -163,8 +162,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_155152) do
     t.bigint "rfp_id", null: false
     t.bigint "score_category_id", null: false
     t.integer "value", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["rfp_id"], name: "index_scores_on_rfp_id"
     t.index ["score_category_id", "rfp_id"], name: "index_scores_on_score_category_id_and_rfp_id", unique: true
   end
