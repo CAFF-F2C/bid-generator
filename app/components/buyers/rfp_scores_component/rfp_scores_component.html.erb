@@ -1,7 +1,7 @@
 <div class= 'rfp-scores' id='rfp_scores'>
   <%= render(FormErrorsComponent.new(errors: errors.uniq, scope: :complete)) %>
   <% scores.each do |score|%>
-    <%= form_for [:buyers, @current_rfp, score], data: { controller: 'autosave', autosave_delay_value: '1000' } do |f| %>
+    <%= form_for [:buyers, @current_rfp, score], data: { controller: 'auto-submit', auto_submit_delay_value: '1000' } do |f| %>
       <div
         id="score_category_<%= score.score_category_id %>"
         class="rfp-scores__score <%= (score.errors.present?) ? 'rfp-scores__score--errors' : ''%>"
@@ -12,7 +12,7 @@
         </div>
         <div class='rfp-scores__value'>
           <%= f.hidden_field :score_category_id %>
-          <%= f.number_field :value, min: 0, max: 100, id: "score_value_#{score.score_category_id}", data: { action: 'autosave#save' }, :autofocus => current_score?(score.id), class: 'text-field' %>
+          <%= f.number_field :value, min: 0, max: 100, id: "score_value_#{score.score_category_id}", data: { action: 'auto-submit#submit' }, :autofocus => current_score?(score.id), class: 'text-field' %>
         </div>
       </div>
     <% end %>
