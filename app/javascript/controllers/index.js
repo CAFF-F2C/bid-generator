@@ -4,9 +4,8 @@
 
 import { application } from "./application"
 
-import { definitionsFromContext } from "stimulus/webpack-helpers"
-import Autosave from "stimulus-rails-autosave"
-application.register("autosave", Autosave)
+import AutoSubmit from '@stimulus-components/auto-submit'
+application.register('auto-submit', AutoSubmit)
 
 import { Slideover } from "tailwindcss-stimulus-components"
 application.register('slideover', Slideover)

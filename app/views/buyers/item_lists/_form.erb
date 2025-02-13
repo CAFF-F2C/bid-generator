@@ -34,7 +34,7 @@
         </ul>
       <% end %>
 
-      <%= form_for proposal, url: buyers_rfp_item_list_path(proposal.id), method: :patch, html: {class: 'flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md', data: {turbo_frame: '_top', controller: 'autosave', autosave_delay_value: '1000'}} do |f| %>
+      <%= form_for proposal, url: buyers_rfp_item_list_path(proposal.id), method: :patch, html: {class: 'flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md', data: {turbo_frame: '_top', controller: 'auto-submit', auto_submit_delay_value: '1000'}} do |f| %>
         <div class="space-y-1 text-center">
           <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
             <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -42,7 +42,7 @@
           <div class="text-center text-sm text-gray-600">
             <label for="rfp_item_list" class="relative cursor-pointer rounded-md font-medium text-cyan-700 hover:text-cyan-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500">
               <span><%= t('.upload') %></span>
-              <%= f.file_field :item_list, required: true, class: 'sr-only', data: {action: 'change->autosave#save'} %>
+              <%= f.file_field :item_list, required: true, class: 'sr-only', data: {action: 'change->auto-submit#submit'} %>
             </label>
           </div>
           <p class="text-xs text-gray-600"><%= t('.file_types') %></p>
