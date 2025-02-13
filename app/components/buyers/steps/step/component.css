@@ -6,11 +6,11 @@
   }
 
   &--completed {
-    @apply group border-cyan-700 hover:border-cyan-500;
+    @apply border-cyan-700 hover:border-cyan-500;
   }
 
   &--upcoming {
-    @apply group border-gray-200 hover:border-gray-300;
+    @apply border-gray-200 hover:border-gray-300;
   }
 
   &__label {
