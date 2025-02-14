@@ -271,8 +271,6 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
-    next_rails (1.4.2)
-      rainbow (>= 3)
     nio4r (2.7.4)
     nokogiri (1.18.2)
       mini_portile2 (~> 2.8.2)
@@ -525,7 +523,6 @@ DEPENDENCIES
   license_finder (~> 6.0)
   listen (~> 3.3)
   markdown-rails
-  next_rails
   paranoia (~> 2.6)
   pg (~> 1.1)
   phonelib
