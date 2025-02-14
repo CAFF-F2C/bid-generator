@@ -509,7 +509,7 @@ DEPENDENCIES
   capybara (~> 3.40.0)
   capybara-email (~> 3.0)
   capybara-screenshot (~> 1.0)
-  concurrent-ruby (= 1.3.4)
+  concurrent-ruby (~> 1.3.4)
   connection_pool
   cssbundling-rails
   database_cleaner-active_record

@@ -14,7 +14,7 @@ gem 'aws-sdk-rails', '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'concurrent-ruby', '1.3.4'
+gem 'concurrent-ruby', '~> 1.3.4'
 gem 'connection_pool'
 gem 'cssbundling-rails'
 gem 'devise'
