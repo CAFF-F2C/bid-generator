@@ -42,7 +42,6 @@ group :development, :test do
   gem 'faker'
   gem 'jasmine'
   gem 'license_finder', '~> 6.0'
-  gem 'next_rails'
   gem 'teaspoon-jasmine'
 end
 
