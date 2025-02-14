@@ -23,7 +23,7 @@ Bundler.require(*Rails.groups)
 module BidGenerator
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -45,8 +45,5 @@ module BidGenerator
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    config.active_support.disable_to_s_conversion = true
-    config.active_support.cache_format_version = 7.0
   end
 end
