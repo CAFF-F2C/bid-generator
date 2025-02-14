@@ -192,6 +192,7 @@ GEM
       i18n (>= 1.6, < 2)
     ffi (1.17.1)
     ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hiredis (0.6.3)
@@ -552,7 +553,7 @@ DEPENDENCIES
   webdrivers (>= 5.2)
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.1.6p260
 
 BUNDLED WITH
-   2.2.3
+   2.6.3
