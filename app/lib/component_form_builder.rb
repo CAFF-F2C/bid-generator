@@ -1,4 +1,4 @@
-class FormBuilder < ActionView::Helpers::FormBuilder
+class ComponentFormBuilder < ActionView::Helpers::FormBuilder
   def text_field(attribute, options = {})
     @template.render Forms::TextField::Component.new(object: @object, attribute: attribute) do |component|
       component.field { super(attribute, options.merge(class: component.classes)) }
