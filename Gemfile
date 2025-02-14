@@ -33,7 +33,7 @@ gem 'sablon'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 3.3.1'
 gem 'turbo-rails'
-gem 'view_component', require: 'view_component/engine'
+gem 'view_component', '~> 2.35.0', require: 'view_component/engine'
 
 group :development, :test do
   gem 'annotate', '~> 3.2'
@@ -60,7 +60,7 @@ end
 group :test do
   gem 'axe-core-capybara'
   gem 'axe-core-rspec'
-  gem 'capybara', '~> 3.0'
+  gem 'capybara', '~> 3.40.0'
   gem 'capybara-email', '~> 3.0'
   gem 'capybara-screenshot', '~> 1.0', require: false
   gem 'database_cleaner-active_record'

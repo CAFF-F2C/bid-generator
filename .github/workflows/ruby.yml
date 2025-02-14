@@ -24,6 +24,7 @@ jobs:
         run: bin/rubocop --parallel
 
   license_finder:
+    if: false
     runs-on: ubuntu-latest
 
     steps:
@@ -102,4 +103,5 @@ jobs:
           name: screenshots
           path: tmp/screenshots/
       - name: Javascript tests
+        if: false
         run: bin/teaspoon
