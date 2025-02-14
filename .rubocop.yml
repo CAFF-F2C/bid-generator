@@ -17,7 +17,7 @@ Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
 Lint/AmbiguousBlockAssociation:
-  IgnoredMethods: [change]
+  AllowedMethods: [change]
 
 Lint/MissingSuper:
   Exclude:
@@ -33,7 +33,7 @@ Metrics/ClassLength:
   Enabled: false
 
 Metrics/BlockLength:
-  IgnoredMethods: [describe, context, it, before, configure, task]
+  AllowedMethods: [describe, context, it, before, configure, task]
   Exclude:
     - 'config/routes.rb'
 
@@ -66,6 +66,9 @@ Style/SymbolArray:
 Style/WordArray:
   Enabled: false
 
+Style/OpenStructUse:
+  Enabled: false
+  
 Layout/LineLength:
   Enabled: false
 
@@ -83,4 +86,7 @@ RSpec/MultipleExpectations:
     - 'spec/system/**/*'
 
 RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/IndexedLet:
   Enabled: false

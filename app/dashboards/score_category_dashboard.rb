@@ -67,7 +67,7 @@ class ScoreCategoryDashboard < Administrate::BaseDashboard
   #     open: ->(resources) { resources.where(open: true) }
   #   }.freeze
   COLLECTION_FILTERS = {
-    deleted: ->(resources) { resources.only_deleted }
+    deleted: lambda(&:only_deleted)
   }.freeze
 
   # Overwrite this method to customize how score categories are displayed

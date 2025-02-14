@@ -23,7 +23,7 @@ class Delivery < ApplicationRecord
   validates :delivery_days, inclusion: {in: [*1..5]}
   validates :window_start_time, inclusion: {in: [*4..15]}
   validates :window_end_time, inclusion: {in: [*4..15]}
-  validates :window_end_time, numericality: {only_integer: true, greater_than_or_equal_to: ->(delivery) { delivery.window_start_time }}
+  validates :window_end_time, numericality: {only_integer: true, greater_than_or_equal_to: lambda(&:window_start_time)}
 
   def display_delivery_days
     delivery_days.map { |d| Date::DAYNAMES[d] }.join(', ')

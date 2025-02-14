@@ -11,11 +11,11 @@ RSpec.describe RfpCompositor do
 
   context 'when the rfp is not valid' do
     it 'is not valid' do
-      expect(compositor.valid?).to eq(false)
+      expect(compositor.valid?).to be(false)
     end
 
     it 'returns false' do
-      expect(compositor.attach).to eq(false)
+      expect(compositor.attach).to be(false)
     end
 
     it 'does not attach the generated rfp' do
@@ -34,11 +34,11 @@ RSpec.describe RfpCompositor do
     end
 
     it 'is valid' do
-      expect(compositor.valid?).to eq(true)
+      expect(compositor.valid?).to be(true)
     end
 
     it 'returns true' do
-      expect(compositor.attach).to eq(true)
+      expect(compositor.attach).to be(true)
     end
 
     it 'attaches the generated rfp' do
@@ -107,11 +107,11 @@ RSpec.describe RfpCompositor do
     end
 
     it 'calculates the allow_piggyback' do
-      expect(compositor.context[:allow_piggyback]).to eq(true)
+      expect(compositor.context[:allow_piggyback]).to be(true)
     end
 
     it 'calculates the price_verified' do
-      expect(compositor.context[:price_verified]).to eq(true)
+      expect(compositor.context[:price_verified]).to be(true)
     end
 
     it 'includes serialized_deliveries' do
