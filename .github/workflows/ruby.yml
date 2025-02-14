@@ -88,7 +88,6 @@ jobs:
         with:
           path: |
             public/assets
-            public/packs-test
           key: ${{ runner.os }}-assets
       - name: Precompile Assets
         run: bundle exec rails assets:precompile
