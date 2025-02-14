@@ -45,7 +45,7 @@ class Buyers::Navigation::Sidebar::Component < ApplicationComponent
     Rails.application.routes.routes.each_with_object({}) do |route, routes|
       controller, action = route.defaults.values_at(:controller, :action)
       routes[controller.to_s] ||= []
-      routes[controller.to_s] = routes[controller.to_s].concat([action.to_s]).uniq
+      routes[controller.to_s] = routes[controller.to_s].push(action.to_s).uniq
     end
   end
 end

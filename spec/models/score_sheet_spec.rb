@@ -47,7 +47,7 @@ RSpec.describe ScoreSheet, type: :model do
 
     context 'when there are no scores' do
       it 'is not valid' do
-        expect(score_sheet.valid?).to eq(false)
+        expect(score_sheet.valid?).to be(false)
       end
 
       it 'returns an error' do
