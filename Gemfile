@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.6'
 
-gem 'pg', '~> 1.1'
-gem 'puma', '~> 5.0'
+gem 'pg', '~> 1.5'
+gem 'puma', '~> 6.0'
 gem 'rails', '~> 7.0.8'
 
 gem 'dotenv-rails', groups: [:test, :development]
