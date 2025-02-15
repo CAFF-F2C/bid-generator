@@ -14,7 +14,7 @@ gem 'aws-sdk-rails', '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'concurrent-ruby', '~> 1.3.4'
+gem 'concurrent-ruby', '1.3.4' # lock should go away with rails 7.1
 gem 'connection_pool'
 gem 'cssbundling-rails'
 gem 'devise'
@@ -69,10 +69,10 @@ group :test do
   gem 'rspec-html-matchers'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'timecop'
   gem 'vcr'
-  gem 'webdrivers', '>= 5.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

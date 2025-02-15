@@ -1,4 +1,4 @@
-require 'webdrivers'
+require 'selenium-webdriver'
 
 Teaspoon.configure do |config|
   # Determines where the Teaspoon routes will be mounted. Changing this to "/jasmine" would allow you to browse to
