@@ -1,5 +1,5 @@
 class Buyers::ApplicationController < ApplicationController
-  include Pundit
+  include Pundit::Authorization
 
   before_action :authenticate_buyer!, unless: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

@@ -23,10 +23,7 @@ RSpec.describe 'Buyer signs up', type: :system do
 
     check 'I have read and agreed to the Terms and Conditions.'
 
-    perform_enqueued_jobs { click_on 'Sign up' }
-
-    open_email('admintest@example.com')
-    expect(current_email).to have_content 'A new buyer account has signed up with the email: buyer@example.com.'
+    click_on 'Sign up'
 
     expect(page).to have_content(/confirmation link/i)
     expect(page).to be_axe_clean
@@ -38,8 +35,13 @@ RSpec.describe 'Buyer signs up', type: :system do
 
     expect(page).to have_content(/confirm your email address/i)
 
-    open_email 'buyer@example.com'
-    current_email.click_link('Confirm my account')
+    perform_enqueued_jobs do
+      open_email 'buyer@example.com'
+      current_email.click_link('Confirm my account')
+    end
+
+    open_email 'admintest@example.com'
+    expect(current_email).to have_content 'A new buyer account has signed up with the email: buyer@example.com.'
 
     expect(page).to have_content(/sign into your account/i)
     expect(page).to be_axe_clean

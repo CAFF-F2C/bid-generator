@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   devise_for :admin_users
-  devise_for :buyers, controllers: {registrations: 'buyers/registrations'}
+  devise_for :buyers, controllers: {confirmations: 'buyers/confirmations', registrations: 'buyers/registrations'}
 
   namespace :admin do
     resources :admin_users

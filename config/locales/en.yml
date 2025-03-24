@@ -78,6 +78,9 @@ en:
         scores_invalid: "has invalid information in"
         inclusion: "has invalid information in"
   buyers:
+    confirmations:
+      show:
+        title: Resend confirmation instructions
     delivery:
       time:
         4: 4:00 am
@@ -357,10 +360,10 @@ en:
         submit: Change my password
         title: Change your password
     confirmations:
-      create:
+      new:
         submit: Resend instructions
         title: Resend confirmation instructions
-      new:
+      show:
         submit: Resend instructions
         title: Resend confirmation instructions
     registrations:
