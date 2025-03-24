@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Log in', type: :system do
-  let(:buyer) { create(:buyer, email: buyer_email) }
-  let(:buyer_email) { "user#{rand(100)}@example.com" }
+  let(:buyer) { create(:buyer, confirmed_at: Time.current) }
+  let(:unconfirmed_buyer) { create(:buyer) }
 
   before do
     create(:admin_user, email: 'admin@example.com', password: 'password')
@@ -55,11 +55,17 @@ RSpec.describe 'Log in', type: :system do
       click_on 'Buyers'
     end
 
-    expect(page).to have_content(buyer_email)
+    expect(page).not_to have_content(unconfirmed_buyer.email)
 
-    click_on buyer_email
+    click_on 'Show Unconfirmed Buyers'
 
-    expect(page).to have_content(buyer_email)
+    expect(page).to have_content(unconfirmed_buyer.email)
+
+    expect(page).to have_content(buyer.email)
+
+    click_on buyer.email
+
+    expect(page).to have_content(buyer.email)
 
     click_on 'New District'
 

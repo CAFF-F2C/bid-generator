@@ -29,6 +29,7 @@ class BuyerDashboard < Administrate::BaseDashboard
     email
     district_profile
     rfps
+    confirmed_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -51,7 +52,9 @@ class BuyerDashboard < Administrate::BaseDashboard
   #   COLLECTION_FILTERS = {
   #     open: ->(resources) { resources.where(open: true) }
   #   }.freeze
-  COLLECTION_FILTERS = {}.freeze
+  COLLECTION_FILTERS = {
+    unconfirmed: ->(resources) { resources.unscoped.all }
+  }.freeze
 
   # Overwrite this method to customize how buyers are displayed
   # across all pages of the admin dashboard.

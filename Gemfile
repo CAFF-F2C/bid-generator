@@ -9,7 +9,7 @@ gem 'rails', '~> 7.0.8'
 
 gem 'dotenv-rails', groups: [:test, :development]
 
-gem 'administrate'
+gem 'administrate', '1.0.0.beta3'
 gem 'aws-sdk-rails', '~> 3'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
@@ -30,6 +30,7 @@ gem 'redis'
 gem 'rspec'
 gem 'ruby-vips'
 gem 'sablon'
+gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 3.3.1'
 gem 'turbo-rails'

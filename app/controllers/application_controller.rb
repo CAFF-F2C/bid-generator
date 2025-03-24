@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
   default_form_builder ::ComponentFormBuilder
 
   def after_sign_in_path_for(resource)
