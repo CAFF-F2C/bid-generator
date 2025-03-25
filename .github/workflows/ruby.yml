@@ -102,6 +102,11 @@ jobs:
         with:
           name: screenshots
           path: tmp/screenshots/
-      - name: Javascript tests
-        if: false
-        run: bin/teaspoon
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install modules
+      run: yarn
+    - name: Run tests
+      run: yarn test

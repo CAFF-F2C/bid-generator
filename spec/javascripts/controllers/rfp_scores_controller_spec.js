@@ -21,10 +21,10 @@ describe('RfpScoresController', () => {
     application = Application.start()
     application.register("rfp-scores", RfpScoresController)
 
-    setImmediate(() => {
+    setTimeout(() => {
       controller = application.controllers[0]
       done()
-    })
+    }, 0)
   })
 
   afterEach(() => {
@@ -56,7 +56,7 @@ describe('RfpScoresController', () => {
         const scoreNode = document.createElement('template')
         scoreNode.innerHTML = scoreHtml
         root.querySelector('#scores').replaceChildren(scoreNode.content)
-        setImmediate(done)
+        setTimeout(done, 0)
       })
 
       it('shows the description', () => {

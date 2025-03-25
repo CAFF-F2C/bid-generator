@@ -14,18 +14,16 @@ describe('FlashController', () => {
 
     application = Application.start()
     application.register("flash", FlashController)
-    jasmine.clock().install()
 
-    setImmediate(() => {
+    setTimeout(() => {
       controller = application.controllers[0]
       done()
-    })
+    }, 0)
   })
 
   afterEach(() => {
     application.stop()
     document.body.removeChild(root)
-    jasmine.clock().uninstall()
   })
 
   describe('#onClick', () => {
@@ -38,9 +36,9 @@ describe('FlashController', () => {
     })
 
     describe('when five seconds pass', () => {
-      beforeEach(() => {
-        jasmine.clock().tick(5001)
-      })
+      beforeEach((done) => {
+        setTimeout(done, 5001)
+      }, 6000)
 
       it('removes the element', () => {
         expect(root.querySelector('section')).toBeNull()
