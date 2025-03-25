@@ -71,10 +71,6 @@ jobs:
         with:
           ruby-version: 3.1.6
           bundler-cache: true
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: yarn
       - name: Install libvips
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -102,7 +98,7 @@ jobs:
         with:
           name: screenshots
           path: tmp/screenshots/
-  build:
+  jest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
