@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :admin_users
     resources :buyers, only: [:index, :show]
-    resources :rfps, only: [:index, :show, :edit, :update]
-    resources :district_profiles, only: [:index, :show, :edit, :update]
-    resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :deliveries, only: [:show]
+    resources :district_profiles, only: [:index, :show, :edit, :update]
     resources :locations, only: [:show]
+    resources :procurement_types, only: [:index, :show, :new, :create, :edit, :update]
+    resources :rfps, only: [:index, :show, :edit, :update]
+    resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :scores, only: [:edit, :update, :show]
 
     delete :rfp_item_list_destroy, to: 'rfps#destroy_item_list'
