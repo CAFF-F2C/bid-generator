@@ -18,7 +18,6 @@ Capybara.register_driver :selenium_chrome_headless do |app|
     opts.args << '--force-device-scale-factor=0.95'
     opts.args << '--headless'
     opts.args << '--disable-gpu'
-    opts.args << '--disable-site-isolation-trials'
     opts.args << '--no-sandbox'
   end
   browser_options.add_preference(:download, prompt_for_download: false, default_directory: Rails.root.join("tmp/capybara_downloads#{ENV.fetch('TEST_ENV_NUMBER', nil)}").to_s)
