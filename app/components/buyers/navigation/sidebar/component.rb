@@ -8,6 +8,7 @@ class Buyers::Navigation::Sidebar::Component < ApplicationComponent
     attr_accessor :namespace, :controller, :actions
 
     validates :controller, format: {with: ->(route) { %r{\A#{route.namespace}/[^/]+\z} }}
+    validates :controller, format: {without: /confirmations|registrations/i}
 
     validates :path, presence: true
 
