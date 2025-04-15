@@ -11,6 +11,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     published: Field::Boolean,
+    template: AttachedDocumentField,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -21,18 +22,17 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    id
-    name
     published
-    created_at
+    name
+    template
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    id
     name
     published
+    template
     created_at
     updated_at
   ].freeze
@@ -43,6 +43,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     published
+    template
   ].freeze
 
   # COLLECTION_FILTERS
@@ -60,7 +61,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how procurement types are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(procurement_type)
-  #   "ProcurementType ##{procurement_type.id}"
-  # end
+  def display_resource(type)
+    type.name
+  end
 end

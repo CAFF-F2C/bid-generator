@@ -20,7 +20,7 @@
 FactoryBot.define do
   factory :rfp do
     buyer
+    procurement_type
     start_year { 2001 }
-    bid_type { Rfp::BID_TYPES.sample }
   end
 end
