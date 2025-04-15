@@ -2,12 +2,13 @@
 #
 # Table name: rfps
 #
-#  id         :bigint           not null, primary key
-#  bid_type   :integer          not null
-#  start_year :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  buyer_id   :bigint           not null
+#  id                  :bigint           not null, primary key
+#  bid_type            :integer
+#  start_year          :integer          not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  buyer_id            :bigint           not null
+#  procurement_type_id :bigint
 #
 
 class DeliveriesPresenceValidator < ActiveModel::EachValidator
@@ -27,6 +28,7 @@ class Rfp < ApplicationRecord
   enum bid_type: BID_TYPES
 
   belongs_to :buyer, inverse_of: :rfps
+  belongs_to :procurement_type, inverse_of: :rfps
   has_many :scores, -> { joins(:score_category).order('score_categories.position ASC') }, inverse_of: :rfp, dependent: :destroy
   has_many :positive_scores, -> { where.not(value: 0).joins(:score_category).order('score_categories.position ASC') }, class_name: 'Score'
   has_many :deliveries, inverse_of: :rfp, dependent: :destroy
@@ -38,16 +40,17 @@ class Rfp < ApplicationRecord
   delegate :district_profile, to: :buyer
   delegate :complete?, to: :district_profile, prefix: true, allow_nil: true
 
-  validates :buyer, presence: true
-  validates :bid_type, inclusion: BID_TYPES, on: [:create, :update, :purpose]
-  validates :bid_type, :start_year, presence: true, on: [:create, :update, :purpose]
+  delegate :name, to: :procurement_type, prefix: true, allow_nil: true # TODO: shouldnt be nil
+
+  validates :buyer, :procurement_type, presence: true
+  validates :start_year, presence: true, on: [:create, :update, :purpose]
 
   validates :district_profile_complete?, inclusion: {in: [true]}, on: :complete?
   validates :deliveries, deliveries_presence: true, on: [:deliveries, :complete?]
   validates :score_sheet, score_sheet: true, on: [:scores, :complete?]
 
   def name
-    "#{bid_type} (#{school_year})"
+    "#{procurement_type_name} (#{school_year})"
   end
 
   def school_year

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :procurement_type do
-    name { 'MyString' }
-    published { false }
+    name { 'BidType' }
+    published { true }
   end
 end

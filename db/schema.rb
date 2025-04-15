@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_08_230852) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_09_172015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -145,10 +145,12 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_08_230852) do
   create_table "rfps", force: :cascade do |t|
     t.bigint "buyer_id", null: false
     t.integer "start_year", null: false
-    t.integer "bid_type", null: false
+    t.integer "bid_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "procurement_type_id"
     t.index ["buyer_id"], name: "index_rfps_on_buyer_id"
+    t.index ["procurement_type_id"], name: "index_rfps_on_procurement_type_id"
   end
 
   create_table "score_categories", force: :cascade do |t|
@@ -182,6 +184,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_08_230852) do
   add_foreign_key "district_profiles", "buyers"
   add_foreign_key "locations", "buyers"
   add_foreign_key "rfps", "buyers"
+  add_foreign_key "rfps", "procurement_types"
   add_foreign_key "scores", "rfps"
   add_foreign_key "scores", "score_categories"
 end
