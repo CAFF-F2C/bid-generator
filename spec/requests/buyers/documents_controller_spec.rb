@@ -28,7 +28,9 @@ RSpec.describe Buyers::DocumentsController, type: :request do
       end
 
       context 'when there is an rfp that belongs to the buyer' do
-        before { FactoryBot.create(:rfp, buyer: buyer, start_year: 2021, bid_type: 'Produce') }
+        let(:procurement_type) { create(:procurement_type, name: 'Produce', published: true) }
+
+        before { FactoryBot.create(:rfp, buyer: buyer, start_year: 2021, procurement_type: procurement_type) }
 
         it 'shows the rfp' do
           make_request

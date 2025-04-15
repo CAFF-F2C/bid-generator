@@ -4,15 +4,14 @@
       <div class="space-y-4">
         <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <%= f.label :bid_type %>
-            <%= f.select :bid_type, Rfp.bid_types.keys.map { |w| [w.humanize, w] }, {}, disabled: true %>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
-          <div class="sm:col-span-3">
             <%= f.label :start_year %>
             <%= f.select :start_year, (1.hour.from_now.year..5.years.from_now.year).map { |year| ["#{year} - #{year+1}", year] }, {} %>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <%= f.label :procurement_type_id %>
+            <%= f.select :procurement_type_id, ProcurementType.published.map { |w| [w.name, w.id] }, {} %>
           </div>
         </div>
       </div>

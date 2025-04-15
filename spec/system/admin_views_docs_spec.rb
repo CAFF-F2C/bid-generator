@@ -3,10 +3,12 @@ require 'rails_helper'
 RSpec.describe 'Log in', type: :system do
   let(:buyer) { create(:buyer, confirmed_at: Time.current) }
   let(:unconfirmed_buyer) { create(:buyer) }
+  let(:procurement_type) { create(:procurement_type, name: 'TestType', published: true) }
 
   before do
     create(:admin_user, email: 'admin@example.com', password: 'password')
-    create(:rfp, start_year: 2021, bid_type: 'Produce')
+    procurement_type.template.attach(io: File.open('spec/fixtures/files/RFP_Template.docx'), filename: 'RFP_Template.docx')
+    create(:rfp, start_year: 2021, procurement_type: procurement_type)
     create(:district_profile, buyer: buyer, district_name: 'New District')
   end
 
@@ -31,8 +33,8 @@ RSpec.describe 'Log in', type: :system do
 
     expect(page).to have_content('2021')
 
-    click_on 'Produce'
-    expect(page).to have_content('Produce')
+    click_on '2021'
+    expect(page).to have_content('TestType')
     click_on 'Edit'
     page.attach_file('rfp_item_list', 'spec/fixtures/files/item_list.txt')
 

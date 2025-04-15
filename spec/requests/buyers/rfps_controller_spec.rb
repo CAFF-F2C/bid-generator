@@ -30,7 +30,12 @@ RSpec.describe Buyers::RfpsController, type: :request do
   end
 
   describe 'POST #create' do
-    let(:buyer) { FactoryBot.create(:buyer, :confirmed) }
+    let(:buyer) { create(:buyer, :confirmed) }
+    let(:procurement_type) { create(:procurement_type, name: 'TestType', published: true) }
+
+    before do
+      procurement_type.template.attach(io: File.open('spec/fixtures/files/RFP_Template.docx'), filename: 'RFP_Template.docx')
+    end
 
     def make_request(params = {})
       post buyers_rfps_path(rfp: params)
@@ -42,7 +47,7 @@ RSpec.describe Buyers::RfpsController, type: :request do
 
     context 'when no user is signed in' do
       it 'redirects to the sign in path' do
-        make_request(bid_type: 'Produce', start_year: 1.year.from_now.year.to_s)
+        make_request(procurement_type_id: procurement_type.id, start_year: 1.year.from_now.year.to_s)
         expect(response).to redirect_to(buyer_session_path)
       end
     end
@@ -54,23 +59,23 @@ RSpec.describe Buyers::RfpsController, type: :request do
 
       it 'creates a new rfp' do
         expect do
-          make_request(bid_type: 'Produce', start_year: 1.year.from_now.year.to_s)
+          make_request(procurement_type_id: procurement_type.id, start_year: 1.year.from_now.year.to_s)
         end.to change(Rfp, :count).by(1)
       end
 
       it 'sets the attributes' do
-        make_request(bid_type: 'Produce', start_year: 1.year.from_now.year.to_s)
-        expect(Rfp.last).to have_attributes(start_year: 1.year.from_now.year, bid_type: 'Produce')
+        make_request(procurement_type_id: procurement_type.id, start_year: 1.year.from_now.year.to_s)
+        expect(Rfp.last).to have_attributes(start_year: 1.year.from_now.year, procurement_type: procurement_type)
       end
 
       it 'redirects to the scores page' do
-        make_request(bid_type: 'Produce', start_year: 1.year.from_now.year.to_s)
+        make_request(procurement_type_id: procurement_type.id, start_year: 1.year.from_now.year.to_s)
         expect(response).to redirect_to(buyers_rfp_scores_path(Rfp.last))
       end
 
       context 'when creating a draft' do
         it 'redirects to the edit page' do
-          make_draft_request(bid_type: 'Produce', start_year: 1.year.from_now.year.to_s)
+          make_draft_request(procurement_type_id: procurement_type.id, start_year: 1.year.from_now.year.to_s)
           expect(response).to redirect_to(edit_buyers_rfp_path(Rfp.last))
         end
       end
@@ -151,8 +156,9 @@ RSpec.describe Buyers::RfpsController, type: :request do
   end
 
   describe 'PATCH #update' do
-    let(:buyer) { FactoryBot.create(:buyer, :confirmed) }
-    let(:rfp) { FactoryBot.create(:rfp, buyer: buyer, start_year: 2021, bid_type: 'Produce') }
+    let(:buyer) { create(:buyer, :confirmed) }
+    let(:procurement_type) { create(:procurement_type, name: 'TestType', published: true) }
+    let(:rfp) { create(:rfp, buyer: buyer, start_year: 2021) }
 
     def make_request(rfp_id, params = {})
       patch buyers_rfp_path(rfp_id), params: {rfp: params}
@@ -173,25 +179,25 @@ RSpec.describe Buyers::RfpsController, type: :request do
       before { sign_in(buyer, scope: :buyer) }
 
       it 'update the attributes' do
-        make_request(rfp.id, start_year: 2023, bid_type: 'Produce')
-        expect(Rfp.last).to have_attributes(start_year: 2023, bid_type: 'Produce')
+        make_request(rfp.id, start_year: 2023, procurement_type_id: procurement_type.id)
+        expect(Rfp.last).to have_attributes(start_year: 2023, procurement_type: procurement_type)
       end
 
       it 'redirects to documents index page' do
-        make_request(rfp.id, start_year: 2021, bid_type: 'Produce')
+        make_request(rfp.id, start_year: 2021, procurement_type_id: procurement_type.id)
         expect(response).to redirect_to(buyers_rfp_scores_path(rfp))
       end
 
       context 'with missing information' do
         it 'sets a flash' do
-          make_request(rfp.id, start_year: 2021, bid_type: '')
+          make_request(rfp.id, start_year: nil)
           expect(flash[:alert]).to include('RFP could not be saved')
         end
       end
 
       context 'when saving a draft' do
         it 'shows the scores form' do
-          make_draft_request(rfp.id, start_year: 2021, bid_type: 'Produce')
+          make_draft_request(rfp.id, start_year: 2021, procurement_type_id: procurement_type.id)
           expect(response).to be_successful
         end
       end

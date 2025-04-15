@@ -46,8 +46,8 @@ class RfpCompositor
     return false unless valid?
 
     tempfile = Tempfile.new(['temp_rfp', '.docx'], binmode: true)
-    begin
-      tempfile.write(template.render_to_string(context))
+    with_template do |sablon_template|
+      tempfile.write(sablon_template.render_to_string(context))
       tempfile.rewind
       rfp.draft.attach(io: tempfile, filename: "DRAFT_RFP_#{Time.current.to_fs(:number)}.docx")
     ensure
@@ -140,8 +140,9 @@ class RfpCompositor
     Date.current.month >= 7 ? Date.new(Date.current.year, 7) : Date.new(Date.current.prev_year.year, 7)
   end
 
-  def template
-    file_name = Dir.glob('vendor/assets/templates/rfp/*.docx').first
-    Sablon.template(File.expand_path(file_name))
+  def with_template
+    rfp.procurement_type.template.attachment.blob.open do |file|
+      yield Sablon.template(file)
+    end
   end
 end

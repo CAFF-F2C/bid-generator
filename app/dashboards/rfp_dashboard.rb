@@ -11,7 +11,7 @@ class RfpDashboard < Administrate::BaseDashboard
     buyer: Field::BelongsTo,
     id: Field::Number,
     school_year: Field::String,
-    bid_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
+    procurement_type: Field::BelongsTo,
     positive_scores: ScoresField,
     total_score: Field::Number,
     item_list: AttachedDocumentField.with_options(destroy_url: proc { |resource| [:admin_rfp_item_list_destroy, {id: resource.id}] }),
@@ -32,7 +32,7 @@ class RfpDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     buyer
-    bid_type
+    procurement_type
     school_year
     status
     created_at
@@ -43,7 +43,7 @@ class RfpDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     buyer
-    bid_type
+    procurement_type
     school_year
     created_at
     updated_at
@@ -73,7 +73,7 @@ class RfpDashboard < Administrate::BaseDashboard
   #
 
   FORM_ATTRIBUTES = %i[
-    bid_type
+    procurement_type
     start_year
     item_list
     draft

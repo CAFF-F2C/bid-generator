@@ -5,7 +5,8 @@ RSpec.describe Buyers::DraftsController, type: :request do
 
   describe 'POST /create' do
     let(:buyer) { create(:buyer, :confirmed) }
-    let(:rfp) { create(:rfp, buyer: buyer, start_year: 2012) }
+    let(:procurement_type) { create(:procurement_type, name: 'TestType', published: true) }
+    let(:rfp) { create(:rfp, buyer: buyer, start_year: 2012, procurement_type: procurement_type) }
     let(:location) { create(:location, buyer: buyer, street_address: '123 Main') }
     let(:score_category1) { create(:score_category, name: 'Cat1', position: 1, point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description') }
     let(:score_category2) { create(:score_category, name: 'Cat2', position: 2, point_awarded_basis: 'point awarded basis', point_split_descriptions: 'point split description') }
@@ -16,6 +17,7 @@ RSpec.describe Buyers::DraftsController, type: :request do
       create(:delivery, rfp: rfp, location: location, delivery_days: [2, 3], deliveries_per_week: 3)
       create(:score, rfp: rfp, score_category: score_category1, value: 60)
       create(:score, rfp: rfp, score_category: score_category2, value: 40)
+      procurement_type.template.attach(io: File.open('spec/fixtures/files/RFP_Template.docx'), filename: 'RFP_Template.docx')
     end
 
     def make_request
