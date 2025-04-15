@@ -2,11 +2,11 @@ class Buyers::RfpsController < Buyers::ApplicationController
   after_action :verify_authorized, except: [:new, :create]
 
   def new
-    @rfp = current_buyer.rfps.build(bid_type: 'Produce', start_year: Time.current.year)
+    @rfp = current_buyer.rfps.build(start_year: Time.current.year)
   end
 
   def create
-    @rfp = current_buyer.rfps.build(rfp_params.reverse_merge(bid_type: 'Produce'))
+    @rfp = current_buyer.rfps.build(rfp_params)
     respond_to do |format|
       if @rfp.save
         if params.key?(:draft)
@@ -77,6 +77,6 @@ class Buyers::RfpsController < Buyers::ApplicationController
   private
 
   def rfp_params
-    params.require(:rfp).permit(:bid_type, :start_year)
+    params.require(:rfp).permit(:procurement_type_id, :start_year)
   end
 end

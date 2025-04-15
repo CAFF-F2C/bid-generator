@@ -9,7 +9,9 @@
 
   <div class="pt-4 mt-4">
     <%= render(Buyers::Proposals::Section::Component.new(name: t('.rfp_purpose'), description: t('.rfp_purpose_description'), path: edit_buyers_rfp_path(@rfp))) do |component| %>
-      <% component.field(proposal: @rfp, section: :rfp_purpose, name: :bid_type) %>
+      <% component.field(proposal: @rfp, section: :rfp_purpose, name: :procurement_type) do %>
+        <%= @rfp.procurement_type_name %>
+      <% end %>
       <% component.field(proposal: @rfp, section: :rfp_purpose, name: :start_year) do %>
         <%= @rfp.school_year %>
       <% end %>

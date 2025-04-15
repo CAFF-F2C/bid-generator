@@ -24,9 +24,6 @@ class ScoreSheetValidator < ActiveModel::EachValidator
 end
 
 class Rfp < ApplicationRecord
-  BID_TYPES = ['Produce', 'Dairy', 'Bread', 'Broadline', 'Grocery', 'Supplies', 'Equipment'].freeze
-  enum bid_type: BID_TYPES
-
   belongs_to :buyer, inverse_of: :rfps
   belongs_to :procurement_type, inverse_of: :rfps
   has_many :scores, -> { joins(:score_category).order('score_categories.position ASC') }, inverse_of: :rfp, dependent: :destroy
@@ -41,6 +38,8 @@ class Rfp < ApplicationRecord
   delegate :complete?, to: :district_profile, prefix: true, allow_nil: true
 
   delegate :name, to: :procurement_type, prefix: true, allow_nil: true # TODO: shouldnt be nil
+  # todo: track these all down?
+  alias bid_type procurement_type_name
 
   validates :buyer, :procurement_type, presence: true
   validates :start_year, presence: true, on: [:create, :update, :purpose]

@@ -4,7 +4,10 @@ RSpec.describe 'Creates an RFP', type: :system do
   let!(:buyer) { create(:buyer, :confirmed) }
   let(:current_year) { 1.hour.from_now.year }
 
+  let(:procurement_type) { create(:procurement_type, name: 'Test Type', published: true) }
+
   before do
+    procurement_type.template.attach(io: File.open('spec/fixtures/files/RFP_Template.docx'), filename: 'RFP_Template.docx')
     create(:score_category, name: 'Item Prices', description: 'price description', position: 1)
     create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
     create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
@@ -99,6 +102,7 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'New proposal'
     select "#{current_year} - #{current_year + 1}", from: 'School year'
+    select 'Test Type', from: 'Procurement type'
 
     click_on 'Next'
 
@@ -152,9 +156,9 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Requests for Proposals'
 
-    expect(page).to have_content('Complete').and have_content('Produce').and have_content(current_year).and have_content(current_year + 1)
+    expect(page).to have_content('Complete').and have_content('Test Type').and have_content(current_year).and have_content(current_year + 1)
 
-    click_on 'Produce'
+    click_on 'Test Type'
     click_on 'Update', match: :first
 
     select "#{current_year} - #{current_year + 1}", from: 'School year'
@@ -163,9 +167,9 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Requests for Proposals'
 
-    expect(page).to have_content('Complete').and have_content('Produce').and have_content(current_year).and have_content(current_year + 1)
+    expect(page).to have_content('Complete').and have_content('Test Type').and have_content(current_year).and have_content(current_year + 1)
 
-    click_on 'Produce'
+    click_on 'Test Type'
 
     click_on 'Create draft'
     expect(page).to have_link(Rfp.last.draft.filename.to_s, wait: 10.seconds)

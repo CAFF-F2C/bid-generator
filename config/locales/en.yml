@@ -56,10 +56,10 @@ en:
         zip_code: ZIP code
       rfp:
         purpose: RFP Purpose
+        rfp_purpose: RFP Purpose
         scores: Scoring Categories
         deliveries: Delivery Times
         item_list: Item List
-        bid_type: Type
         start_year: School year
     models:
       district_profile:
