@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_09_172015) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_18_014808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -135,6 +135,16 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_09_172015) do
     t.index ["buyer_id"], name: "index_locations_on_buyer_id"
   end
 
+  create_table "procurement_type_score_categories", force: :cascade do |t|
+    t.bigint "procurement_type_id", null: false
+    t.bigint "score_category_id", null: false
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["procurement_type_id"], name: "index_procurement_type_score_categories_on_procurement_type_id"
+    t.index ["score_category_id"], name: "index_procurement_type_score_categories_on_score_category_id"
+  end
+
   create_table "procurement_types", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "published", default: false
@@ -156,7 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_09_172015) do
   create_table "score_categories", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
-    t.integer "position", null: false
+    t.integer "position"
     t.datetime "deleted_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -183,6 +193,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_09_172015) do
   add_foreign_key "deliveries", "rfps"
   add_foreign_key "district_profiles", "buyers"
   add_foreign_key "locations", "buyers"
+  add_foreign_key "procurement_type_score_categories", "procurement_types"
+  add_foreign_key "procurement_type_score_categories", "score_categories"
   add_foreign_key "rfps", "buyers"
   add_foreign_key "rfps", "procurement_types"
   add_foreign_key "scores", "rfps"

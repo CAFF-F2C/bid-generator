@@ -78,7 +78,6 @@ RSpec.describe 'Log in', type: :system do
 
     fill_in 'Name', with: 'My Category'
     fill_in 'Description', with: 'This is the category description'
-    fill_in 'Position', with: '1'
 
     click_on 'Create Score category'
     expect(page).to have_content('My Category')

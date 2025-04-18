@@ -7,6 +7,8 @@ RSpec.describe ScoreSheet, type: :model do
 
   describe '#find_or_initialize_scores' do
     context 'when there are not score categories' do
+      before { create(:score_category, name: 'OtherTypesCategory') }
+
       it 'is empty' do
         expect(score_sheet.find_or_initialize_scores).to eq([])
       end
@@ -14,8 +16,8 @@ RSpec.describe ScoreSheet, type: :model do
 
     context 'when the RFP has no scores' do
       before do
-        create(:score_category, name: 'Price', position: 0)
-        create(:score_category, name: 'Cat', position: 1)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Price'), position: 1)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat'), position: 2)
       end
 
       it 'sets the first score to 100' do
@@ -28,11 +30,12 @@ RSpec.describe ScoreSheet, type: :model do
     end
 
     context 'when the rfp has a score' do
-      let(:cat) { create(:score_category, name: 'Cat', position: 1) }
+      let(:cat) { create(:score_category, name: 'Cat') }
       let!(:score) { create(:score, rfp: rfp, score_category: cat, value: 25) }
 
       before do
-        create(:score_category, name: 'Price', position: 0)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: cat, position: 1)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Price'), position: 0)
       end
 
       it 'returns the score' do
@@ -42,8 +45,8 @@ RSpec.describe ScoreSheet, type: :model do
   end
 
   describe '#errors' do
-    let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description', position: 1) }
-    let!(:score_category2) { create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2) }
+    let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description', position: 1, procurement_types: [rfp.procurement_type]) }
+    let!(:score_category2) { create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2, procurement_types: [rfp.procurement_type]) }
 
     context 'when there are no scores' do
       it 'is not valid' do

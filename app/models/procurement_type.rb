@@ -11,6 +11,10 @@
 class ProcurementType < ApplicationRecord
   has_one_attached :template, dependent: :destroy
   has_many :rfps, inverse_of: :procurement_type
-  scope :published, -> { where(published: true) }
+  has_many :procurement_type_score_categories, -> { order('procurement_type_score_categories.position ASC') }, dependent: :destroy
+  has_many :score_categories, -> { order('procurement_type_score_categories.position ASC') }, through: :procurement_type_score_categories, inverse_of: :procurement_types
+
   validates :name, presence: true
+
+  scope :published, -> { where(published: true) }
 end

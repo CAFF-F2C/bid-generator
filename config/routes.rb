@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :district_profiles, only: [:index, :show, :edit, :update]
     resources :locations, only: [:show]
     resources :procurement_types, only: [:index, :show, :new, :create, :edit, :update]
+    resources :procurement_type_score_categories, only: [:show, :edit, :update, :destroy]
     resources :rfps, only: [:index, :show, :edit, :update]
     resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :scores, only: [:edit, :update, :show]

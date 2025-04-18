@@ -13,7 +13,7 @@ class ScoreSheet
   end
 
   def find_or_initialize_scores
-    rfp_scores = ScoreCategory.order(position: :asc).map do |score_category|
+    rfp_scores = @rfp.score_categories.map do |score_category|
       @rfp.scores.find_or_initialize_by(score_category_id: score_category.id)
     end
     rfp_scores.first.assign_attributes(value: 100) unless rfp_scores.blank? || rfp_scores.first.persisted?

@@ -26,7 +26,8 @@ end
 class Rfp < ApplicationRecord
   belongs_to :buyer, inverse_of: :rfps
   belongs_to :procurement_type, inverse_of: :rfps
-  has_many :scores, -> { joins(:score_category).order('score_categories.position ASC') }, inverse_of: :rfp, dependent: :destroy
+  has_many :score_categories, through: :procurement_type
+  has_many :scores, -> { joins(:score_category) }, inverse_of: :rfp, dependent: :destroy
   has_many :positive_scores, -> { where.not(value: 0).joins(:score_category).order('score_categories.position ASC') }, class_name: 'Score'
   has_many :deliveries, inverse_of: :rfp, dependent: :destroy
   has_one_attached :item_list, dependent: :destroy
