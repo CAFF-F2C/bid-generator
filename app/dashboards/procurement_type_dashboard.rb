@@ -12,6 +12,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
     name: Field::String,
     published: Field::Boolean,
     template: AttachedDocumentField,
+    procurement_type_score_categories: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -24,6 +25,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     published
     name
+    procurement_type_score_categories
     template
   ].freeze
 
@@ -33,6 +35,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
     name
     published
     template
+    procurement_type_score_categories
     created_at
     updated_at
   ].freeze
@@ -44,6 +47,7 @@ class ProcurementTypeDashboard < Administrate::BaseDashboard
     name
     published
     template
+    procurement_type_score_categories
   ].freeze
 
   # COLLECTION_FILTERS

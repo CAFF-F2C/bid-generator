@@ -8,12 +8,15 @@
 #  name                     :string           not null
 #  point_awarded_basis      :text
 #  point_split_descriptions :text
-#  position                 :integer          not null
+#  position                 :integer
 #  vendor_questions         :text
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #
 class ScoreCategory < ApplicationRecord
   acts_as_paranoid
-  validates :name, :description, :position, presence: true
+  has_many :procurement_type_score_categories, dependent: :destroy
+  has_many :procurement_types, through: :procurement_type_score_categories, inverse_of: :score_categories
+
+  validates :name, :description, presence: true
 end

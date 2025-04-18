@@ -23,12 +23,13 @@ RSpec.describe Buyers::ScoresController, type: :request do
     end
 
     describe 'when there are score categories' do
-      let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description', position: 1) }
+      let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description') }
 
       before do
-        create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
-        create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
-        create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: score_category1, position: 0)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 4', description: 'cat 4 description'), position: 4)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 3', description: 'cat 3 description'), position: 3)
+        rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 2', description: 'cat 2 description'), position: 2)
       end
 
       def make_request
@@ -79,12 +80,13 @@ RSpec.describe Buyers::ScoresController, type: :request do
   describe 'POST /create' do
     let(:buyer) { create(:buyer, :confirmed) }
     let(:rfp) { create(:rfp, buyer: buyer) }
-    let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description', position: 1) }
+    let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description') }
 
     before do
-      create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
-      create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
-      create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: score_category1, position: 0)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 4', description: 'cat 4 description'), position: 4)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 3', description: 'cat 3 description'), position: 3)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 2', description: 'cat 2 description'), position: 2)
     end
 
     def make_request(params = {})
@@ -123,13 +125,14 @@ RSpec.describe Buyers::ScoresController, type: :request do
   describe 'PATCH /update' do
     let(:buyer) { create(:buyer, :confirmed) }
     let(:rfp) { create(:rfp, buyer: buyer) }
-    let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description', position: 1) }
+    let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description') }
     let!(:score) { create(:score, score_category: score_category1, rfp: rfp, value: 20) }
 
     before do
-      create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
-      create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
-      create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: score_category1, position: 0)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 4', description: 'cat 4 description'), position: 4)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 3', description: 'cat 3 description'), position: 3)
+      rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 2', description: 'cat 2 description'), position: 2)
     end
 
     def make_request(params = {})

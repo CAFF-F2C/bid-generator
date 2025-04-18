@@ -8,10 +8,10 @@ RSpec.describe 'Creates an RFP', type: :system do
 
   before do
     procurement_type.template.attach(io: File.open('spec/fixtures/files/RFP_Template.docx'), filename: 'RFP_Template.docx')
-    create(:score_category, name: 'Item Prices', description: 'price description', position: 1)
-    create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2)
-    create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3)
-    create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
+    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Item Prices', description: 'price description'), position: 1)
+    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 2', description: 'cat 2 description'), position: 2)
+    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 3', description: 'cat 3 description'), position: 3)
+    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 4', description: 'cat 4 description'), position: 4)
   end
 
   it 'allows the buyer to create their district profile', :js do

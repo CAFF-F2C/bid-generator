@@ -3,12 +3,15 @@ require 'rails_helper'
 RSpec.describe Buyers::RfpScoresComponent, type: :component do
   let(:rfp) { create(:rfp) }
   let(:component) { described_class.new(current_rfp: rfp) }
-  let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description', position: 1) }
-  let!(:score_category2) { create(:score_category, name: 'Cat 2', description: 'cat 2 description', position: 2) }
-  let!(:score_category3) { create(:score_category, name: 'Cat 3', description: 'cat 3 description', position: 3) }
+  let!(:score_category1) { create(:score_category, name: 'Price', description: 'price description') }
+  let!(:score_category2) { create(:score_category, name: 'Cat 2', description: 'cat 2 description') }
+  let!(:score_category3) { create(:score_category, name: 'Cat 3', description: 'cat 3 description') }
 
   before do
-    create(:score_category, name: 'Cat 4', description: 'cat 4 description', position: 4)
+    rfp.procurement_type.procurement_type_score_categories.create(score_category: score_category1, position: 0)
+    rfp.procurement_type.procurement_type_score_categories.create(score_category: score_category2, position: 2)
+    rfp.procurement_type.procurement_type_score_categories.create(score_category: score_category3, position: 3)
+    rfp.procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 4', description: 'cat 4 description'), position: 4)
   end
 
   context 'when the rfp has no scores' do
