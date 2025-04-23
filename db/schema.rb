@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_18_014808) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_22_235659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -177,6 +177,16 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_18_014808) do
     t.index ["position"], name: "index_score_categories_on_position"
   end
 
+  create_table "score_presets", force: :cascade do |t|
+    t.bigint "procurement_type_id", null: false
+    t.string "name", null: false
+    t.string "description", null: false
+    t.boolean "published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["procurement_type_id"], name: "index_score_presets_on_procurement_type_id"
+  end
+
   create_table "scores", force: :cascade do |t|
     t.bigint "rfp_id", null: false
     t.bigint "score_category_id", null: false
@@ -197,6 +207,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_18_014808) do
   add_foreign_key "procurement_type_score_categories", "score_categories"
   add_foreign_key "rfps", "buyers"
   add_foreign_key "rfps", "procurement_types"
+  add_foreign_key "score_presets", "procurement_types"
   add_foreign_key "scores", "rfps"
   add_foreign_key "scores", "score_categories"
 end
