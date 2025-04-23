@@ -12,6 +12,7 @@
 #
 class ScorePreset < ApplicationRecord
   belongs_to :procurement_type
+  has_many :score_preset_values, inverse_of: :score_preset
   validates :name, presence: true
   scope :published, -> { where(published: true) }
 end

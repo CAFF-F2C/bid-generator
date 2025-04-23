@@ -1,6 +1,6 @@
 require 'administrate/base_dashboard'
 
-class ScorePresetDashboard < Administrate::BaseDashboard
+class ScorePresetValueDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,12 +8,10 @@ class ScorePresetDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    score_preset: Field::BelongsTo,
+    score_category: Field::BelongsTo,
     id: Field::Number,
-    name: Field::String,
-    published: Field::Boolean,
-    description: Field::String,
-    procurement_type: Field::BelongsTo,
-    score_preset_values: Field::HasMany,
+    value: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -24,19 +22,18 @@ class ScorePresetDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    published
-    name
-    procurement_type
+    score_preset
+    score_category
+    value
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    published
-    name
-    description
-    procurement_type
-    score_preset_values
+    score_preset
+    score_category
+    id
+    value
     created_at
     updated_at
   ].freeze
@@ -45,10 +42,9 @@ class ScorePresetDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    published
-    procurement_type
-    name
-    description
+    score_preset
+    score_category
+    value
   ].freeze
 
   # COLLECTION_FILTERS
@@ -63,10 +59,10 @@ class ScorePresetDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how procurement types are displayed
+  # Overwrite this method to customize how scores are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(type)
-    type.name
+  def display_resource(value)
+    "#{value.score_preset.name} -- #{value.score_category.name}"
   end
 end

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :rfps, only: [:index, :show, :edit, :update]
     resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :score_presets, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :score_preset_values, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :scores, only: [:edit, :update, :show]
 
     delete :rfp_item_list_destroy, to: 'rfps#destroy_item_list'
