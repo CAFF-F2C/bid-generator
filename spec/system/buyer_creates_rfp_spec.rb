@@ -5,13 +5,23 @@ RSpec.describe 'Creates an RFP', type: :system do
   let(:current_year) { 1.hour.from_now.year }
 
   let(:procurement_type) { create(:procurement_type, name: 'Test Type', published: true) }
+  let(:preset) { create(:score_preset, name: 'ScorePreset', procurement_type: procurement_type) }
+
+  let(:price) { create(:score_category, name: 'Item Prices') }
+  let(:cat4) { create(:score_category, name: 'Cat 4') }
+  let(:cat3) { create(:score_category, name: 'Cat 3') }
+  let(:cat2) { create(:score_category, name: 'Cat 2') }
 
   before do
     procurement_type.template.attach(io: File.open('spec/fixtures/files/RFP_Template.docx'), filename: 'RFP_Template.docx')
-    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Item Prices', description: 'price description'), position: 1)
-    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 2', description: 'cat 2 description'), position: 2)
-    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 3', description: 'cat 3 description'), position: 3)
-    procurement_type.procurement_type_score_categories.create(score_category: create(:score_category, name: 'Cat 4', description: 'cat 4 description'), position: 4)
+    procurement_type.procurement_type_score_categories.create(score_category: price, position: 1)
+    procurement_type.procurement_type_score_categories.create(score_category: cat2, position: 2)
+    procurement_type.procurement_type_score_categories.create(score_category: cat3, position: 3)
+    procurement_type.procurement_type_score_categories.create(score_category: cat4, position: 4)
+
+    create(:score_preset_value, score_preset: preset, score_category: price, value: 55)
+    create(:score_preset_value, score_preset: preset, score_category: cat3, value: 25)
+    create(:score_preset_value, score_preset: preset, score_category: cat4, value: 1)
   end
 
   it 'allows the buyer to create their district profile', :js do
@@ -106,19 +116,19 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Next'
 
-    expect(page).to have_content('Price')
+    click_on 'ScorePreset'
+    expect(page).to have_content('Previewing the ScorePreset preset')
+    click_on 'Apply'
 
-    fill_in 'Item Prices', with: '40'
-    expect(page.find('#rfp_total_score')).to have_content('40')
-    fill_in 'Cat 2', with: '20'
-    expect(page.find('#rfp_total_score')).to have_content('60')
-    fill_in 'Cat 3', with: '20'
-    expect(page.find('#rfp_total_score')).to have_content('80')
-    fill_in 'Cat 4', with: '30'
-    expect(page.find('#rfp_total_score')).to have_content('110')
+    expect(page).to have_content('Price')
+    expect(page.find('#rfp_total_score')).to have_content('81')
+
+    fill_in 'Cat 2', with: '22'
+    expect(page.find('#rfp_total_score')).to have_content('103')
+
     expect(page.find('.form-errors__error')).to have_content('Total must equal 100')
 
-    fill_in 'Cat 4', with: '20'
+    fill_in 'Cat 2', with: '19'
     expect(page).not_to have_selector('.form-errors__error')
     expect(page.find('#rfp_total_score')).to have_content('100')
 

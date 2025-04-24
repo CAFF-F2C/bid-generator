@@ -297,7 +297,7 @@ en:
     rfps:
       edit:
         title: RFP Purpose
-        description_html: What types of products will you purchase using this RFP? When will you begin to purchase those products? Please email %{mail_link} to create other RFP types.
+        description_html: What types of products will you purchase using this RFP? When will you begin to purchase those products? For assistance with product types not listed, please contact %{mail_link}.
       new:
         title: RFP Purpose
         description_html: What types of products will you purchase using this RFP? When will you begin to purchase those products? Please email %{mail_link} to create other RFP types.
@@ -319,9 +319,18 @@ en:
         update: Update
       index:
         title: Scoring Categories
-        description: How will you score vendors responding to this RFP?
-        rules_html: You'll need to spend 100 points on the following categories. If any category has zero points, it won't show up on your RFP. The <b>Price</b> category must have the highest number of points, but no more than 55 points. We also require you to spend at least 5 points on the <b>Local Geographic Preference</b> category.
-        custom_category_html: Would you like to add a scoring category outside of the categories listed here? CAFF can work with you to create a custom scoring category. Please email %{mail_link} for more information.
+        description: This section is your opportunity to embed  your values into the RFP, alongside your logistical needs.
+        rules_html: You will need to spend 100 points on the following criteria. Categories with zero points will not show up on your RFP. The <b>Price</b> category must have the highest number of points, but no more than 55 points. When prioritizing Farm to School, we recommend that you spend at least 5 points on the <b>Local Geographic Preference</b> category.
+        presets_title: Need help? Explore presets.
+        presets_description: CAFF has partnered with SupplyChange to recommend pre-filled categories that target your department’s priorities. Select options below to preview presets.
+    score_presets:
+      component:
+        table_head: Previewing the %{name} preset
+      show:
+        lead_html: See the effect of applying the <b>%{name}</b> template to your current score categories.
+        description: The Local produce template emphasizes local farms near your district, and includes common provisions for small and non-industrial farming operations.
+        presets_title: Want to see a different preset?
+        presets_description: CAFF has partnered with SupplyChange to recommend pre-filled categories that target your department’s priorities. Select options below to preview presets.
     sessions:
       destroy:
         title: Log out

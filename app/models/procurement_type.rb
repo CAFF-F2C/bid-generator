@@ -13,6 +13,7 @@ class ProcurementType < ApplicationRecord
   has_many :rfps, inverse_of: :procurement_type
   has_many :procurement_type_score_categories, -> { order('procurement_type_score_categories.position ASC') }, dependent: :destroy
   has_many :score_categories, -> { order('procurement_type_score_categories.position ASC') }, through: :procurement_type_score_categories, inverse_of: :procurement_types
+  has_many :score_presets
 
   validates :name, presence: true
 

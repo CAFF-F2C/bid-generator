@@ -1,0 +1,9 @@
+.buyers-score-presets {
+    &__difference--positive {
+         @apply text-green-600;
+    }
+    &__difference--negative {
+         @apply text-red-500;
+    }
+}
+

@@ -1,0 +1,41 @@
+<div class='buyers-score-presets'>
+  <div class="table">
+    <div class="table-header-group">
+      <div class="table-row">
+        <div class="table-cell text-md leading-6 font-medium text-gray-900 w-full text-left"><%= t('.table_head', name: @preset.name) %></div>
+        <div class="table-cell text-left text-sm font-normal p-2">Old Score</div>
+        <div class="table-cell text-left text-sm font-normal p-2"><span class="whitespace-nowrap">New Score</span><br />(Change)</div>
+      </div>
+    </div>
+
+    <% scores.each do |score|%>
+      <div class="table-row-group" id="score_category_<%=score.score_category_id%>">
+        <div class="table-row group">
+          <div class="table-cell pt-4 border-t">
+            <p class='font-semibold text-base'><%= score.name %></p>
+          </div>
+          <div class="table-cell p-2 pt-4 text-sm border-t">
+            <%= score.value %>
+          </div>
+          <div class="table-cell p-2 pt-4 text-sm text border-t">
+            <%= category_value(score) %>
+            <% unless category_difference(score).zero? %>
+              <span class="buyers-score-presets__difference--<%= category_difference(score).positive? ? 'positive' : 'negative' %>">
+                (<%= category_difference(score).abs %> <%= category_difference(score).positive? ? '▲' : '▼' %>)
+              </span>
+            <% end %>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="sm:table-cell">
+            <div class="text-sm flex mt-2 mb-4" data-action='click->buyers--score-presets#click' data-category-id="<%=score.score_category_id%>">
+              <p class='category-description text-gray-600 hidden sm:line-clamp-1 sm:flex-1'><%= score.description %></p>
+              <span class='category-description-more underline text-cyan-700'>MORE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

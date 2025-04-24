@@ -8,3 +8,6 @@ application.register("buyers--rfp-scores-component--rfp-scores", Buyers__RfpScor
 
 import FlashComponent__FlashController from "./flash_component/flash_controller"
 application.register("flash-component--flash", FlashComponent__FlashController)
+
+import Buyers__ScorePresets from "./buyers/score_presets/controller"
+application.register("buyers--score-presets", Buyers__ScorePresets)

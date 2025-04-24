@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :documents, only: [:index]
     resources :rfps, except: [:index] do
       resources :scores, except: [:new, :edit, :destroy]
+      resources :score_presets, only: [:show, :update]
       resources :deliveries
       resource :item_list, only: [:edit, :update]
       resource :draft, only: [:create]
