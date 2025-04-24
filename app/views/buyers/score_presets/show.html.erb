@@ -1,4 +1,4 @@
-<div class="divide-y divide-gray-200">
+<div>
   <div class="space-y-8">
     <%= render(Buyers::Steps::Component.new(title: Rfp.model_name.human)) do |component| %>
       <%= component.step index: 1, current_index: 2, section: t(:purpose, scope: [:activerecord, :attributes, :rfp]), path: edit_buyers_rfp_path(@rfp), valid: @rfp.valid?(:purpose) %>
@@ -8,13 +8,12 @@
     <% end %>
 
     <div class="space-y-2">
-      <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.title') %></h2>
       <div class="space-y-2">
-        <p class="text-sm text-gray-600"><%= t('.description') %></p>
-        <p class="text-sm text-gray-600"><%= t('.rules_html') %></p>
+        <p class="text-sm text-gray-600"><%= t('.lead_html', name: @preset.name) %></p>
+        <p class="text-sm text-gray-600"><%= @preset.description %></p>
       </div>
     </div>
-    <% unless @rfp.procurement_type.score_presets.published.empty? %>
+    <% unless @rfp.procurement_type.score_presets.published.where.not(id: @preset.id).empty? %>
       <div class="space-y-2 sm:bg-gray-50 sm:rounded-lg sm:p-6">
         <h2 class="text-lg leading-6 font-medium text-gray-900"><%= t('.presets_title') %></h2>
         <div class="space-y-2">
@@ -22,7 +21,7 @@
         </div>
         <div>
           <div class="flex justify-start space-x-4 mt-4">
-            <% @rfp.procurement_type.score_presets.published.each do |preset| %>
+            <% @rfp.procurement_type.score_presets.published.where.not(id: @preset.id).each do |preset| %>
               <%= link_to preset.name,  buyers_rfp_score_preset_path(@rfp, preset), class: 'forms-submit--outline' %>
             <% end %>
           </div>
@@ -31,11 +30,12 @@
     <% end %>
   </div>
 
-  <div class="pt-4 mt-4" data-controller='buyers--rfp-scores-component--rfp-scores'>
-    <%= render(Buyers::RfpScoresComponent.new(current_rfp: @rfp)) %>
+  <div class="pt-4 mt-4" data-controller='buyers--score-presets'>
+    <%= render(Buyers::ScorePresets::Component.new(current_rfp: @rfp, preset: @preset)) %>
   </div>
 
   <div class="pt-4 mt-4">
-    <%= link_to("Next", buyers_rfp_deliveries_path(@rfp), class: 'forms-submit') %>
+    <%= link_to("Apply", buyers_rfp_score_preset_path(@rfp, @preset), method: :put, class: 'forms-submit') %>
+    <%= link_to("Cancel", buyers_rfp_scores_path(@rfp), class: 'forms-submit--outline') %>
   </div>
 </div>

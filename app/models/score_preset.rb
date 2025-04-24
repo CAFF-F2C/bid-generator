@@ -15,4 +15,8 @@ class ScorePreset < ApplicationRecord
   has_many :score_preset_values, inverse_of: :score_preset
   validates :name, presence: true
   scope :published, -> { where(published: true) }
+
+  def category_value(category)
+    score_preset_values.find_by(score_category: category)&.value || 0
+  end
 end
