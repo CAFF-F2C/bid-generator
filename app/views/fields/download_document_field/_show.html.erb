@@ -1,0 +1,3 @@
+<% if field.rfp_valid? %>
+  <%= link_to 'Generate and Download', [namespace, field.resource, :download], download: true %>
+<% end %>

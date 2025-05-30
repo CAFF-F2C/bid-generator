@@ -13,7 +13,10 @@ Rails.application.routes.draw do
     resources :locations, only: [:show]
     resources :procurement_types, only: [:index, :show, :new, :create, :edit, :update]
     resources :procurement_type_score_categories, only: [:show, :edit, :update, :destroy]
-    resources :rfps, only: [:index, :show, :edit, :update]
+    resources :rfps, only: [:index, :show, :edit, :update] do
+      get :download
+    end
+
     resources :score_categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :score_presets, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     resources :score_preset_values, only: [:index, :show, :new, :create, :edit, :update, :destroy]
