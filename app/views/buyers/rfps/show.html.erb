@@ -85,4 +85,23 @@
       <%= render(Buyers::Deliveries::List::Component.new(deliveries: @rfp.deliveries.page.per(@rfp.deliveries.size + 1))) %>
     <% end %>
   </div>
+
+  <div class="pt-4 mt-4">
+    <%= render(Buyers::Proposals::Section::Component.new(name: t('.item_list'), path: edit_buyers_rfp_item_list_path(@rfp))) do |component| %>
+      <% if @rfp.item_list.attached? %>
+        <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
+          <li role="listitem" class="pl-3 pr-4 py-3 flex items-center justify-between text-sm group">
+            <div class="w-0 flex-1 flex items-center">
+              <%= inline_svg_tag 'buyers/item_lists/attachment.svg', class: 'flex-shrink-0 h-5 w-5 text-gray-400', aria_hidden: true %>
+              <span class="ml-2 flex-1 w-0 truncate">
+                <%= @rfp.item_list.filename %>
+                <span class="text-gray-600 ml-2"><%= l(@rfp.item_list.created_at, format: :long) %></span>
+              </span>
+            </div>
+            <%= link_to t('.download'), rails_blob_path(@rfp.item_list, disposition: 'attachment'), class: 'block ml-4 flex-shrink-0 text-medium text-cyan-700 hover:text-cyan-500' %>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
 </div>
