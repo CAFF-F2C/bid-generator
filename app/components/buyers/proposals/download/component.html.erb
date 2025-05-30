@@ -1,0 +1,16 @@
+<div class="space-y-2">
+  <div class="text-right">
+
+      <%= link_to t('.download'), buyers_rfp_download_path(proposal), class: 'forms-submit', download: true %>
+
+  </div>
+
+  <div class="rounded-md bg-blue-50">
+    <div class="pl-3 pr-4 py-3 flex items-center text-sm space-x-4">
+      <%= inline_svg_tag 'buyers/alert.svg', class: 'h-5 w-5 text-blue-400 flex-shrink-0', aria_hidden: true %>
+      <div class="text-blue-800 flex-1">
+        <%= t('.ready') %>
+      </div>
+    </div>
+  </div>
+</div>
