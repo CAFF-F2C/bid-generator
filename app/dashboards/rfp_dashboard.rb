@@ -15,6 +15,7 @@ class RfpDashboard < Administrate::BaseDashboard
     positive_scores: ScoresField,
     total_score: Field::Number,
     item_list: AttachedDocumentField.with_options(destroy_url: proc { |resource| [:admin_rfp_item_list_destroy, {id: resource.id}] }),
+    download: DownloadDocumentField,
     draft: AttachedDocumentField.with_options(destroy_url: proc { |resource| [:admin_rfp_draft_destroy, {id: resource.id}] }),
     reviewed: AttachedDocumentField.with_options(destroy_url: proc { |resource| [:admin_rfp_reviewed_destroy, {id: resource.id}] }),
     final: AttachedDocumentField.with_options(destroy_url: proc { |resource| [:admin_rfp_final_destroy, {id: resource.id}] }),
@@ -51,6 +52,7 @@ class RfpDashboard < Administrate::BaseDashboard
     total_score
     deliveries
     item_list
+    download
     draft
     reviewed
     final
@@ -76,9 +78,6 @@ class RfpDashboard < Administrate::BaseDashboard
     procurement_type
     start_year
     item_list
-    draft
-    reviewed
-    final
   ].freeze
 
   def display_resource(rfp)
