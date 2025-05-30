@@ -305,6 +305,7 @@ en:
         deliveries: Delivery Times
         deliveries_description: Where and when will you receive deliveries?
         incomplete: Incomplete
+        item_list: Item List
         piggyback_included: Piggyback clause included
         piggyback_not_included: Piggyback clause not included
         price_not_verified: No verification
