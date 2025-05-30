@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :deliveries
       resource :item_list, only: [:edit, :update]
       resource :draft, only: [:create]
+      resource :download, only: [:show]
       resource :reviewed, only: [:update]
       resource :final, only: [:update]
     end

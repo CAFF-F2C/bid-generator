@@ -251,6 +251,10 @@ en:
           post: Post proposal
           title: Proposal versions
           upload: Upload
+      download:
+        component:
+          download: Download
+          ready: Your RFP is ready to download.
       empty:
         component:
           description: |
@@ -304,6 +308,7 @@ en:
       show:
         deliveries: Delivery Times
         deliveries_description: Where and when will you receive deliveries?
+        download: Download
         incomplete: Incomplete
         item_list: Item List
         piggyback_included: Piggyback clause included
