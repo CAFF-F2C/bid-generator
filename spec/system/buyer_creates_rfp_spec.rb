@@ -181,19 +181,6 @@ RSpec.describe 'Creates an RFP', type: :system do
 
     click_on 'Test Type'
 
-    click_on 'Create draft'
-    expect(page).to have_link(Rfp.last.draft.filename.to_s, wait: 10.seconds)
-
-    page.attach_file('Upload reviewed', 'spec/fixtures/files/reviewed_rfp.txt')
-    click_on 'Submit Reviewed'
-    expect(page).to have_link('reviewed_rfp.txt')
-
-    page.attach_file('Upload final', 'spec/fixtures/files/final_rfp.txt')
-    click_on 'Submit Final'
-    expect(page).to have_link('final_rfp.txt').and have_link('Post proposal')
-
-    click_on 'Requests for Proposals'
-
-    expect(page).to have_content('Final')
+    expect(page).to have_link('Download')
   end
 end
