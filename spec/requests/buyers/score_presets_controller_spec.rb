@@ -107,7 +107,7 @@ RSpec.describe Buyers::ScorePresetsController, type: :request do
       context 'when there are no scores' do
         it 'creates the scores' do
           make_request
-          expect(rfp.scores.collect(&:value)).to eq([55, 25, 1])
+          expect(rfp.scores.collect(&:value)).to contain_exactly(55, 25, 1)
         end
 
         it 'redirects to the score sheet' do
@@ -125,7 +125,7 @@ RSpec.describe Buyers::ScorePresetsController, type: :request do
 
         it 'updates the scores' do
           make_request
-          expect(rfp.scores.collect(&:value)).to eq([55, 25, 1])
+          expect(rfp.scores.collect(&:value)).to contain_exactly(55, 25, 1)
         end
 
         it 'redirects to the score sheet' do

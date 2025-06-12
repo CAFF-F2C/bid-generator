@@ -10,6 +10,7 @@ class Admin::RfpsController < Admin::ApplicationController
       send_data download.read, filename: "DRAFT_RFP_#{Time.current.to_fs(:number)}.docx"
     end
   end
+
   def destroy_draft
     requested_resource.draft.purge
     redirect_back(fallback_location: requested_resource)
